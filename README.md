@@ -1,6 +1,6 @@
 # Schnipsel
 <p>English text below</p>
-<p align="justify">Schnipsel ist eine Databank-Anwendung für Code-Schnipsel, Script-Schnipsel oder reinen Text-schnipseln</p>
+<p align="justify">Schnipsel ist eine Databank-Anwendung für Code-Schnipsel, Script-Schnipsel oder reine Text-Schnipsel</p>
 <p align="center">
 <img width="415" height="400" alt="Screenshot 2025-08-15 212450" src="https://github.com/user-attachments/assets/8004d16c-37a5-490a-a37b-01084cf64dbb" /></center>
 </p>
