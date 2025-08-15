@@ -1,0 +1,1176 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tcommentdlg.caption
+msgid "Comment"
+msgstr ""
+
+#: tcommentdlg.cauthor.editlabel.caption
+msgctxt "tcommentdlg.cauthor.editlabel.caption"
+msgid "Author:"
+msgstr ""
+
+#: tcommentdlg.cauthoredit.editlabel.caption
+msgctxt "tcommentdlg.cauthoredit.editlabel.caption"
+msgid "Author:"
+msgstr ""
+
+#: tcommentdlg.cfc_label.caption
+msgctxt "tcommentdlg.cfc_label.caption"
+msgid "Comment for Code:"
+msgstr ""
+
+#: tcommentdlg.cfc_label1.caption
+msgctxt "tcommentdlg.cfc_label1.caption"
+msgid "Comment for Code:"
+msgstr ""
+
+#: tcommentdlg.delete_btn.caption
+msgctxt "tcommentdlg.delete_btn.caption"
+msgid "Delete"
+msgstr ""
+
+#: tcommentdlg.edit_comment.editlabel.caption
+msgctxt "tcommentdlg.edit_comment.editlabel.caption"
+msgid "Comment:"
+msgstr ""
+
+#: tcommentdlg.edit_groupbox.caption
+msgctxt "tcommentdlg.edit_groupbox.caption"
+msgid "Edit / Delete"
+msgstr ""
+
+#: tcommentdlg.label1.caption
+msgctxt "tcommentdlg.label1.caption"
+msgid "Select Entry:"
+msgstr ""
+
+#: tcommentdlg.new_comment.editlabel.caption
+msgctxt "tcommentdlg.new_comment.editlabel.caption"
+msgid "Comment:"
+msgstr ""
+
+#: tcommentdlg.new_groupbox.caption
+msgctxt "tcommentdlg.new_groupbox.caption"
+msgid "New"
+msgstr ""
+
+#: tcommentdlg.save_btn.caption
+msgctxt "tcommentdlg.save_btn.caption"
+msgid "Save"
+msgstr ""
+
+#: tcommentdlg.update_btn.caption
+msgctxt "tcommentdlg.update_btn.caption"
+msgid "Update"
+msgstr ""
+
+#: tdbconfigdlg.caption
+msgid "DataBase Configuration"
+msgstr ""
+
+#: tdbconfigdlg.databasegroupbox.caption
+msgid "Database"
+msgstr ""
+
+#: tdbconfigdlg.dbbackupbtn.caption
+msgid "Backup DataBase"
+msgstr ""
+
+#: tdbconfigdlg.dbinstallbtn.caption
+msgid "Install / Restore DataBase "
+msgstr ""
+
+#: tdbconfigdlg.dbusebtn.caption
+msgctxt "tdbconfigdlg.dbusebtn.caption"
+msgid "&Benutzen"
+msgstr ""
+
+#: tdbconfigdlg.odbctestbtn.caption
+msgid "Test Connection"
+msgstr ""
+
+#: tdbconfigdlg.odbc_charset_edit.editlabel.caption
+msgid "Charset:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_database_edit.editlabel.caption
+msgid "DataBase:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_driver_label.caption
+msgid "ODBC-Driver:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_dsn_label.caption
+msgid "ODBC-DSN:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_password_edit.editlabel.caption
+msgid "Password:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_port_edit.editlabel.caption
+msgid "Port:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_server_edit.editlabel.caption
+msgid "Server:"
+msgstr ""
+
+#: tdbconfigdlg.odbc_username_edit.editlabel.caption
+msgid "Username:"
+msgstr ""
+
+#: texportdlg.codename.caption
+msgctxt "texportdlg.codename.caption"
+msgid "CodeName"
+msgstr ""
+
+#: texportdlg.exportcomments.caption
+msgid "Export with Comments"
+msgstr ""
+
+#: texportdlg.exportlinks.caption
+msgid "Export witth Links"
+msgstr ""
+
+#: texportdlg.exportrequired.caption
+msgid "Export with Required"
+msgstr ""
+
+#: texportdlg.groupbox1.caption
+msgid "Export Code"
+msgstr ""
+
+#: texportpdfdlg.exppdfauthor.editlabel.caption
+msgid "PDF Author:"
+msgstr ""
+
+#: texportpdfdlg.exppdfkeywords.editlabel.caption
+msgid "PDF Keywords:"
+msgstr ""
+
+#: texportpdfdlg.exppdfocop.caption
+msgid "One Code per Page, if possible"
+msgstr ""
+
+#: texportpdfdlg.exppdfoutline.caption
+msgid "With Content Menu"
+msgstr ""
+
+#: texportpdfdlg.exppdfsubject.editlabel.caption
+msgid "PDF Subject:"
+msgstr ""
+
+#: texportpdfdlg.exppdftitle.editlabel.caption
+msgid "PDF Title:"
+msgstr ""
+
+#: texportpdfdlg.pdfgroupbox.caption
+msgid "Export PDF"
+msgstr ""
+
+#: tlinkdlg.caption
+msgctxt "tlinkdlg.caption"
+msgid "Links"
+msgstr ""
+
+#: tlinkdlg.delete_btn.caption
+msgctxt "tlinkdlg.delete_btn.caption"
+msgid "Delete"
+msgstr ""
+
+#: tlinkdlg.edit_groupbox.caption
+msgctxt "tlinkdlg.edit_groupbox.caption"
+msgid "Edit / Delete"
+msgstr ""
+
+#: tlinkdlg.label3.caption
+msgctxt "tlinkdlg.label3.caption"
+msgid "Select Entry:"
+msgstr ""
+
+#: tlinkdlg.lfclabel.caption
+msgctxt "tlinkdlg.lfclabel.caption"
+msgid "Link for Code:"
+msgstr ""
+
+#: tlinkdlg.lfclabel2.caption
+msgctxt "tlinkdlg.lfclabel2.caption"
+msgid "Link for Code:"
+msgstr ""
+
+#: tlinkdlg.linktxt.editlabel.caption
+msgctxt "tlinkdlg.linktxt.editlabel.caption"
+msgid "Link Text:"
+msgstr ""
+
+#: tlinkdlg.linktxt1.editlabel.caption
+msgctxt "tlinkdlg.linktxt1.editlabel.caption"
+msgid "Link Text:"
+msgstr ""
+
+#: tlinkdlg.linkurl.editlabel.caption
+msgctxt "tlinkdlg.linkurl.editlabel.caption"
+msgid "Link Url:"
+msgstr ""
+
+#: tlinkdlg.linkurl1.editlabel.caption
+msgctxt "tlinkdlg.linkurl1.editlabel.caption"
+msgid "Link Url:"
+msgstr ""
+
+#: tlinkdlg.new_groupbox.caption
+msgctxt "tlinkdlg.new_groupbox.caption"
+msgid "New"
+msgstr ""
+
+#: tlinkdlg.save_btn.caption
+msgctxt "tlinkdlg.save_btn.caption"
+msgid "Save"
+msgstr ""
+
+#: tlinkdlg.update_btn.caption
+msgctxt "tlinkdlg.update_btn.caption"
+msgid "Update"
+msgstr ""
+
+#: tnewcategoriedlg.deletebtn.caption
+msgctxt "tnewcategoriedlg.deletebtn.caption"
+msgid "Delete"
+msgstr ""
+
+#: tnewcategoriedlg.deletecategorie.caption
+msgid "Delete Language"
+msgstr ""
+
+#: tnewcategoriedlg.editcategorie.caption
+msgid "Edit Language"
+msgstr ""
+
+#: tnewcategoriedlg.movetocategorie1.caption
+msgid "Move Code Entrys to: (select the same as above to delete Entrys)"
+msgstr ""
+
+#: tnewcategoriedlg.newcategorie.caption
+msgid "New Language"
+msgstr ""
+
+#: tnewcategoriedlg.newcatname.editlabel.caption
+msgid "Language Name:"
+msgstr ""
+
+#: tnewcategoriedlg.newcatname1.editlabel.caption
+msgid "New Name:"
+msgstr ""
+
+#: tnewcategoriedlg.newcatshort.editlabel.caption
+msgid "Language Menu Display:"
+msgstr ""
+
+#: tnewcategoriedlg.newcatshort1.editlabel.caption
+msgid "New Menu Display:"
+msgstr ""
+
+#: tnewcategoriedlg.savebtn.caption
+msgctxt "tnewcategoriedlg.savebtn.caption"
+msgid "Save"
+msgstr ""
+
+#: tnewcategoriedlg.savebtn2.caption
+msgctxt "tnewcategoriedlg.savebtn2.caption"
+msgid "Update"
+msgstr ""
+
+#: tnewcodeentrydlg.bitbtn1.caption
+msgid "&Close"
+msgstr ""
+
+#: tnewcodeentrydlg.button1.caption
+msgctxt "tnewcodeentrydlg.button1.caption"
+msgid "Create"
+msgstr ""
+
+#: tnewcodeentrydlg.caption
+msgctxt "tnewcodeentrydlg.caption"
+msgid "New Code Entry"
+msgstr ""
+
+#: tnewcodeentrydlg.nclanglabel.caption
+msgid "Language:"
+msgstr ""
+
+#: tnewcodeentrydlg.nctypelabel.caption
+msgid "Type:"
+msgstr ""
+
+#: tnewcodeentrydlg.newcodegroupbox.caption
+msgid "New Code Schnipsel:"
+msgstr ""
+
+#: tnewcodeentrydlg.newcodename.editlabel.caption
+msgid "New Code Name:"
+msgstr ""
+
+#: tnewtypedlg.deletebtn.caption
+msgctxt "tnewtypedlg.deletebtn.caption"
+msgid "Delete"
+msgstr ""
+
+#: tnewtypedlg.dellabel.caption
+msgid "Delete Type:"
+msgstr ""
+
+#: tnewtypedlg.edittypename.editlabel.caption
+msgid "Edited Type name:"
+msgstr ""
+
+#: tnewtypedlg.groupbox1.caption
+msgctxt "tnewtypedlg.groupbox1.caption"
+msgid "New"
+msgstr ""
+
+#: tnewtypedlg.groupbox2.caption
+msgid "Edit"
+msgstr ""
+
+#: tnewtypedlg.groupbox3.caption
+msgctxt "tnewtypedlg.groupbox3.caption"
+msgid "Delete"
+msgstr ""
+
+#: tnewtypedlg.newtypename.editlabel.caption
+msgid "New Type name:"
+msgstr ""
+
+#: tnewtypedlg.savebtn.caption
+msgctxt "tnewtypedlg.savebtn.caption"
+msgid "Save"
+msgstr ""
+
+#: tnewtypedlg.statictext1.caption
+msgid "Move Code Entrys to: (Select the same as above to delete Entrys)"
+msgstr ""
+
+#: tnewtypedlg.updatebtn.caption
+msgctxt "tnewtypedlg.updatebtn.caption"
+msgid "Update"
+msgstr ""
+
+#: translate_strings.bookmarks
+msgid "Bookmarks:"
+msgstr ""
+
+#: translate_strings.centrystr1
+msgid "Version: "
+msgstr ""
+
+#: translate_strings.centrystr2
+msgid "V"
+msgstr ""
+
+#: translate_strings.centrystr3
+msgid "No Link submitted"
+msgstr ""
+
+#: translate_strings.centrystr4
+msgid "Mark as Bookmark"
+msgstr ""
+
+#: translate_strings.centrystr5
+msgid "Delete Bookmark"
+msgstr ""
+
+#: translate_strings.centrystr6
+msgid "Mark as Favorite"
+msgstr ""
+
+#: translate_strings.centrystr7
+msgid "Delete Favorite"
+msgstr ""
+
+#: translate_strings.connectionok
+msgctxt "translate_strings.connectionok"
+msgid "Connection to MySQL or MariaDB database \"Schnipsel\" = OK!"
+msgstr ""
+
+#: translate_strings.databaseerrorstr
+msgid "Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!"
+msgstr ""
+
+#: translate_strings.dlgstr1
+msgid "No Entry Selected"
+msgstr ""
+
+#: translate_strings.dlgstr2
+msgid "Delete Entry?"
+msgstr ""
+
+#: translate_strings.dlgstr3
+msgid "New Name cant be empty!"
+msgstr ""
+
+#: translate_strings.dlgstr4
+msgid "Move Code Entrys from "
+msgstr ""
+
+#: translate_strings.dlgstr5
+msgid " to "
+msgstr ""
+
+#: translate_strings.dlgstr6
+msgid " and delete "
+msgstr ""
+
+#: translate_strings.dlgstr7
+msgid " ?"
+msgstr ""
+
+#: translate_strings.dlgstr8
+msgid "Delete all Code Entrys in "
+msgstr ""
+
+#: translate_strings.editorstr1
+msgid "Version"
+msgstr ""
+
+#: translate_strings.editorstr10
+msgid "Close anyway?"
+msgstr ""
+
+#: translate_strings.editorstr11
+msgid "Code saved!"
+msgstr ""
+
+#: translate_strings.editorstr2
+msgid "Author"
+msgstr ""
+
+#: translate_strings.editorstr3
+msgid "AUTHOR"
+msgstr ""
+
+#: translate_strings.editorstr4
+msgid "VERSION"
+msgstr ""
+
+#: translate_strings.editorstr5
+msgid "To Many Lines"
+msgstr ""
+
+#: translate_strings.editorstr6
+msgid "Only the first 1000 Lines will be saved!"
+msgstr ""
+
+#: translate_strings.editorstr7
+msgid "Code in Editor not saved!"
+msgstr ""
+
+#: translate_strings.editorstr8
+msgid "Load this Code anyway?"
+msgstr ""
+
+#: translate_strings.editorstr9
+msgid "New Code anyway?"
+msgstr ""
+
+#: translate_strings.exportstr1
+msgid "Delete from Exportlist?"
+msgstr ""
+
+#: translate_strings.exportstr10
+msgid "Name: "
+msgstr ""
+
+#: translate_strings.exportstr11
+msgid "Description: "
+msgstr ""
+
+#: translate_strings.exportstr12
+msgctxt "translate_strings.exportstr12"
+msgid "Url: "
+msgstr ""
+
+#: translate_strings.exportstr13
+msgid "Comments:"
+msgstr ""
+
+#: translate_strings.exportstr14
+msgid "Author: "
+msgstr ""
+
+#: translate_strings.exportstr15
+msgid "Comment: "
+msgstr ""
+
+#: translate_strings.exportstr16
+msgid "Links:"
+msgstr ""
+
+#: translate_strings.exportstr17
+msgid "Link Description: "
+msgstr ""
+
+#: translate_strings.exportstr18
+msgctxt "translate_strings.exportstr18"
+msgid "Url: "
+msgstr ""
+
+#: translate_strings.exportstr19
+msgid "DD.MM.YYYY"
+msgstr ""
+
+#: translate_strings.exportstr2
+msgid "Code: "
+msgstr ""
+
+#: translate_strings.exportstr20
+msgctxt "translate_strings.exportstr20"
+msgid "Required"
+msgstr ""
+
+#: translate_strings.exportstr21
+msgctxt "translate_strings.exportstr21"
+msgid "Comments"
+msgstr ""
+
+#: translate_strings.exportstr22
+msgctxt "translate_strings.exportstr22"
+msgid "Links"
+msgstr ""
+
+#: translate_strings.exportstr3
+msgid "Code is allready in Exportlist!"
+msgstr ""
+
+#: translate_strings.exportstr4
+msgid " (with required)"
+msgstr ""
+
+#: translate_strings.exportstr5
+msgid " (with comments)"
+msgstr ""
+
+#: translate_strings.exportstr6
+msgid " (with links)"
+msgstr ""
+
+#: translate_strings.exportstr7
+msgid "Language: "
+msgstr ""
+
+#: translate_strings.exportstr8
+msgid "Type: "
+msgstr ""
+
+#: translate_strings.exportstr9
+msgctxt "translate_strings.exportstr9"
+msgid "Required for Code:"
+msgstr ""
+
+#: translate_strings.exportstrhtml
+msgid "HTML-Export"
+msgstr ""
+
+#: translate_strings.exportstrpdf
+msgid "PDF-Export"
+msgstr ""
+
+#: translate_strings.exportstrxml
+msgid "XML-Export"
+msgstr ""
+
+#: translate_strings.favorites
+msgid "Favorites:"
+msgstr ""
+
+#: translate_strings.installdbstr
+msgid "Install Database"
+msgstr ""
+
+#: translate_strings.licensestr
+msgid "GNU Lesser General Public License v3"
+msgstr ""
+
+#: translate_strings.panel0entrys
+msgctxt "translate_strings.panel0entrys"
+msgid "No Entrys"
+msgstr ""
+
+#: translate_strings.panelentrys
+msgid "Entrys:"
+msgstr ""
+
+#: translate_strings.replacestr1
+msgid "Es wurden ersetzt "
+msgstr ""
+
+#: translate_strings.replacestr2
+msgid " Vorkommnisse."
+msgstr ""
+
+#: translate_strings.replacestr3
+msgid "Dieses_Vorkommnis_ersetzen?"
+msgstr ""
+
+#: translate_strings.replacestr4
+msgid "Nicht gefunden : "
+msgstr ""
+
+#: translate_strings.requiredstr1
+msgid "> Not in Schnipsel <"
+msgstr ""
+
+#: translate_strings.requiredstr2
+msgid "> Select <"
+msgstr ""
+
+#: translate_strings.schversion
+msgid "Version:"
+msgstr ""
+
+#: translate_strings.searchcodes
+msgid "Search in Codes:"
+msgstr ""
+
+#: translate_strings.searchnames
+msgid "Search in Names:"
+msgstr ""
+
+#: translate_strings.typeliststr1
+msgid "Fold / unfold list"
+msgstr ""
+
+#: translate_strings.typeliststr2
+msgid "Click to show code entry"
+msgstr ""
+
+#: translate_strings.typeliststr3
+msgid "Delete this code entry and versions of it?"
+msgstr ""
+
+#: translate_strings.typeliststr4
+msgid "Delete Code Version Entry?"
+msgstr ""
+
+#: translate_strings.used1lnk
+msgid "https://www.lazarus-ide.org/"
+msgstr ""
+
+#: translate_strings.used1str
+msgid "Written in Object Pascal using FPC and Lazarus"
+msgstr ""
+
+#: translate_strings.used2lnk
+msgid "https://github.com/zamtmn/metadarkstyle"
+msgstr ""
+
+#: translate_strings.used2str
+msgid "Dark-Theme by Alexander Koblov: metadarkstyle"
+msgstr ""
+
+#: translate_strings.used3lnk
+msgid "https://github.com/altec-sistemas/powerpdf"
+msgstr ""
+
+#: translate_strings.used3str
+msgid "PDF-Export written using PowerPDF by Takezou"
+msgstr ""
+
+#: translate_strings.writtenstr
+msgid "Written by A.Trösch"
+msgstr ""
+
+#: trequireddlg.caption
+msgctxt "trequireddlg.caption"
+msgid "Required"
+msgstr ""
+
+#: trequireddlg.cib_label.caption
+msgctxt "trequireddlg.cib_label.caption"
+msgid "Code is in Schnipsel:"
+msgstr ""
+
+#: trequireddlg.cib_label2.caption
+msgctxt "trequireddlg.cib_label2.caption"
+msgid "Code is in Schnipsel:"
+msgstr ""
+
+#: trequireddlg.delete_btn.caption
+msgctxt "trequireddlg.delete_btn.caption"
+msgid "Delete"
+msgstr ""
+
+#: trequireddlg.editgroup.caption
+msgctxt "trequireddlg.editgroup.caption"
+msgid "Edit / Delete"
+msgstr ""
+
+#: trequireddlg.ereq_label.caption
+msgctxt "trequireddlg.ereq_label.caption"
+msgid "Select Entry:"
+msgstr ""
+
+#: trequireddlg.newgroup.caption
+msgctxt "trequireddlg.newgroup.caption"
+msgid "New"
+msgstr ""
+
+#: trequireddlg.req_hint.editlabel.caption
+msgctxt "trequireddlg.req_hint.editlabel.caption"
+msgid "Description:"
+msgstr ""
+
+#: trequireddlg.req_hint1.editlabel.caption
+msgctxt "trequireddlg.req_hint1.editlabel.caption"
+msgid "Description:"
+msgstr ""
+
+#: trequireddlg.req_name.editlabel.caption
+msgctxt "trequireddlg.req_name.editlabel.caption"
+msgid "Name:"
+msgstr ""
+
+#: trequireddlg.req_name1.editlabel.caption
+msgctxt "trequireddlg.req_name1.editlabel.caption"
+msgid "Name:"
+msgstr ""
+
+#: trequireddlg.req_url.editlabel.caption
+msgctxt "trequireddlg.req_url.editlabel.caption"
+msgid "Url:"
+msgstr ""
+
+#: trequireddlg.req_url1.editlabel.caption
+msgctxt "trequireddlg.req_url1.editlabel.caption"
+msgid "Url:"
+msgstr ""
+
+#: trequireddlg.rfc_label.caption
+msgctxt "trequireddlg.rfc_label.caption"
+msgid "Required for Code:"
+msgstr ""
+
+#: trequireddlg.rfc_label1.caption
+msgctxt "trequireddlg.rfc_label1.caption"
+msgid "Required for Code:"
+msgstr ""
+
+#: trequireddlg.save_btn.caption
+msgctxt "trequireddlg.save_btn.caption"
+msgid "Save"
+msgstr ""
+
+#: trequireddlg.save_btn2.caption
+msgctxt "trequireddlg.save_btn2.caption"
+msgid "Update"
+msgstr ""
+
+#: tschnipselmainform.bookmark_button.hint
+msgid "Show Bookmarks"
+msgstr ""
+
+#: tschnipselmainform.caption
+msgid "Schnipsel"
+msgstr ""
+
+#: tschnipselmainform.codeaddverbtn.hint
+msgid "Add new version"
+msgstr ""
+
+#: tschnipselmainform.codebmbtn.hint
+msgid "Set bookmark"
+msgstr ""
+
+#: tschnipselmainform.codedeletebtn.hint
+msgid "Delete code"
+msgstr ""
+
+#: tschnipselmainform.codedelverbtn.hint
+msgid "Delete version"
+msgstr ""
+
+#: tschnipselmainform.codeeditbtn.hint
+msgid "Edit code"
+msgstr ""
+
+#: tschnipselmainform.codeexportbtn.hint
+msgid "Export code"
+msgstr ""
+
+#: tschnipselmainform.codefavbtn.hint
+msgid "Mark as favorite"
+msgstr ""
+
+#: tschnipselmainform.codelanguages.caption
+msgid "Edit Categories"
+msgstr ""
+
+#: tschnipselmainform.codeversion.caption
+msgid "CodeVersion"
+msgstr ""
+
+#: tschnipselmainform.code_tabsheet.caption
+msgid "Code"
+msgstr ""
+
+#: tschnipselmainform.comments_codename.caption
+msgid "Comments_Codename"
+msgstr ""
+
+#: tschnipselmainform.comment_tabsheet.caption
+msgctxt "tschnipselmainform.comment_tabsheet.caption"
+msgid "Comments"
+msgstr ""
+
+#: tschnipselmainform.dbsearch_button.hint
+msgid "Search for Text"
+msgstr ""
+
+#: tschnipselmainform.db_button.hint
+msgctxt "tschnipselmainform.db_button.hint"
+msgid "DataBase"
+msgstr ""
+
+#: tschnipselmainform.editortb_copybtn.caption
+msgid "EditorTB_CopyBtn"
+msgstr ""
+
+#: tschnipselmainform.editortb_copybtn.hint
+msgctxt "tschnipselmainform.editortb_copybtn.hint"
+msgid "Copy"
+msgstr ""
+
+#: tschnipselmainform.editortb_cutbtn.caption
+msgid "EditorTB_CutBtn"
+msgstr ""
+
+#: tschnipselmainform.editortb_cutbtn.hint
+msgid "Cut"
+msgstr ""
+
+#: tschnipselmainform.editortb_pastebtn.caption
+msgid "EditorTB_PasteBtn"
+msgstr ""
+
+#: tschnipselmainform.editortb_pastebtn.hint
+msgid "Paste"
+msgstr ""
+
+#: tschnipselmainform.editortb_replacebtn.hint
+msgctxt "tschnipselmainform.editortb_replacebtn.hint"
+msgid "Replace"
+msgstr ""
+
+#: tschnipselmainform.editortb_savebtn.caption
+msgid "EditorTB_SaveBtn"
+msgstr ""
+
+#: tschnipselmainform.editortb_savebtn.hint
+msgctxt "tschnipselmainform.editortb_savebtn.hint"
+msgid "Save"
+msgstr ""
+
+#: tschnipselmainform.editortb_searchbtn.hint
+msgctxt "tschnipselmainform.editortb_searchbtn.hint"
+msgid "Search"
+msgstr ""
+
+#: tschnipselmainform.editortb_selectallbtn.hint
+msgctxt "tschnipselmainform.editortb_selectallbtn.hint"
+msgid "Select All"
+msgstr ""
+
+#: tschnipselmainform.editortb_spacer.caption
+msgid "EditorTB_Spacer"
+msgstr ""
+
+#: tschnipselmainform.editortb_spacer2.caption
+msgid "EditorTB_Spacer2"
+msgstr ""
+
+#: tschnipselmainform.edit_comments_button.caption
+msgctxt "tschnipselmainform.edit_comments_button.caption"
+msgid "Edit Entrys"
+msgstr ""
+
+#: tschnipselmainform.edit_links_button.caption
+msgctxt "tschnipselmainform.edit_links_button.caption"
+msgid "Edit Entrys"
+msgstr ""
+
+#: tschnipselmainform.edit_mode_button.hint
+msgid "Enable / Disable Edit Mode"
+msgstr ""
+
+#: tschnipselmainform.edit_required_button.caption
+msgctxt "tschnipselmainform.edit_required_button.caption"
+msgid "Edit Entrys"
+msgstr ""
+
+#: tschnipselmainform.english.caption
+msgid "English"
+msgstr ""
+
+#: tschnipselmainform.exportashtmlbtn.caption
+msgid "Export as HTML"
+msgstr ""
+
+#: tschnipselmainform.exportaspdfbtn.caption
+msgid "Export as PDF"
+msgstr ""
+
+#: tschnipselmainform.exportasxmlbtn.caption
+msgid "Export as XML"
+msgstr ""
+
+#: tschnipselmainform.exportsavedialog.title
+msgid "Save File as"
+msgstr ""
+
+#: tschnipselmainform.export_mode_button.hint
+msgid "Enable / Disable Export Mode"
+msgstr ""
+
+#: tschnipselmainform.favorites_button.hint
+msgid "Show Favorites"
+msgstr ""
+
+#: tschnipselmainform.finddlg.title
+msgctxt "tschnipselmainform.finddlg.title"
+msgid "Search"
+msgstr ""
+
+#: tschnipselmainform.german.caption
+msgid "German"
+msgstr ""
+
+#: tschnipselmainform.languages.caption
+msgid "Languages"
+msgstr ""
+
+#: tschnipselmainform.links_codename.caption
+msgid "Links_Codename"
+msgstr ""
+
+#: tschnipselmainform.links_tabsheet.caption
+msgctxt "tschnipselmainform.links_tabsheet.caption"
+msgid "Links"
+msgstr ""
+
+#: tschnipselmainform.mainmenu_button.hint
+msgid "Main Menu"
+msgstr ""
+
+#: tschnipselmainform.memoaddver.caption
+msgid "Add a new Code Version"
+msgstr ""
+
+#: tschnipselmainform.memobookmark.caption
+msgid "Mark / Unmark as Bookmark"
+msgstr ""
+
+#: tschnipselmainform.memocopy.caption
+msgid "Copy Code to Clipboard"
+msgstr ""
+
+#: tschnipselmainform.memodelete.caption
+msgid "Delete this Code and Versions"
+msgstr ""
+
+#: tschnipselmainform.memodelver.caption
+msgid "Delete this Version of Code"
+msgstr ""
+
+#: tschnipselmainform.memoedit.caption
+msgid "Edit this Code"
+msgstr ""
+
+#: tschnipselmainform.memoexport.caption
+msgid "Export this Code"
+msgstr ""
+
+#: tschnipselmainform.memofav.caption
+msgid "Mark / Unmark as Favorite"
+msgstr ""
+
+#: tschnipselmainform.memoselectall.caption
+msgid "Select / Unselect All"
+msgstr ""
+
+#: tschnipselmainform.memotop.caption
+msgid "Send this Code to Top Window"
+msgstr ""
+
+#: tschnipselmainform.mmdatabase.caption
+msgctxt "tschnipselmainform.mmdatabase.caption"
+msgid "DataBase"
+msgstr ""
+
+#: tschnipselmainform.mmeditmode.caption
+msgid "Toggle Edit Mode"
+msgstr ""
+
+#: tschnipselmainform.mmexportmode.caption
+msgid "Toggle Export Mode"
+msgstr ""
+
+#: tschnipselmainform.mmnewentry.caption
+msgctxt "tschnipselmainform.mmnewentry.caption"
+msgid "New Code Entry"
+msgstr ""
+
+#: tschnipselmainform.mmsearch.caption
+msgid "Suche..."
+msgstr ""
+
+#: tschnipselmainform.newcodeentry_button.hint
+msgctxt "tschnipselmainform.newcodeentry_button.hint"
+msgid "New Code Entry"
+msgstr ""
+
+#: tschnipselmainform.popupcopy.caption
+msgid "Copy to Cipboard"
+msgstr ""
+
+#: tschnipselmainform.popupcut.caption
+msgid "Cut to Clipboard"
+msgstr ""
+
+#: tschnipselmainform.popupedit.caption
+msgid " Edit"
+msgstr ""
+
+#: tschnipselmainform.popupfold.caption
+msgid "Folding"
+msgstr ""
+
+#: tschnipselmainform.popupfoldall.caption
+msgid "Fold All"
+msgstr ""
+
+#: tschnipselmainform.popuppaste.caption
+msgid "Paste from Clipboard"
+msgstr ""
+
+#: tschnipselmainform.popupreplace.caption
+msgid "Replace.."
+msgstr ""
+
+#: tschnipselmainform.popupsave.caption
+msgctxt "tschnipselmainform.popupsave.caption"
+msgid "Save"
+msgstr ""
+
+#: tschnipselmainform.popupsearch.caption
+msgid "Search.."
+msgstr ""
+
+#: tschnipselmainform.popupsearch1.caption
+msgid "Search / Replace"
+msgstr ""
+
+#: tschnipselmainform.popupselectall.caption
+msgid "Select All / Unselect"
+msgstr ""
+
+#: tschnipselmainform.popupunfoldall.caption
+msgid "Unfold All"
+msgstr ""
+
+#: tschnipselmainform.replacedlg.title
+msgctxt "tschnipselmainform.replacedlg.title"
+msgid "Replace"
+msgstr ""
+
+#: tschnipselmainform.requires_codename.caption
+msgid "Requires_Codename"
+msgstr ""
+
+#: tschnipselmainform.requires_tabsheet.caption
+msgid "Requires"
+msgstr ""
+
+#: tschnipselmainform.send_top_button.caption
+msgid "Send to Top"
+msgstr ""
+
+#: tschnipselmainform.settings_button.hint
+msgid "Settings Menu"
+msgstr ""
+
+#: tschnipselmainform.showsplash_button.hint
+msgid "Info"
+msgstr ""
+
+#: tschnipselmainform.smsettings.caption
+msgid "Settings"
+msgstr ""
+
+#: tschnipselmainform.translations.caption
+msgid "Translations"
+msgstr ""
+
+#: tschnipselmainform.types.caption
+msgid "Types"
+msgstr ""
+
+#: ttopform.caption
+msgid "Schnipsel TOP"
+msgstr ""
+
+#: ttopform.codename.caption
+msgctxt "ttopform.codename.caption"
+msgid "CodeName"
+msgstr ""
+
+#: ttopform.topclosebtn.caption
+msgid "Close"
+msgstr ""
+
+#: ttopform.topmemocopy.caption
+msgctxt "ttopform.topmemocopy.caption"
+msgid "Copy"
+msgstr ""
+
+#: ttopform.topmemoselectall.caption
+msgctxt "ttopform.topmemoselectall.caption"
+msgid "Select All"
+msgstr ""
+
+#: udbconfigdlg.dbconnectionfail
+msgid "No MySQL or MariaDB Server!"
+msgstr ""
+
+#: udbconfigdlg.dbconnectionok
+msgctxt "udbconfigdlg.dbconnectionok"
+msgid "Connection to MySQL database \"Schnipsel\" = OK!"
+msgstr ""
+
+#: udbconfigdlg.nodbinfo
+msgid "No Server Info!"
+msgstr ""
+
+#: udbconfigdlg.nodrventrys
+msgctxt "udbconfigdlg.nodrventrys"
+msgid "No Entrys"
+msgstr ""
+
+#: udbconfigdlg.nodsnentrys
+msgctxt "udbconfigdlg.nodsnentrys"
+msgid "No Entrys"
+msgstr ""
+
+#: udbconfigdlg.nousedsn
+msgid "No Use of DSN (fill fields below)"
+msgstr ""
+
+#: udbconfigdlg.runsqldump
+msgid "Install the default(Setup) Schnipsel.sql?"
+msgstr ""
+
+#: udbconfigdlg.runsqldump2
+msgid "(Click No to Select a SQL-Dump)"
+msgstr ""
+

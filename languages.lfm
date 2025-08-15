@@ -1,0 +1,217 @@
+object NewCategorieDlg: TNewCategorieDlg
+  Left = 246
+  Height = 708
+  Top = 250
+  Width = 517
+  BorderIcons = []
+  BorderStyle = bsDialog
+  ClientHeight = 708
+  ClientWidth = 517
+  Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
+  object NewCategorie: TStaticText
+    Left = 40
+    Height = 17
+    Top = 16
+    Width = 193
+    Caption = 'New Language'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object NewCatName: TLabeledEdit
+    Left = 16
+    Height = 23
+    Top = 72
+    Width = 296
+    EditLabel.Height = 15
+    EditLabel.Width = 296
+    EditLabel.Caption = 'Language Name:'
+    MaxLength = 50
+    TabOrder = 1
+  end
+  object NewCatShort: TLabeledEdit
+    Left = 346
+    Height = 23
+    Top = 72
+    Width = 152
+    EditLabel.Height = 15
+    EditLabel.Width = 152
+    EditLabel.Caption = 'Language Menu Display:'
+    MaxLength = 5
+    TabOrder = 2
+  end
+  object CloseBtn: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 407
+    Height = 30
+    Top = 665
+    Width = 91
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 19
+    BorderSpacing.Bottom = 13
+    DefaultCaption = True
+    Kind = bkClose
+    ModalResult = 11
+    TabOrder = 3
+  end
+  object NewImage: TImage
+    Left = 16
+    Height = 20
+    Top = 16
+    Width = 20
+    ImageIndex = 3
+    Images = SchnipselMainForm.ImageList_white
+  end
+  object CategorieListEdit: TListBox
+    Left = 16
+    Height = 80
+    Top = 192
+    Width = 482
+    ItemHeight = 0
+    Style = lbOwnerDrawFixed
+    TabOrder = 4
+    OnDrawItem = CategorieListEditDrawItem
+    OnSelectionChange = CategorieListEditSelectionChange
+  end
+  object DividerBevel1: TDividerBevel
+    Left = 16
+    Height = 15
+    Top = 136
+    Width = 488
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object EditCategorie: TStaticText
+    Left = 40
+    Height = 17
+    Top = 168
+    Width = 193
+    Caption = 'Edit Language'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+  end
+  object EditImage: TImage
+    Left = 16
+    Height = 20
+    Top = 165
+    Width = 20
+    ImageIndex = 1
+    Images = SchnipselMainForm.ImageList_white
+  end
+  object NewCatName1: TLabeledEdit
+    Left = 16
+    Height = 23
+    Top = 304
+    Width = 296
+    EditLabel.Height = 15
+    EditLabel.Width = 296
+    EditLabel.Caption = 'New Name:'
+    MaxLength = 50
+    TabOrder = 6
+  end
+  object NewCatShort1: TLabeledEdit
+    Left = 346
+    Height = 23
+    Top = 304
+    Width = 152
+    EditLabel.Height = 15
+    EditLabel.Width = 152
+    EditLabel.Caption = 'New Menu Display:'
+    MaxLength = 5
+    TabOrder = 7
+  end
+  object DeleteCategorie: TStaticText
+    Left = 40
+    Height = 17
+    Top = 400
+    Width = 193
+    Caption = 'Delete Language'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 8
+  end
+  object DividerBevel2: TDividerBevel
+    Left = 16
+    Height = 15
+    Top = 376
+    Width = 488
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object DeleteImage: TImage
+    Left = 16
+    Height = 20
+    Top = 400
+    Width = 20
+    ImageIndex = 2
+    Images = SchnipselMainForm.ImageList_white
+  end
+  object CategorieListDelete: TListBox
+    Left = 16
+    Height = 64
+    Top = 424
+    Width = 482
+    ItemHeight = 0
+    Style = lbOwnerDrawFixed
+    TabOrder = 9
+    OnDrawItem = CategorieListDeleteDrawItem
+  end
+  object DividerBevel3: TDividerBevel
+    Left = 16
+    Height = 15
+    Top = 640
+    Width = 488
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object SaveBtn: TButton
+    Left = 424
+    Height = 25
+    Top = 104
+    Width = 75
+    Caption = 'Save'
+    TabOrder = 10
+    OnClick = SaveBtnClick
+  end
+  object SaveBtn2: TButton
+    Left = 424
+    Height = 25
+    Top = 344
+    Width = 75
+    Caption = 'Update'
+    TabOrder = 11
+    OnClick = SaveBtn2Click
+  end
+  object DeleteBtn: TButton
+    Left = 424
+    Height = 25
+    Top = 600
+    Width = 75
+    Caption = 'Delete'
+    TabOrder = 12
+    OnClick = DeleteBtnClick
+  end
+  object MoveToListBox: TListBox
+    Left = 16
+    Height = 56
+    Top = 528
+    Width = 483
+    ItemHeight = 0
+    TabOrder = 13
+    OnDrawItem = MoveToListBoxDrawItem
+  end
+  object MoveToCategorie1: TStaticText
+    Left = 16
+    Height = 17
+    Top = 512
+    Width = 465
+    Caption = 'Move Code Entrys to: (select the same as above to delete Entrys)'
+    ParentFont = False
+    TabOrder = 14
+  end
+end

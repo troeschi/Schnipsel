@@ -1,0 +1,75 @@
+object ExportDlg: TExportDlg
+  Left = 290
+  Height = 275
+  Top = 250
+  Width = 348
+  BorderIcons = []
+  BorderStyle = bsDialog
+  ClientHeight = 275
+  ClientWidth = 348
+  LCLVersion = '4.0.0.4'
+  object GroupBox1: TGroupBox
+    Left = 16
+    Height = 192
+    Top = 24
+    Width = 320
+    Caption = 'Export Code'
+    ClientHeight = 172
+    ClientWidth = 316
+    TabOrder = 0
+    object CodeName: TStaticText
+      Left = 8
+      Height = 17
+      Top = 24
+      Width = 288
+      Caption = 'CodeName'
+      TabOrder = 0
+    end
+    object ExportRequired: TCheckBox
+      Left = 16
+      Height = 19
+      Top = 64
+      Width = 128
+      Caption = 'Export with Required'
+      TabOrder = 1
+    end
+    object ExportComments: TCheckBox
+      Left = 16
+      Height = 19
+      Top = 96
+      Width = 140
+      Caption = 'Export with Comments'
+      TabOrder = 2
+    end
+    object ExportLinks: TCheckBox
+      Left = 16
+      Height = 19
+      Top = 128
+      Width = 112
+      Caption = 'Export witth Links'
+      TabOrder = 3
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 120
+    Height = 30
+    Top = 232
+    Width = 91
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    TabOrder = 1
+  end
+  object BitBtn2: TBitBtn
+    Left = 232
+    Height = 30
+    Top = 232
+    Width = 104
+    Cancel = True
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 2
+  end
+end

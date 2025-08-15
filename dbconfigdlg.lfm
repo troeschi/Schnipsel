@@ -1,0 +1,174 @@
+object DBConfigDlg: TDBConfigDlg
+  Left = 293
+  Height = 438
+  Top = 250
+  Width = 546
+  BorderIcons = [biMinimize]
+  BorderStyle = bsDialog
+  Caption = 'DataBase Configuration'
+  ClientHeight = 438
+  ClientWidth = 546
+  Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
+  OnShow = FormShow
+  object DatabaseGroupBox: TGroupBox
+    Left = 16
+    Height = 296
+    Top = 24
+    Width = 513
+    Caption = 'Database'
+    ClientHeight = 276
+    ClientWidth = 509
+    TabOrder = 0
+    object ODBC_Driver_Select: TComboBox
+      Left = 16
+      Height = 23
+      Top = 40
+      Width = 472
+      ItemHeight = 15
+      TabOrder = 0
+    end
+    object ODBC_Driver_Label: TLabel
+      Left = 16
+      Height = 15
+      Top = 24
+      Width = 71
+      Caption = 'ODBC-Driver:'
+      FocusControl = ODBC_Driver_Select
+    end
+    object ODBC_UserName_Edit: TLabeledEdit
+      Left = 16
+      Height = 23
+      Top = 168
+      Width = 136
+      EditLabel.Height = 15
+      EditLabel.Width = 136
+      EditLabel.Caption = 'Username:'
+      TabOrder = 1
+    end
+    object ODBC_Password_Edit: TLabeledEdit
+      Left = 16
+      Height = 23
+      Top = 224
+      Width = 136
+      EditLabel.Height = 15
+      EditLabel.Width = 136
+      EditLabel.Caption = 'Password:'
+      TabOrder = 2
+    end
+    object ODBC_Server_Edit: TLabeledEdit
+      Left = 168
+      Height = 23
+      Top = 168
+      Width = 136
+      EditLabel.Height = 15
+      EditLabel.Width = 136
+      EditLabel.Caption = 'Server:'
+      TabOrder = 3
+    end
+    object ODBC_Port_Edit: TLabeledEdit
+      Left = 168
+      Height = 23
+      Top = 224
+      Width = 136
+      EditLabel.Height = 15
+      EditLabel.Width = 136
+      EditLabel.Caption = 'Port:'
+      TabOrder = 4
+    end
+    object ODBC_DataBase_Edit: TLabeledEdit
+      Left = 320
+      Height = 23
+      Top = 168
+      Width = 168
+      EditLabel.Height = 15
+      EditLabel.Width = 168
+      EditLabel.Caption = 'DataBase:'
+      TabOrder = 5
+    end
+    object ODBC_Charset_Edit: TLabeledEdit
+      Left = 320
+      Height = 23
+      Top = 224
+      Width = 168
+      EditLabel.Height = 15
+      EditLabel.Width = 168
+      EditLabel.Caption = 'Charset:'
+      TabOrder = 6
+    end
+    object ODBC_DSN_Select: TComboBox
+      Left = 16
+      Height = 23
+      Top = 104
+      Width = 472
+      ItemHeight = 15
+      TabOrder = 7
+      OnSelect = ODBC_DSN_SelectSelect
+    end
+    object ODBC_DSN_Label: TLabel
+      Left = 16
+      Height = 15
+      Top = 88
+      Width = 63
+      Caption = 'ODBC-DSN:'
+      FocusControl = ODBC_DSN_Select
+    end
+  end
+  object ODBCDlgCancelBtn: TBitBtn
+    Left = 422
+    Height = 30
+    Top = 384
+    Width = 107
+    DefaultCaption = True
+    Kind = bkClose
+    ModalResult = 11
+    TabOrder = 1
+  end
+  object ODBCTestBtn: TButton
+    Left = 16
+    Height = 25
+    Top = 336
+    Width = 136
+    Caption = 'Test Connection'
+    TabOrder = 2
+    OnClick = ODBCTestBtnClick
+  end
+  object DBInstallBtn: TButton
+    Left = 184
+    Height = 25
+    Top = 336
+    Width = 168
+    Caption = 'Install / Restore DataBase '
+    TabOrder = 3
+    OnClick = DBInstallBtnClick
+  end
+  object DBBackupBtn: TButton
+    Left = 393
+    Height = 25
+    Top = 336
+    Width = 136
+    Caption = 'Backup DataBase'
+    TabOrder = 4
+    OnClick = DBBackupBtnClick
+  end
+  object SQLPbar: TProgressBar
+    Left = 16
+    Height = 20
+    Top = 384
+    Width = 336
+    TabOrder = 5
+    Visible = False
+  end
+  object ExportSQLDlg: TSaveDialog
+    DefaultExt = '.sql'
+    Filter = 'SQL-Dump|*.sql'
+    Left = 352
+    Top = 384
+  end
+  object OpenSqlDlg: TOpenDialog
+    DefaultExt = '.sql'
+    Filter = 'SQL-Dump|*.sql'
+    Left = 384
+    Top = 384
+  end
+end

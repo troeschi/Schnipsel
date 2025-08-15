@@ -1,0 +1,146 @@
+object NewTypeDlg: TNewTypeDlg
+  Left = 290
+  Height = 411
+  Top = 250
+  Width = 878
+  BorderIcons = []
+  BorderStyle = bsDialog
+  ClientHeight = 411
+  ClientWidth = 878
+  Position = poMainFormCenter
+  object GroupBox1: TGroupBox
+    Left = 16
+    Height = 128
+    Top = 16
+    Width = 416
+    Caption = 'New'
+    ClientHeight = 108
+    ClientWidth = 412
+    TabOrder = 0
+    object NewTypeName: TLabeledEdit
+      Left = 8
+      Height = 23
+      Top = 32
+      Width = 384
+      EditLabel.Height = 15
+      EditLabel.Width = 384
+      EditLabel.Caption = 'New Type name:'
+      MaxLength = 50
+      TabOrder = 0
+    end
+    object SaveBtn: TButton
+      Left = 317
+      Height = 25
+      Top = 72
+      Width = 75
+      Caption = 'Save'
+      TabOrder = 1
+      OnClick = SaveBtnClick
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 16
+    Height = 208
+    Top = 152
+    Width = 416
+    Caption = 'Edit'
+    ClientHeight = 188
+    ClientWidth = 412
+    TabOrder = 1
+    object EditTypeListBox: TListBox
+      Left = 8
+      Height = 80
+      Top = 8
+      Width = 384
+      ItemHeight = 0
+      Style = lbOwnerDrawFixed
+      TabOrder = 0
+      OnDrawItem = EditTypeListBoxDrawItem
+      OnSelectionChange = EditTypeListBoxSelectionChange
+    end
+    object EditTypeName: TLabeledEdit
+      Left = 8
+      Height = 23
+      Top = 112
+      Width = 384
+      EditLabel.Height = 15
+      EditLabel.Width = 384
+      EditLabel.Caption = 'Edited Type name:'
+      MaxLength = 50
+      TabOrder = 1
+    end
+    object UpdateBtn: TButton
+      Left = 317
+      Height = 25
+      Top = 152
+      Width = 75
+      Caption = 'Update'
+      TabOrder = 2
+      OnClick = UpdateBtnClick
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 448
+    Height = 344
+    Top = 16
+    Width = 416
+    Caption = 'Delete'
+    ClientHeight = 324
+    ClientWidth = 412
+    TabOrder = 2
+    object DeleteListBox: TListBox
+      Left = 8
+      Height = 112
+      Top = 24
+      Width = 384
+      ItemHeight = 0
+      Style = lbOwnerDrawFixed
+      TabOrder = 0
+      OnDrawItem = DeleteListBoxDrawItem
+    end
+    object MoveToListBox: TListBox
+      Left = 8
+      Height = 112
+      Top = 160
+      Width = 384
+      ItemHeight = 0
+      Style = lbOwnerDrawFixed
+      TabOrder = 1
+      OnDrawItem = MoveToListBoxDrawItem
+    end
+    object DelLabel: TLabel
+      Left = 8
+      Height = 15
+      Top = 8
+      Width = 63
+      Caption = 'Delete Type:'
+    end
+    object DeleteBtn: TButton
+      Left = 317
+      Height = 25
+      Top = 288
+      Width = 75
+      Caption = 'Delete'
+      TabOrder = 2
+      OnClick = DeleteBtnClick
+    end
+    object StaticText1: TStaticText
+      Left = 8
+      Height = 17
+      Top = 144
+      Width = 384
+      Caption = 'Move Code Entrys to: (Select the same as above to delete Entrys)'
+      TabOrder = 3
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 768
+    Height = 30
+    Top = 368
+    Width = 96
+    DefaultCaption = True
+    Kind = bkClose
+    ModalResult = 11
+    TabOrder = 3
+  end
+end

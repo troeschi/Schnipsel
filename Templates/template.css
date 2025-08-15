@@ -1,0 +1,167 @@
+body {
+background-color: #03045E;
+font-family:Arial, Verdana, sans-serif;
+font-size:12px;  
+}
+
+.CodeEntry {
+color: #ffffff;
+background:#0096C7;
+margin:20px 20px 20px 20px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}
+
+legend.CodeEntry {
+color: #ffffff;
+border: solid 1px #023E8A;
+background: #023E8A;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+padding: 5px;
+font-weight: bold;
+font-size:14px; 
+}
+
+.Language {
+color:#ffffff; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.Type {
+color:#ffffff; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.CodeLines{
+font-size:14px;  
+}	
+
+.CodeAppend {
+color:#ffffff; 
+font-weight: bold;
+font-size:14px;
+text-align: center;  	
+padding-top: 15px;
+}	
+
+.Required {
+color: #ffffff;
+background:##0096C7;
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}
+
+.Comment {
+color: #ffffff;
+background:##0096C7;
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+.CodeLinks {
+color: #ffffff;
+background:##0096C7;
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+
+legend.Required {
+color: #ffffff;
+padding: 5px;
+border-style: none;
+font-weight: bold;
+font-size:14px;  
+}
+
+a.Required:link{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+}
+
+a.Required:hover{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.Required:visited{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+}
+
+legend.Comment {
+color: #ffffff;
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+legend.CodeLinks {
+color: #ffffff;
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+a.CodeLinks:link{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+}
+
+a.CodeLinks:hover{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.CodeLinks:visited{
+color: #CAF0F8;	
+text-decoration:underline;
+border-style: none;
+}
+
+p.Required {
+color: #ffffff;
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}
+
+p.Comment {
+color: #ffffff;
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}	
+
+p.CodeLinks {
+color: #ffffff;
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}	
+
+
+
+
+
+

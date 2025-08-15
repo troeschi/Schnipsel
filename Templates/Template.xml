@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE SchnipselCode [
+  <!ELEMENT SchnipselCode (CodeEntry)+>
+  <!ELEMENT CodeEntry (CodeName, CodeLanguage, CodeType, CodeTXT, CodeAppend)+>
+  <!ELEMENT CodeName (#PCDATA)>
+  <!ELEMENT CodeLanguage (#PCDATA)>
+  <!ELEMENT CodeType (#PCDATA)>
+  <!ELEMENT CodeTXT (#PCDATA)>
+  <!ELEMENT CodeAppend (AppendType)+>
+  <!ELEMENT AppendType (CodeRequired, CodeComment, CodeLinks)+>
+  <!ELEMENT CodeRequired (RequiredName, RequiredHint, RequiredLink)+>
+  <!ELEMENT RequiredName (#PCDATA)>
+  <!ELEMENT RequiredHint (#PCDATA)>
+  <!ELEMENT RequiredLink (#PCDATA)>
+  <!ELEMENT CodeComment (CommentAuthor, CommentComment)+>
+  <!ELEMENT CommentAuthor (#PCDATA)>
+  <!ELEMENT CommentComment (#PCDATA)>  
+  <!ELEMENT CodeLink (LinkHint, LinkLink)+>
+  <!ELEMENT LinkName (#PCDATA)>
+  <!ELEMENT LinkHint (#PCDATA)>
+  <!ELEMENT LinkLink (#PCDATA)>
+   ]>
+<SchnipselCode>
+ [CodeStart]
+ <CodeEntry>
+        <CodeName>[CodeName]</CodeName>
+        <CodeLanguage>[LanguageName]</CodeLanguage>
+		<CodeType>[TypeName]</CodeType>
+		 [CodeTXTStart]
+		 <CodeTXT> 
+		 [CodeTXT]
+		 </CodeTXT>
+         [CodeTXTEnd] 		
+		<CodeAppend>
+				[RequiredStart]
+				<CodeRequired>
+				   <RequiredName>[Rname]</RequiredName>
+				   <RequiredHint>[Rhint]</RequiredHint>
+				   <RequiredLink>[Rurl]]</RequiredLink>
+				</CodeRequired>
+				[RequiredEnd]
+				[CommentStart]
+				<CodeComment>
+				   <CommentAuthor>[Cauthor]</CommentAuthor>
+				   <CommentComment>[Ccomment]</CommentComment>
+				</CodeComment>
+				[CommentEnd]
+    			[LinkStart]
+				<CodeLinks>
+				   <LinkHint>[Lhint]</LinkHint>
+				   <LinkLink>[Lurl]</LinkLink>
+				</CodeLinks>
+				[LinkEnd]
+		</CodeAppend>
+ </CodeEntry>
+[CodeEnd] 
+</SchnipselCode>
