@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Buttons, ComCtrls;
+  Buttons, ComCtrls, IniPropStorage;
 
 type
 
@@ -235,6 +235,7 @@ begin
    end;
   SchnipselMainForm.ODBCConnection1.Transaction := SchnipselMainForm.SQLTransaction1;
   SchnipselMainForm.SQLQuery1.DataBase := SchnipselMainForm.ODBCConnection1;
+  SchnipselMainForm.SchnipselIniStorage.save;
  except
   on E: ESQLDatabaseError do
          begin

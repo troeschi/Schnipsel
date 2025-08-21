@@ -62,6 +62,7 @@ Resourcestring Exportstr19  ='DD.MM.YYYY';
 Resourcestring Exportstr20  ='Required';
 Resourcestring Exportstr21  ='Comments';
 Resourcestring Exportstr22  ='Links';
+Resourcestring Exportstr23  ='More than 50 Exports could be trouble..Do it anyway?';
 
 Resourcestring Editorstr1   ='Version';
 Resourcestring Editorstr2   ='Author';

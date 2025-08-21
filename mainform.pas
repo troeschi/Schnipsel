@@ -10,8 +10,8 @@ uses
   LclType, SynHighlighterAny, LCLTranslator, ECScheme, Languages, Required,
   CodeComment, CodeLinks, NewEntry, CodeTypes, UExportDlg, UExportPDFDlg,
   Translate_strings, TopWindow, UDBConfigDlg, odbcconn, SQLDB, db, Types,
-  LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes,
-  PdfDoc, PdfTypes, PdfFonts, strUtils;
+  LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes, PdfDoc,
+  PdfTypes, PdfFonts, strUtils, iniFiles;
 
 
 
@@ -288,11 +288,13 @@ var i,
     MEntry            : Tstatictext;
     Mline             : TDividerBevel;
     Split_array       : array of string;
+    schnipsel_ini     : TiniFile;
 begin
  // Read Ini, build Menu
  //MySqlConnection
+ SchnipselIniStorage.IniFileName:=sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini';
  SchnipselIniStorage.Restore;
- if (not fileexists('Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ if (not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
   begin
    Menu_Entrys:=TStringList.Create;
   end
@@ -395,6 +397,13 @@ begin
  Editor_Toolbar.enabled:=false;
  EditorTB_Version.enabled:=false;
  EditorTB_Author.enabled:=false;
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'));
+  GetLocaleFormatSettings(schnipsel_ini.ReadInteger('Language','Code',$409), DefaultFormatSettings);
+ finally
+  schnipsel_ini.free;
+ end;
  showsplash;
 end;
 
@@ -423,11 +432,12 @@ end;
 
 
 procedure TSchnipselMainForm.ShowSplash;
-var C_id           : integer;
+var C_id,i         : integer;
     servstr,
     CName          : string;
     Tstext         : TStatictext;
     LImage         : TImage;
+    DBImage        : Timage;
     Install_Button : Tbutton;
     TTop           : integer;
 begin
@@ -466,12 +476,13 @@ begin
  Tstext.name:='Used3';
  Tstext.alignment:=tacenter;
  Tstext.Parent:=LTPanel;
- if(not fileexists('Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ if(not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
   begin
-   LImage:=TImage.create(nil);
-   LImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
-   LImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_off.png');
-   LImage.parent:=LTPanel;
+   DBImage:=TImage.create(nil);
+   DBImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
+   DBImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_off.png');
+   DBImage.name:='DBImage';
+   DBImage.parent:=LTPanel;
    Install_Button:=Tbutton.create(Nil);
    Install_Button.setbounds(180,300,120,30);
    Install_Button.caption:=InstallDBstr;
@@ -497,10 +508,11 @@ begin
     on E: ESQLDatabaseError do
         messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
-   LImage:=TImage.create(nil);
-   LImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
-   LImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_on.png');
-   LImage.parent:=LTPanel;
+   DBImage:=TImage.create(nil);
+   DBImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
+   DBImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_on.png');
+   DBImage.name:='DBImage';
+   DBImage.parent:=LTPanel;
    Tstext:=Tstatictext.create(nil);
    Tstext.setbounds(100,300,300,16);
    Tstext.caption:=servstr;
@@ -922,6 +934,9 @@ var s,
     stra     : array of string;
 begin
  ExportDlg.CodeName.caption:=WorkSpace_StatusBar.Panels[1].text;
+ if(ExportList.Count >= 50) then
+  if(messageDlgPos(Exportstr23,mtConfirmation,[mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) <> mrYes) then
+   exit;
  if (ExportDlg.showmodal = mrOk) then
   begin
    hs:=Exportstr2+WorkSpace_StatusBar.Panels[1].text+slinebreak;
@@ -1496,14 +1511,33 @@ var ExportPDF  : TPdfDoc;
     MaxLength  : integer;
     FoutFile   : TFileStream;
     stra       : array of string;
+    schnipsel_ini : TiniFile;
 begin
  if(ExportList.count=0) then
   exit;
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  ExportPDFDlg.ExpPDFAuthor.text:=schnipsel_ini.ReadString('PDF','Author','');
+  ExportPDFDlg.ExpPDFKeywords.text:=schnipsel_ini.ReadString('PDF','Keywords','');
+  ExportPDFDlg.ExpPDFTitle.text:=schnipsel_ini.ReadString('PDF','Title','');
+  ExportPDFDlg.ExpPDFSubject.text:=schnipsel_ini.ReadString('PDF','Subject','');
+ finally
+  schnipsel_ini.free;
+ end;
  ExportSaveDialog.Filter:='PDF-File|.pdf';
  ExportSaveDialog.FileName:='Export.pdf';
  if(ExportSaveDialog.execute) then
   if(ExportPDFDlg.showModal = mrok) then
    begin
+    try
+     schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+     schnipsel_ini.WriteString('PDF','Author',ExportPDFDlg.ExpPDFAuthor.text);
+     schnipsel_ini.WriteString('PDF','Keywords',ExportPDFDlg.ExpPDFKeywords.text);
+     schnipsel_ini.WriteString('PDF','Title',ExportPDFDlg.ExpPDFTitle.text);
+     schnipsel_ini.WriteString('PDF','Subject',ExportPDFDlg.ExpPDFSubject.text);
+    finally
+     schnipsel_ini.free;
+    end;
     Pbar.Position:=1;
     Pbar.Min:=1;
     Pbar.Max:=ExportList.Count;
@@ -1640,7 +1674,7 @@ begin
         s:=FormatDateTime(Exportstr19, Date);
         ExportPDF.Canvas.setFont('Arial',9);
         ExportPDF.Canvas.BeginText;
-        ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),770);
+        ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),790);
         ExportPDF.Canvas.ShowText(s);
         ExportPDF.Canvas.EndText;
         ExportPDF.AddPage;
@@ -1663,7 +1697,7 @@ begin
          begin
           ExportPDF.Canvas.SetLineWidth(0.75);
           ExportPDF.Canvas.MoveTo(40, j);
-          ExportPDF.Canvas.LineTo(520,j);
+          ExportPDF.Canvas.LineTo(580,j);
           ExportPDF.Canvas.Stroke;
          end;
         MaxLength:=ExportPDF.Canvas.MeasureText(PDFLines[i-1],500);
@@ -1702,7 +1736,7 @@ begin
    s:=FormatDateTime(Exportstr19, Date);
    ExportPDF.Canvas.SetFont('Arial',9);
    ExportPDF.Canvas.BeginText;
-   ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),770);
+   ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),790);
    ExportPDF.Canvas.ShowText(s);
    ExportPDF.Canvas.EndText;
    FOutFile := TFileStream.Create(ExportSaveDialog.FileName, fmCreate);
@@ -2154,9 +2188,17 @@ begin
 end;
 
 procedure TSchnipselMainForm.EnglishClick(Sender: TObject);
+var schnipsel_ini : TiniFile;
 begin
  SetDefaultLang('en');
-  GetLocaleFormatSettings($409, DefaultFormatSettings);
+ GetLocaleFormatSettings($409, DefaultFormatSettings);
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  schnipsel_ini.WriteString('Language','Lang','en');
+  schnipsel_ini.WriteInteger('Language','Code',$409);
+ finally
+  schnipsel_ini.free;
+ end;
 end;
 
 
@@ -2174,7 +2216,11 @@ begin
       SQLQuery1.Next;
      end;
     SQLQuery1.close;
-    LTPanel.FindChildControl('Install_Button').visible:=false;
+    if(LTPanel.FindChildControl('Install_Button')<>Nil) then
+     begin
+      LTPanel.FindChildControl('Install_Button').visible:=false;
+      (LTPanel.FindChildControl('DBImage') as TImage).Picture.loadfromfile('Images'+DirectorySeparator+'DataBase_on.png');
+     end;
    except
     on E: ESQLDatabaseError do
            messagedlgpos(E.Message,mtWarning,[mbOk],0,left+5,top+100);
@@ -2283,9 +2329,17 @@ end;
 
 
 procedure TSchnipselMainForm.GermanClick(Sender: TObject);
+var schnipsel_ini : TiniFile;
 begin
  SetDefaultLang('de');
  GetLocaleFormatSettings($407, DefaultFormatSettings);
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  schnipsel_ini.WriteString('Language','Lang','de');
+  schnipsel_ini.WriteInteger('Language','Code',$407);
+ finally
+  schnipsel_ini.free;
+ end;
 end;
 
 procedure TSchnipselMainForm.MemoCopyClick(Sender: TObject);
