@@ -550,6 +550,10 @@ msgctxt "translate_strings.exportstr22"
 msgid "Links"
 msgstr "Links"
 
+#: translate_strings.exportstr23
+msgid "More than 50 Exports could be trouble..Do it anyway?"
+msgstr "More than 50 Exports could be trouble..Do it anyway?"
+
 #: translate_strings.exportstr3
 msgid "Code is allready in Exportlist!"
 msgstr "Code is allready in Exportlist!"
@@ -657,10 +661,8 @@ msgid "Click to show code entry"
 msgstr "Click to show code entry"
 
 #: translate_strings.typeliststr3
-#, fuzzy
-#| msgid "Delete this code entry and versions of it"
 msgid "Delete this code entry and versions of it?"
-msgstr "Delete this code entry and versions of it"
+msgstr "Delete this code entry and versions of it?"
 
 #: translate_strings.typeliststr4
 msgid "Delete Code Version Entry?"
@@ -1035,7 +1037,7 @@ msgstr "New Code Entry"
 
 #: tschnipselmainform.mmsearch.caption
 msgid "Suche..."
-msgstr "Suche..."
+msgstr "Search..."
 
 #: tschnipselmainform.newcodeentry_button.hint
 msgctxt "tschnipselmainform.newcodeentry_button.hint"

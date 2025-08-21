@@ -551,6 +551,10 @@ msgctxt "translate_strings.exportstr22"
 msgid "Links"
 msgstr "Links"
 
+#: translate_strings.exportstr23
+msgid "More than 50 Exports could be trouble..Do it anyway?"
+msgstr "Mehr als 50 Exports können zu Problemen führen...Fortfahren?"
+
 #: translate_strings.exportstr3
 msgid "Code is allready in Exportlist!"
 msgstr "Code befindet sich bereits in der Exportliste!"
@@ -658,10 +662,8 @@ msgid "Click to show code entry"
 msgstr "Für Codeansicht anklicken"
 
 #: translate_strings.typeliststr3
-#, fuzzy
-#| msgid "Delete this code entry and versions of it"
 msgid "Delete this code entry and versions of it?"
-msgstr "Code und alle Versionen davon löschen"
+msgstr "Code und alle Versionen davon löschen?"
 
 #: translate_strings.typeliststr4
 msgid "Delete Code Version Entry?"
