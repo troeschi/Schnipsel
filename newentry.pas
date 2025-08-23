@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Form (Window) to add new snippets
+
 unit NewEntry;
 
 {$mode ObjFPC}{$H+}
@@ -66,7 +90,7 @@ end;
 procedure TNewCodeEntryDlg.Button1Click(Sender: TObject);
 begin
  if(Trim(NewCodeName.text)='') then
-  messagedlgpos(Dlgstr3,mtInformation,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)))
+  messagedlgpos(Dlgstr3,mtInformation,[mbOk],0,round(left+(width/2)),round(top+(height/2)))
  else
   Self.ModalResult := mrOK;
 end;

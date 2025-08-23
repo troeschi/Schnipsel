@@ -7,7 +7,6 @@ object ExportDlg: TExportDlg
   BorderStyle = bsDialog
   ClientHeight = 275
   ClientWidth = 348
-  LCLVersion = '4.0.0.4'
   object GroupBox1: TGroupBox
     Left = 16
     Height = 192

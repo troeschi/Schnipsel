@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Form (Window) to add / edit / delete coding languages
+
 unit Languages;
 
 {$mode ObjFPC}{$H+}
@@ -77,69 +101,107 @@ begin
  fstr:=trim(del_id[1]);
  move_to_id:=MoveToListBox.Items[MoveToListBox.ItemIndex].split('_');
  tstr:=trim(move_to_id[1]);
- if(messageDlgPos(Dlgstr4+fstr+Dlgstr5+tstr+Dlgstr6+fstr+Dlgstr7,mtConfirmation,
-                [mbYes,mbNo],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2))) = mrYes) then
+ if(messageDlgPos(Dlgstr4+' '+fstr+' '+Dlgstr5+' '+tstr+' '+Dlgstr6+' '+fstr+' '+Dlgstr7,mtConfirmation,
+                [mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) = mrYes) then
  begin
-  i:=CategorieListDelete.ItemIndex;
-   if(i < CategorieListDelete.count-1) then
+  if(CategorieListDelete.count > 1) then
+   begin
+    i:=CategorieListDelete.ItemIndex;
+    if(i < CategorieListDelete.count-1) then
+     begin
+      CategorieListDelete.Items.Delete(i);
+      CategorieListDelete.ItemIndex:=i+1;
+      del:=true;
+     end
+    else
+     begin
+      CategorieListDelete.Items.Delete(i);
+      CategorieListDelete.ItemIndex:=0;
+      del:=true;
+     end;
+   if(i < CategorieListEdit.count-1) then
     begin
-     CategorieListDelete.Items.Delete(i);
-     CategorieListDelete.ItemIndex:=i+1;
+     CategorieListEdit.Items.Delete(i);
+     CategorieListEdit.ItemIndex:=i+1;
      del:=true;
     end
    else
     begin
-     CategorieListDelete.Items.Delete(i);
-     CategorieListDelete.ItemIndex:=0;
+     CategorieListEdit.Items.Delete(i);
+     CategorieListEdit.ItemIndex:=0;
      del:=true;
     end;
-  if(i < CategorieListEdit.count-1) then
-   begin
-    CategorieListEdit.Items.Delete(i);
-    CategorieListEdit.ItemIndex:=i+1;
-    del:=true;
+   if(i < MoveToListBox.count-1) then
+    begin
+     MoveToListBox.Items.Delete(i);
+     MoveToListBox.ItemIndex:=i+1;
+     del:=true;
+    end
+   else
+    begin
+     MoveToListBox.Items.Delete(i);
+     MoveToListBox.ItemIndex:=0;
+     del:=true;
+    end;
    end
   else
-   begin
-    CategorieListEdit.Items.Delete(i);
-    CategorieListEdit.ItemIndex:=0;
-    del:=true;
-   end;
-  if(i < MoveToListBox.count-1) then
-   begin
-    MoveToListBox.Items.Delete(i);
-    MoveToListBox.ItemIndex:=i+1;
-    del:=true;
-   end
-  else
-   begin
-    MoveToListBox.Items.Delete(i);
-    MoveToListBox.ItemIndex:=0;
-    del:=true;
-   end;
+   del:=true;
   if(del=true) then
    begin
     try
-     SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_language where id=:Del_id';
-     SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
-     SchnipselMainForm.SQLQuery1.ExecSQL;
-     SchnipselMainForm.SQLTransaction1.Commit;
+      SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_language where id=:Del_id';
+      SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+      SchnipselMainForm.SQLQuery1.ExecSQL;
+      SchnipselMainForm.SQLTransaction1.Commit;
     except
-     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+      on E: ESQLDatabaseError do
+            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
     end;
     try
-     if(del_id <> move_to_id) then
-      SchnipselMainForm.SQLQuery1.SQL.Text := 'update schnipsel_names set Lang_id=:Move_To_id where Lang_id=:Del_id'
-     else
-      SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_names where Lang_id=:Del_id';
-     SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
-     SchnipselMainForm.SQLQuery1.Params.ParamByName('Move_To_id').asInteger:=strtoint(trim(Move_to_id[0]));
-     SchnipselMainForm.SQLQuery1.ExecSQL;
-     SchnipselMainForm.SQLTransaction1.Commit;
+      if(del_id[0] <> move_to_id[0]) then
+       begin
+        showmessage('false');
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'update schnipsel_names set Lang_id=:Move_To_id where Lang_id=:Del_id';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Move_To_id').asInteger:=strtoint(trim(Move_to_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+       end
+      else
+       begin
+        showmessage('true');
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_favorites where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_favorites.schnipsel_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_bookmarks where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_bookmarks.schnipsel_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_links where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_links.code_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_required where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_required.code_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_comments where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_comments.code_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_codes where exists (select * from schnipsel_names where schnipsel_names.Lang_id=:Del_id and schnipsel_names.id=schnipsel_codes.schnipsel_id)';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+        SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_names where Lang_id=:Del_id';
+        SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=strtoint(trim(Del_id[0]));
+        SchnipselMainForm.SQLQuery1.ExecSQL;
+        SchnipselMainForm.SQLTransaction1.Commit;
+       end;
     except
-     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+      on E: ESQLDatabaseError do
+            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
     end;
    end;
  end;
@@ -242,7 +304,7 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
      if (SchnipselMainForm.SQLQuery1.RowsAffected > 0) then
      begin
@@ -268,7 +330,10 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
     if (SchnipselMainForm.SQLQuery1.RowsAffected > 0) then
      begin
-      SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_required order by LAST_INSERT_ID(Id) desc limit 1;';
+      if(SchnipselMainForm.DBEngine='SQLite') then
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_language'
+      else
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_language order by LAST_INSERT_ID(Id) desc limit 1;';
       SchnipselMainForm.SQLQuery1.Open;
       s:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsString;
       SchnipselMainForm.SQLQuery1.Close;
@@ -280,7 +345,7 @@ begin
      end;
    except
        on E: ESQLDatabaseError do
-              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
     end;
   end;
 end;

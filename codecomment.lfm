@@ -9,6 +9,7 @@ object CommentDlg: TCommentDlg
   ClientHeight = 428
   ClientWidth = 723
   Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
   object New_GroupBox: TGroupBox
     Left = 16
     Height = 328

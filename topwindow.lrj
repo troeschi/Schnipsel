@@ -1,0 +1,7 @@
+{"version":1,"strings":[
+{"hash":2165088,"name":"ttopform.caption","sourcebytes":[83,99,104,110,105,112,115,101,108,32,84,79,80],"value":"Schnipsel TOP"},
+{"hash":4863637,"name":"ttopform.topclosebtn.caption","sourcebytes":[67,108,111,115,101],"value":"Close"},
+{"hash":95044757,"name":"ttopform.codename.caption","sourcebytes":[67,111,100,101,78,97,109,101],"value":"CodeName"},
+{"hash":195288076,"name":"ttopform.topmemoselectall.caption","sourcebytes":[83,101,108,101,99,116,32,65,108,108],"value":"Select All"},
+{"hash":304761,"name":"ttopform.topmemocopy.caption","sourcebytes":[67,111,112,121],"value":"Copy"}
+]}

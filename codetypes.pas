@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Form (Window) for add / edit / delete types of coding languages
+
 unit CodeTypes;
 
 {$mode ObjFPC}{$H+}
@@ -116,16 +140,19 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    try
-    SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_types order by LAST_INSERT_ID(Id) desc limit 1';
+    if(SchnipselMainForm.DBEngine='SQLite') then
+     SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_types'
+    else
+     SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_types order by LAST_INSERT_ID(Id) desc limit 1';
     SchnipselMainForm.SQLQuery1.Open;
     i:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsInteger;
     SchnipselMainForm.SQLQuery1.Close;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    edittypelistbox.Items.add(inttostr(i)+'_'+trim(NewTypeName.text).replace('_','-',[rfReplaceAll]));
    DeleteListBox.Items.add(inttostr(i)+'_'+trim(NewTypeName.text).replace('_','-',[rfReplaceAll]));
@@ -149,7 +176,7 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    edittypelistbox.Items[edittypelistbox.ItemIndex]:=trim(stra[0])+'_'+trim(EditTypeName.text).replace('_','-',[rfReplaceAll]);
    DeleteListBox.Items[edittypelistbox.ItemIndex]:=trim(stra[0])+'_'+trim(EditTypeName.text).replace('_','-',[rfReplaceAll]);
@@ -192,26 +219,54 @@ begin
   tstr:=trim(stra[1]);
   to_id:=strtoint(stra[0]);
   if(from_id <> to_id) then
-   msg_ask:=Dlgstr4+fstr+Dlgstr5+tstr+Dlgstr6+fstr+Dlgstr7
+   msg_ask:=Dlgstr4+' '+fstr+' '+Dlgstr5+' '+tstr+' '+Dlgstr6+' '+fstr+' '+Dlgstr7
   else
-   msg_ask:=Dlgstr8+fstr+Dlgstr6+fstr+Dlgstr7;
+   msg_ask:=Dlgstr8+' '+fstr+' '+Dlgstr6+' '+fstr+' '+Dlgstr7;
   if(messageDlgPos(msg_ask,mtConfirmation,
-                [mbYes,mbNo],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2))) = mrYes) then
+                [mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) = mrYes) then
    begin
     try
      if(from_id <> to_id) then
       begin
        SchnipselMainForm.SQLQuery1.SQL.text:='update schnipsel_names set type_id=:Tid where type_id=:fid';
        SchnipselMainForm.SQLQuery1.Params.ParamByName('Tid').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
       end
      else
-      SchnipselMainForm.SQLQuery1.SQL.text:='delete from schnipsel_names where type_id=:fid';
-     SchnipselMainForm.SQLQuery1.Params.ParamByName('Fid').asInteger:=from_id;
-     SchnipselMainForm.SQLQuery1.ExecSQL;
-     SchnipselMainForm.SQLTransaction1.Commit;
-    except
+      begin
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_favorites where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_favorites.schnipsel_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_bookmarks where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_bookmarks.schnipsel_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_links where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_links.code_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_required where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_required.code_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_comments where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_comments.code_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_codes where exists (select * from schnipsel_names where schnipsel_names.type_id=:Del_id and schnipsel_names.id=schnipsel_codes.schnipsel_id)';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_names where type_id=:Del_id';
+       SchnipselMainForm.SQLQuery1.Params.ParamByName('Del_id').asInteger:=to_id;
+       SchnipselMainForm.SQLQuery1.ExecSQL;
+       SchnipselMainForm.SQLTransaction1.Commit;
+      end;
+     except
      on E: ESQLDatabaseError do
-            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
     end;
     try
      SchnipselMainForm.SQLQuery1.SQL.text:='delete from schnipsel_types where id=:fid';
@@ -220,7 +275,7 @@ begin
      SchnipselMainForm.SQLTransaction1.Commit;
     except
      on E: ESQLDatabaseError do
-            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
     end;
     Edittypelistbox.Items.Delete(DeleteListBox.ItemIndex);
     MoveToListBox.Items.Delete(DeleteListBox.ItemIndex);

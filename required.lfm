@@ -9,6 +9,7 @@ object RequiredDlg: TRequiredDlg
   ClientHeight = 525
   ClientWidth = 941
   Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
   object NewGroup: TGroupBox
     Left = 16
     Height = 425

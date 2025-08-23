@@ -1,0 +1,19 @@
+{"version":1,"strings":[
+{"hash":210505012,"name":"trequireddlg.caption","sourcebytes":[82,101,113,117,105,114,101,100],"value":"Required"},
+{"hash":21703,"name":"trequireddlg.newgroup.caption","sourcebytes":[78,101,119],"value":"New"},
+{"hash":158645226,"name":"trequireddlg.rfc_label.caption","sourcebytes":[82,101,113,117,105,114,101,100,32,102,111,114,32,67,111,100,101,58],"value":"Required for Code:"},
+{"hash":5538698,"name":"trequireddlg.req_name.editlabel.caption","sourcebytes":[78,97,109,101,58],"value":"Name:"},
+{"hash":81166474,"name":"trequireddlg.req_hint.editlabel.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110,58],"value":"Description:"},
+{"hash":379130,"name":"trequireddlg.req_url.editlabel.caption","sourcebytes":[85,114,108,58],"value":"Url:"},
+{"hash":58019098,"name":"trequireddlg.cib_label.caption","sourcebytes":[67,111,100,101,32,105,115,32,105,110,32,83,99,104,110,105,112,115,101,108,58],"value":"Code is in Schnipsel:"},
+{"hash":366789,"name":"trequireddlg.save_btn.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":253513717,"name":"trequireddlg.editgroup.caption","sourcebytes":[69,100,105,116,32,47,32,68,101,108,101,116,101],"value":"Edit / Delete"},
+{"hash":158645226,"name":"trequireddlg.rfc_label1.caption","sourcebytes":[82,101,113,117,105,114,101,100,32,102,111,114,32,67,111,100,101,58],"value":"Required for Code:"},
+{"hash":5538698,"name":"trequireddlg.req_name1.editlabel.caption","sourcebytes":[78,97,109,101,58],"value":"Name:"},
+{"hash":81166474,"name":"trequireddlg.req_hint1.editlabel.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110,58],"value":"Description:"},
+{"hash":379130,"name":"trequireddlg.req_url1.editlabel.caption","sourcebytes":[85,114,108,58],"value":"Url:"},
+{"hash":58019098,"name":"trequireddlg.cib_label2.caption","sourcebytes":[67,111,100,101,32,105,115,32,105,110,32,83,99,104,110,105,112,115,101,108,58],"value":"Code is in Schnipsel:"},
+{"hash":96905381,"name":"trequireddlg.save_btn2.caption","sourcebytes":[85,112,100,97,116,101],"value":"Update"},
+{"hash":226952186,"name":"trequireddlg.ereq_label.caption","sourcebytes":[83,101,108,101,99,116,32,69,110,116,114,121,58],"value":"Select Entry:"},
+{"hash":78392485,"name":"trequireddlg.delete_btn.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"}
+]}

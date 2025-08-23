@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Form (Window) to add / edit / delete comments of snippets
+
 unit CodeComment;
 
 {$mode ObjFPC}{$H+}
@@ -101,12 +125,12 @@ var s : array of string;
     Co_id : integer;
 begin
  if(EditCom_Select.ItemIndex=0) then
-  MessageDlgPos(Dlgstr1,mtInformation,[mbok],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)))
+  MessageDlgPos(Dlgstr1,mtInformation,[mbok],0,round(left+(width/2)),round(top+(height/2)))
  else
   begin
    s:=EditCom_Select.Items[EditCom_Select.ItemIndex].split('_');
    Co_id:=strtoint(s[0]);
-   if(MessageDlgPos(Dlgstr2,mtConfirmation,[mbYes,mbNo],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2))) = mrYes) then
+   if(MessageDlgPos(Dlgstr2,mtConfirmation,[mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) = mrYes) then
     begin
      try
       SchnipselMainForm.SQLQuery1.SQL.Text := 'delete from schnipsel_comments where id=:Co_id';
@@ -115,7 +139,7 @@ begin
       SchnipselMainForm.SQLTransaction1.Commit;
      except
       on E: ESQLDatabaseError do
-             messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+             messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
 
      end;
      EditCom_Select.Items.delete(EditCom_Select.ItemIndex);
@@ -232,7 +256,7 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
 
    end;
    EditCom_Select.Items[EditCom_Select.ItemIndex]:=inttostr(To_id)+'_'+trim(CAuthorEdit.text)+' | '+trim(Edit_Comment.text);
@@ -259,18 +283,21 @@ begin
     SchnipselMainForm.SQLTransaction1.Commit;
    except
     on E: ESQLDatabaseError do
-          messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+          messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    if (SchnipselMainForm.SQLQuery1.RowsAffected > 0) then
     begin
      try
-      SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_comments order by LAST_INSERT_ID(Id) desc limit 1';
+      if(SchnipselMainForm.DBEngine='SQLite') then
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_comments'
+      else
+       SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_comments order by LAST_INSERT_ID(Id) desc limit 1';
       SchnipselMainForm.SQLQuery1.Open;
       i:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsInteger;
       SchnipselMainForm.SQLQuery1.Close;
      except
        on E: ESQLDatabaseError do
-              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(SchnipselMainForm.left+(SchnipselMainForm.width/2)),round(SchnipselMainForm.top+(SchnipselMainForm.height/2)));
+              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
      end;
      EditCom_Select.Items.add(inttostr(i)+'_'+trim(CAuthor.text)+' | '+trim(New_Comment.text));
      EditCom_Select.ItemIndex:=0;
