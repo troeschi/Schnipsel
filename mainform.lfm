@@ -3,6 +3,7 @@ object SchnipselMainForm: TSchnipselMainForm
   Height = 612
   Top = 250
   Width = 1296
+  HelpType = htKeyword
   Caption = 'Schnipsel'
   ClientHeight = 612
   ClientWidth = 1296
@@ -338,15 +339,15 @@ object SchnipselMainForm: TSchnipselMainForm
           Left = 10
           Height = 17
           Top = 16
-          Width = 510
+          Width = 380
           Caption = 'CodeVersion'
           TabOrder = 0
         end
         object Send_Top_Button: TButton
-          Left = 445
+          Left = 405
           Height = 25
           Top = 8
-          Width = 75
+          Width = 115
           Caption = 'Send to Top'
           TabOrder = 1
           OnClick = showTopWindow
@@ -365,6 +366,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Add new version'
           Top = 56
           Width = 22
+          Flat = True
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
             2000000000000004000064000000640000000000000000000000FFFFFF0DFFFF
@@ -414,6 +416,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Mark as favorite'
           Top = 56
           Width = 22
+          Flat = True
           Glyph.Data = {
             F6030000424DF6030000000000003600000028000000100000000F0000000100
             200000000000C003000064000000640000000000000000000000000000000000
@@ -460,6 +463,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Set bookmark'
           Top = 56
           Width = 23
+          Flat = True
           Glyph.Data = {
             36020000424D3602000000000000360000002800000008000000100000000100
             2000000000000002000064000000640000000000000000000000FFFFFF80FFFF
@@ -492,6 +496,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Edit code'
           Top = 56
           Width = 23
+          Flat = True
           Glyph.Data = {
             F6030000424DF6030000000000003600000028000000100000000F0000000100
             200000000000C003000064000000640000000000000000000000000000000000
@@ -539,6 +544,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Export code'
           Top = 56
           Width = 23
+          Flat = True
           Glyph.Data = {
             36040000424D3604000000000000360000002800000010000000100000000100
             2000000000000004000064000000640000000000000000000000FFFFFF77FFFF
@@ -588,6 +594,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Delete code'
           Top = 56
           Width = 23
+          Flat = True
           Images = ImageList_white
           ImageIndex = 16
           Visible = False
@@ -601,6 +608,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Hint = 'Delete version'
           Top = 56
           Width = 23
+          Flat = True
           Images = ImageList_white
           ImageIndex = 30
           Visible = False
@@ -643,7 +651,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Left = 10
           Height = 17
           Top = 16
-          Width = 511
+          Width = 380
           Caption = 'Requires_Codename'
           TabOrder = 0
         end
@@ -685,10 +693,10 @@ object SchnipselMainForm: TSchnipselMainForm
           end
         end
         object Edit_Required_Button: TButton
-          Left = 446
+          Left = 405
           Height = 25
           Top = 8
-          Width = 75
+          Width = 115
           Caption = 'Edit Entrys'
           TabOrder = 2
           Visible = False
@@ -741,15 +749,15 @@ object SchnipselMainForm: TSchnipselMainForm
           Left = 10
           Height = 17
           Top = 16
-          Width = 511
+          Width = 380
           Caption = 'Comments_Codename'
           TabOrder = 1
         end
         object Edit_Comments_Button: TButton
-          Left = 446
+          Left = 405
           Height = 25
           Top = 8
-          Width = 75
+          Width = 115
           Caption = 'Edit Entrys'
           TabOrder = 2
           Visible = False
@@ -765,7 +773,7 @@ object SchnipselMainForm: TSchnipselMainForm
           Left = 10
           Height = 17
           Top = 16
-          Width = 511
+          Width = 380
           Caption = 'Links_Codename'
           TabOrder = 0
         end
@@ -807,10 +815,10 @@ object SchnipselMainForm: TSchnipselMainForm
           end
         end
         object Edit_Links_Button: TButton
-          Left = 446
+          Left = 405
           Height = 25
           Top = 8
-          Width = 75
+          Width = 115
           Caption = 'Edit Entrys'
           TabOrder = 2
           Visible = False
@@ -2406,11 +2414,9 @@ object SchnipselMainForm: TSchnipselMainForm
       Caption = 'Folding'
       object PopupFoldall: TMenuItem
         Caption = 'Fold All'
-        OnClick = EditorTB_ExpCloseBtnClick
       end
       object PopupUnfoldAll: TMenuItem
         Caption = 'Unfold All'
-        OnClick = EditorTB_ExpOpenBtnClick
       end
     end
   end

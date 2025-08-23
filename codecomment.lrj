@@ -1,0 +1,15 @@
+{"version":1,"strings":[
+{"hash":174341140,"name":"tcommentdlg.caption","sourcebytes":[67,111,109,109,101,110,116],"value":"Comment"},
+{"hash":21703,"name":"tcommentdlg.new_groupbox.caption","sourcebytes":[78,101,119],"value":"New"},
+{"hash":139875290,"name":"tcommentdlg.cfc_label.caption","sourcebytes":[67,111,109,109,101,110,116,32,102,111,114,32,67,111,100,101,58],"value":"Comment for Code:"},
+{"hash":147519002,"name":"tcommentdlg.cauthor.editlabel.caption","sourcebytes":[65,117,116,104,111,114,58],"value":"Author:"},
+{"hash":105103834,"name":"tcommentdlg.new_comment.editlabel.caption","sourcebytes":[67,111,109,109,101,110,116,58],"value":"Comment:"},
+{"hash":366789,"name":"tcommentdlg.save_btn.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":253513717,"name":"tcommentdlg.edit_groupbox.caption","sourcebytes":[69,100,105,116,32,47,32,68,101,108,101,116,101],"value":"Edit / Delete"},
+{"hash":139875290,"name":"tcommentdlg.cfc_label1.caption","sourcebytes":[67,111,109,109,101,110,116,32,102,111,114,32,67,111,100,101,58],"value":"Comment for Code:"},
+{"hash":147519002,"name":"tcommentdlg.cauthoredit.editlabel.caption","sourcebytes":[65,117,116,104,111,114,58],"value":"Author:"},
+{"hash":105103834,"name":"tcommentdlg.edit_comment.editlabel.caption","sourcebytes":[67,111,109,109,101,110,116,58],"value":"Comment:"},
+{"hash":226952186,"name":"tcommentdlg.label1.caption","sourcebytes":[83,101,108,101,99,116,32,69,110,116,114,121,58],"value":"Select Entry:"},
+{"hash":96905381,"name":"tcommentdlg.update_btn.caption","sourcebytes":[85,112,100,97,116,101],"value":"Update"},
+{"hash":78392485,"name":"tcommentdlg.delete_btn.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"}
+]}

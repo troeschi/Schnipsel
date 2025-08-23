@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Strings used in the application for Translation
+
 unit Translate_strings;
 
 {$mode ObjFPC}{$H+}
@@ -62,6 +86,7 @@ Resourcestring Exportstr19  ='DD.MM.YYYY';
 Resourcestring Exportstr20  ='Required';
 Resourcestring Exportstr21  ='Comments';
 Resourcestring Exportstr22  ='Links';
+Resourcestring Exportstr23  ='More than 50 Exports could be trouble..Do it anyway?';
 
 Resourcestring Editorstr1   ='Version';
 Resourcestring Editorstr2   ='Author';
@@ -96,6 +121,15 @@ Resourcestring Dlgstr5      =' to ';
 Resourcestring Dlgstr6      =' and delete ';
 Resourcestring Dlgstr7      =' ?';
 Resourcestring Dlgstr8      ='Delete all Code Entrys in ';
+
+Resourcestring NODRVEntrys     ='No Entrys';
+Resourcestring NODSNEntrys     ='No Entrys';
+Resourcestring NOUSEDSN        ='No Use of DSN (fill fields below)';
+Resourcestring DBConnectionOK  ='Connection to MySQL database "Schnipsel" = OK!';
+Resourcestring DBConnectionFail='No MySQL or MariaDB Server!';
+Resourcestring RunSqlDump      ='Install the default(Setup) Schnipsel.sql?';
+Resourcestring RunSqlDump2     ='(Click No to Select a SQL-Dump)';
+Resourcestring noDBInfo        ='No Server Info!';
 
 
 implementation

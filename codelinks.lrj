@@ -1,0 +1,15 @@
+{"version":1,"strings":[
+{"hash":5440803,"name":"tlinkdlg.caption","sourcebytes":[76,105,110,107,115],"value":"Links"},
+{"hash":21703,"name":"tlinkdlg.new_groupbox.caption","sourcebytes":[78,101,119],"value":"New"},
+{"hash":67449050,"name":"tlinkdlg.lfclabel.caption","sourcebytes":[76,105,110,107,32,102,111,114,32,67,111,100,101,58],"value":"Link for Code:"},
+{"hash":224395066,"name":"tlinkdlg.linktxt.editlabel.caption","sourcebytes":[76,105,110,107,32,84,101,120,116,58],"value":"Link Text:"},
+{"hash":81107962,"name":"tlinkdlg.linkurl.editlabel.caption","sourcebytes":[76,105,110,107,32,85,114,108,58],"value":"Link Url:"},
+{"hash":366789,"name":"tlinkdlg.save_btn.caption","sourcebytes":[83,97,118,101],"value":"Save"},
+{"hash":253513717,"name":"tlinkdlg.edit_groupbox.caption","sourcebytes":[69,100,105,116,32,47,32,68,101,108,101,116,101],"value":"Edit / Delete"},
+{"hash":67449050,"name":"tlinkdlg.lfclabel2.caption","sourcebytes":[76,105,110,107,32,102,111,114,32,67,111,100,101,58],"value":"Link for Code:"},
+{"hash":226952186,"name":"tlinkdlg.label3.caption","sourcebytes":[83,101,108,101,99,116,32,69,110,116,114,121,58],"value":"Select Entry:"},
+{"hash":224395066,"name":"tlinkdlg.linktxt1.editlabel.caption","sourcebytes":[76,105,110,107,32,84,101,120,116,58],"value":"Link Text:"},
+{"hash":81107962,"name":"tlinkdlg.linkurl1.editlabel.caption","sourcebytes":[76,105,110,107,32,85,114,108,58],"value":"Link Url:"},
+{"hash":96905381,"name":"tlinkdlg.update_btn.caption","sourcebytes":[85,112,100,97,116,101],"value":"Update"},
+{"hash":78392485,"name":"tlinkdlg.delete_btn.caption","sourcebytes":[68,101,108,101,116,101],"value":"Delete"}
+]}

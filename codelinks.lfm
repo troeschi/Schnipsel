@@ -9,6 +9,7 @@ object LinkDlg: TLinkDlg
   ClientHeight = 411
   ClientWidth = 670
   Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
   object New_GroupBox: TGroupBox
     Left = 16
     Height = 328

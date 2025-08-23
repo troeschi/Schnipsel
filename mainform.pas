@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// Main-Form (Window) of the application
+
 unit MainForm;
 
 {$mode objfpc}{$H+}
@@ -10,8 +34,8 @@ uses
   LclType, SynHighlighterAny, LCLTranslator, ECScheme, Languages, Required,
   CodeComment, CodeLinks, NewEntry, CodeTypes, UExportDlg, UExportPDFDlg,
   Translate_strings, TopWindow, UDBConfigDlg, odbcconn, SQLDB, db, Types,
-  LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes,
-  PdfDoc, PdfTypes, PdfFonts, strUtils;
+  LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes, PdfDoc,
+  PdfTypes, PdfFonts, strUtils, iniFiles;
 
 
 
@@ -204,8 +228,6 @@ type
     //CodeEditor
     procedure EditorTB_CopyBtnClick(Sender: TObject);
     procedure EditorTB_CutBtnClick(Sender: TObject);
-    procedure EditorTB_ExpCloseBtnClick(Sender: TObject);
-    procedure EditorTB_ExpOpenBtnClick(Sender: TObject);
     procedure EditorTB_PasteBtnClick(Sender: TObject);
     procedure EditorTB_SaveBtnClick(Sender: TObject);
     procedure EditorTB_SelectallBtnClick(Sender: TObject);
@@ -263,6 +285,7 @@ type
        Expand_Typelist_ID  : string;
        Edit_Mode           : Boolean;
        Export_Mode         : Boolean;
+       DBEngine            : string;
   end;
 
 
@@ -288,11 +311,13 @@ var i,
     MEntry            : Tstatictext;
     Mline             : TDividerBevel;
     Split_array       : array of string;
+    schnipsel_ini     : TiniFile;
 begin
  // Read Ini, build Menu
  //MySqlConnection
+ SchnipselIniStorage.IniFileName:=sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini';
  SchnipselIniStorage.Restore;
- if (not fileexists('Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ if (not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
   begin
    Menu_Entrys:=TStringList.Create;
   end
@@ -395,6 +420,19 @@ begin
  Editor_Toolbar.enabled:=false;
  EditorTB_Version.enabled:=false;
  EditorTB_Author.enabled:=false;
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'));
+  GetLocaleFormatSettings(schnipsel_ini.ReadInteger('Language','Code',$409), DefaultFormatSettings);
+  if(Schnipsel_ini.ReadBool('DBEngine','SQLite',false) = true) then
+   DBEngine:='SQLite';
+  if(Schnipsel_ini.ReadBool('DBEngine','MySQL',false) = true) then
+   DBEngine:='MySQL';
+  if(Schnipsel_ini.ReadBool('DBEngine','MariaDB',false) = true) then
+   DBEngine:='MariaDB';
+ finally
+  schnipsel_ini.free;
+ end;
  showsplash;
 end;
 
@@ -423,11 +461,12 @@ end;
 
 
 procedure TSchnipselMainForm.ShowSplash;
-var C_id           : integer;
+var C_id,i         : integer;
     servstr,
     CName          : string;
     Tstext         : TStatictext;
     LImage         : TImage;
+    DBImage        : Timage;
     Install_Button : Tbutton;
     TTop           : integer;
 begin
@@ -466,12 +505,13 @@ begin
  Tstext.name:='Used3';
  Tstext.alignment:=tacenter;
  Tstext.Parent:=LTPanel;
- if(not fileexists('Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ if(not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
   begin
-   LImage:=TImage.create(nil);
-   LImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
-   LImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_off.png');
-   LImage.parent:=LTPanel;
+   DBImage:=TImage.create(nil);
+   DBImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
+   DBImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_off.png');
+   DBImage.name:='DBImage';
+   DBImage.parent:=LTPanel;
    Install_Button:=Tbutton.create(Nil);
    Install_Button.setbounds(180,300,120,30);
    Install_Button.caption:=InstallDBstr;
@@ -483,9 +523,14 @@ begin
  else
   begin
    try
-    SQLQuery1.SQL.Text := 'SHOW variables like "%version%"';
+    if(DBEngine = 'SQLite') then
+     SQLQuery1.SQL.Text := 'select sqlite_version()'
+    else
+     SQLQuery1.SQL.Text := 'SHOW variables like "%version%"';
     SQLQuery1.Open;
     servstr:=noDBInfo;
+    if(DBEngine = 'SQLite') then
+     servstr:='SQLite Version '+SchnipselMainForm.SQLQuery1.Fields[0].AsString+slinebreak;
     while not SchnipselMainForm.SQLQuery1.EOF do
      begin
       if(pos('version_comment',SchnipselMainForm.SQLQuery1.Fields[0].AsString)>0) then
@@ -497,10 +542,11 @@ begin
     on E: ESQLDatabaseError do
         messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
-   LImage:=TImage.create(nil);
-   LImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
-   LImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_on.png');
-   LImage.parent:=LTPanel;
+   DBImage:=TImage.create(nil);
+   DBImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
+   DBImage.picture.loadfromfile('Images'+DirectorySeparator+'DataBase_on.png');
+   DBImage.name:='DBImage';
+   DBImage.parent:=LTPanel;
    Tstext:=Tstatictext.create(nil);
    Tstext.setbounds(100,300,300,16);
    Tstext.caption:=servstr;
@@ -596,12 +642,15 @@ begin
   on E: ESQLDatabaseError do
          messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
  end;
- NewTypeDlg.EditTypeListBox.Items:=TypesEditList;
- NewTypeDlg.EditTypeListBox.ItemIndex:=0;
- NewTypeDlg.DeleteListBox.Items:=TypesEditList;
- NewTypeDlg.DeleteListBox.ItemIndex:=0;
- NewTypeDlg.MoveToListBox.Items:=TypesEditList;
- NewTypeDlg.MoveToListBox.ItemIndex:=0;
+ if (TypesEditList.count > 0) then
+  begin
+   NewTypeDlg.EditTypeListBox.Items:=TypesEditList;
+   NewTypeDlg.EditTypeListBox.ItemIndex:=0;
+   NewTypeDlg.DeleteListBox.Items:=TypesEditList;
+   NewTypeDlg.DeleteListBox.ItemIndex:=0;
+   NewTypeDlg.MoveToListBox.Items:=TypesEditList;
+   NewTypeDlg.MoveToListBox.ItemIndex:=0;
+  end;
  NewTypeDlg.ShowModal;
  TypesEditList.free;
 end;
@@ -922,6 +971,9 @@ var s,
     stra     : array of string;
 begin
  ExportDlg.CodeName.caption:=WorkSpace_StatusBar.Panels[1].text;
+ if(ExportList.Count >= 50) then
+  if(messageDlgPos(Exportstr23,mtConfirmation,[mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) <> mrYes) then
+   exit;
  if (ExportDlg.showmodal = mrOk) then
   begin
    hs:=Exportstr2+WorkSpace_StatusBar.Panels[1].text+slinebreak;
@@ -1060,17 +1112,6 @@ begin
 end;
 
 
-procedure TSchnipselMainForm.EditorTB_ExpCloseBtnClick(Sender: TObject);
-begin
- CodeEditor.FoldAll;
-end;
-
-procedure TSchnipselMainForm.EditorTB_ExpOpenBtnClick(Sender: TObject);
-begin
- CodeEditor.UnfoldAll;
-end;
-
-
 procedure TSchnipselMainForm.EditorTB_PasteBtnClick(Sender: TObject);
 begin
  if(CodeEditor.CanPaste=true) then
@@ -1123,14 +1164,17 @@ begin
     on E: ESQLDatabaseError do
           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
+   i:=0;
    if(Selected_Version_ID=0) then             // New Code Version, WE NEED THE ID
     begin
-     i:=0;
      try
-      SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
-      SchnipselMainForm.SQLQuery1.Open;
-      i:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsInteger;
-      SchnipselMainForm.SQLQuery1.Close;
+      if(DBEngine='SQLite') then
+       SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_codes'
+      else
+       SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
+      SQLQuery1.Open;
+      i:=SQLQuery1.FieldByName('Last_id').AsInteger;
+      SQLQuery1.Close;
      except
        on E: ESQLDatabaseError do
              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
@@ -1157,10 +1201,13 @@ begin
           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    try
-    SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
-    SchnipselMainForm.SQLQuery1.Open;
-    i:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsInteger;
-    SchnipselMainForm.SQLQuery1.Close;
+    if(DBEngine='SQLite') then
+     SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_codes'
+    else
+     SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
+    SQLQuery1.Open;
+    i:=SQLQuery1.FieldByName('Last_id').AsInteger;
+    SQLQuery1.Close;
     except
      on E: ESQLDatabaseError do
            messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
@@ -1226,6 +1273,9 @@ begin
  Editor_Code_Name.Text:=WorkSpace_StatusBar.Panels[1].text;
  EditorTB_Version.Text:=Editorstr1 ;
  EditorTB_Author.Text:=Editorstr2 ;
+ EditorTB_Version.enabled:=true ;
+ EditorTB_Author.enabled:=true;
+ Selected_Version_ID:=0;
  CodeEditor.Clear;
  CodeEditor.SetFocus;
 end;
@@ -1496,14 +1546,33 @@ var ExportPDF  : TPdfDoc;
     MaxLength  : integer;
     FoutFile   : TFileStream;
     stra       : array of string;
+    schnipsel_ini : TiniFile;
 begin
  if(ExportList.count=0) then
   exit;
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  ExportPDFDlg.ExpPDFAuthor.text:=schnipsel_ini.ReadString('PDF','Author','');
+  ExportPDFDlg.ExpPDFKeywords.text:=schnipsel_ini.ReadString('PDF','Keywords','');
+  ExportPDFDlg.ExpPDFTitle.text:=schnipsel_ini.ReadString('PDF','Title','');
+  ExportPDFDlg.ExpPDFSubject.text:=schnipsel_ini.ReadString('PDF','Subject','');
+ finally
+  schnipsel_ini.free;
+ end;
  ExportSaveDialog.Filter:='PDF-File|.pdf';
  ExportSaveDialog.FileName:='Export.pdf';
  if(ExportSaveDialog.execute) then
   if(ExportPDFDlg.showModal = mrok) then
    begin
+    try
+     schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+     schnipsel_ini.WriteString('PDF','Author',ExportPDFDlg.ExpPDFAuthor.text);
+     schnipsel_ini.WriteString('PDF','Keywords',ExportPDFDlg.ExpPDFKeywords.text);
+     schnipsel_ini.WriteString('PDF','Title',ExportPDFDlg.ExpPDFTitle.text);
+     schnipsel_ini.WriteString('PDF','Subject',ExportPDFDlg.ExpPDFSubject.text);
+    finally
+     schnipsel_ini.free;
+    end;
     Pbar.Position:=1;
     Pbar.Min:=1;
     Pbar.Max:=ExportList.Count;
@@ -1640,7 +1709,7 @@ begin
         s:=FormatDateTime(Exportstr19, Date);
         ExportPDF.Canvas.setFont('Arial',9);
         ExportPDF.Canvas.BeginText;
-        ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),770);
+        ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),790);
         ExportPDF.Canvas.ShowText(s);
         ExportPDF.Canvas.EndText;
         ExportPDF.AddPage;
@@ -1663,7 +1732,7 @@ begin
          begin
           ExportPDF.Canvas.SetLineWidth(0.75);
           ExportPDF.Canvas.MoveTo(40, j);
-          ExportPDF.Canvas.LineTo(520,j);
+          ExportPDF.Canvas.LineTo(580,j);
           ExportPDF.Canvas.Stroke;
          end;
         MaxLength:=ExportPDF.Canvas.MeasureText(PDFLines[i-1],500);
@@ -1702,7 +1771,7 @@ begin
    s:=FormatDateTime(Exportstr19, Date);
    ExportPDF.Canvas.SetFont('Arial',9);
    ExportPDF.Canvas.BeginText;
-   ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),770);
+   ExportPDF.Canvas.MoveTextPoint(580-ExportPDF.Canvas.textwidth(s),790);
    ExportPDF.Canvas.ShowText(s);
    ExportPDF.Canvas.EndText;
    FOutFile := TFileStream.Create(ExportSaveDialog.FileName, fmCreate);
@@ -2064,7 +2133,10 @@ begin
    end;
    i:=0;
    try
-    SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_names order by LAST_INSERT_ID(Id) desc limit 1';
+    if(DBEngine='SQLite') then
+     SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_names'
+    else
+     SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_names order by LAST_INSERT_ID(Id) desc limit 1';
     SQLQuery1.Open;
     i:=SQLQuery1.FieldByName('Last_id').AsInteger;
     SQLQuery1.Close;
@@ -2115,12 +2187,15 @@ begin
   on E: ESQLDatabaseError do
          messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
  end;
- NewCategorieDlg.CategorieListEdit.Items:=Categories_Short_Full;
- NewCategorieDlg.CategorieListEdit.ItemIndex:=0;
- NewCategorieDlg.CategorieListDelete.Items:=Categories_Short_Full;
- NewCategorieDlg.CategorieListDelete.ItemIndex:=0;
- NewCategorieDlg.MoveToListBox.Items:=Categories_Short_Full;
- NewCategorieDlg.MoveToListBox.ItemIndex:=0;
+ if(Categories_Short_Full.count > 0) then
+  begin
+   NewCategorieDlg.CategorieListEdit.Items:=Categories_Short_Full;
+   NewCategorieDlg.CategorieListEdit.ItemIndex:=0;
+   NewCategorieDlg.CategorieListDelete.Items:=Categories_Short_Full;
+   NewCategorieDlg.CategorieListDelete.ItemIndex:=0;
+   NewCategorieDlg.MoveToListBox.Items:=Categories_Short_Full;
+   NewCategorieDlg.MoveToListBox.ItemIndex:=0;
+  end;
  NewCategorieDlg.ShowModal;
  Categories_Short_Full.free;
  Menu_Entrys.clear;
@@ -2154,18 +2229,33 @@ begin
 end;
 
 procedure TSchnipselMainForm.EnglishClick(Sender: TObject);
+var schnipsel_ini : TiniFile;
 begin
  SetDefaultLang('en');
-  GetLocaleFormatSettings($409, DefaultFormatSettings);
+ GetLocaleFormatSettings($409, DefaultFormatSettings);
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  schnipsel_ini.WriteString('Language','Lang','en');
+  schnipsel_ini.WriteInteger('Language','Code',$409);
+ finally
+  schnipsel_ini.free;
+ end;
 end;
 
 
+{ DB-Button in Mainmeu is clicked...
+  Calling the DB-Configuration-Dialog
+  On first run or changing DB-Connection will
+  Update Entrys in Menu and  calling SplashScreen }
+
 procedure TSchnipselMainForm.DB_ButtonClick(Sender: TObject);
+var DBE : string;
 begin
- if ((DBConfigDlg.showModal = mrOK) and (Menu_Entrys.count=0)) then
+ DBE:=DBEngine;
+ if ((DBConfigDlg.showModal = mrOK) and ((Menu_Entrys.count=0) or (DBE<>DBEngine))) then
   begin
+   Menu_Entrys.clear;
    try
-    SQLQuery1.PacketRecords:=-1;
     SQLQuery1.SQL.Text := 'select id,Lang_short from schnipsel_language';
     SQLQuery1.Open;
     while not SQLQuery1.EOF do
@@ -2174,15 +2264,15 @@ begin
       SQLQuery1.Next;
      end;
     SQLQuery1.close;
-    LTPanel.FindChildControl('Install_Button').visible:=false;
    except
     on E: ESQLDatabaseError do
-           messagedlgpos(E.Message,mtWarning,[mbOk],0,left+5,top+100);
+           messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
    if (Menu_Entrys.count>0) then
     begin
      RePaint;
     end;
+   showsplash;
   end;
 end;
 
@@ -2283,9 +2373,17 @@ end;
 
 
 procedure TSchnipselMainForm.GermanClick(Sender: TObject);
+var schnipsel_ini : TiniFile;
 begin
  SetDefaultLang('de');
  GetLocaleFormatSettings($407, DefaultFormatSettings);
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  schnipsel_ini.WriteString('Language','Lang','de');
+  schnipsel_ini.WriteInteger('Language','Code',$407);
+ finally
+  schnipsel_ini.free;
+ end;
 end;
 
 procedure TSchnipselMainForm.MemoCopyClick(Sender: TObject);
@@ -3110,7 +3208,7 @@ end;
 procedure TSchnipselMainForm.EditorTB_SelectallBtnClick(Sender: TObject);
 begin
  if(CodeEditor.SelAvail=true) then
-  CodeEditor.SelStart:=CodeEditor.SelEnd
+  CodeEditor.BlockBegin:=CodeEditor.BlockEnd
  else
   CodeEditor.SelectAll;
 end;
@@ -3196,10 +3294,13 @@ begin
          begin
           i:=0;
           try
-           SchnipselMainForm.SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
-           SchnipselMainForm.SQLQuery1.Open;
-           i:=SchnipselMainForm.SQLQuery1.FieldByName('Last_id').AsInteger;
-           SchnipselMainForm.SQLQuery1.Close;
+           if(DBEngine='SQlite') then
+            SQLQuery1.SQL.Text := 'SELECT last_insert_rowid() as Last_id from schnipsel_codes'
+           else
+            SQLQuery1.SQL.Text := 'SELECT LAST_INSERT_ID(Id) as Last_id from schnipsel_codes order by LAST_INSERT_ID(Id) desc limit 1';
+           SQLQuery1.Open;
+           i:=SQLQuery1.FieldByName('Last_id').AsInteger;
+           SQLQuery1.Close;
           except
            on E: ESQLDatabaseError do
                messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));

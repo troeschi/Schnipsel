@@ -145,6 +145,7 @@ object TopForm: TTopForm
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object TopCodeMemo: TRichMemo
     AnchorSideLeft.Control = Owner

@@ -1,3 +1,27 @@
+{    <Part of "Schnipsel".
+     Database driven Apllication to collect Code-snippets or Script-snippets or
+	 even just Text-snippets.>
+
+    Copyright (C) 2025  A.Trösch
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+    Source-Code on Github: https://github.com/troeschi/Schnipsel
+    Email-contact: troesch.andreas@gmx.details	                            }
+
+// DB-configuration-Form (Window) of the application
+
 unit Udbconfigdlg;
 
 {$mode ObjFPC}{$H+}
@@ -43,23 +67,16 @@ type
 
   end;
 
+
 var
   DBConfigDlg: TDBConfigDlg;
 
-Resourcestring NODRVEntrys     ='No Entrys';
-Resourcestring NODSNEntrys     ='No Entrys';
-Resourcestring NOUSEDSN        ='No Use of DSN (fill fields below)';
-Resourcestring DBConnectionOK  ='Connection to MySQL database "Schnipsel" = OK!';
-Resourcestring DBConnectionFail='No MySQL or MariaDB Server!';
-Resourcestring RunSqlDump      ='Install the default(Setup) Schnipsel.sql?';
-Resourcestring RunSqlDump2     ='(Click No to Select a SQL-Dump)';
-Resourcestring noDBInfo        ='No Server Info!';
 
 implementation
 
 {$R *.lfm}
 
-uses registry, MainForm, SQLDB, DB;
+uses registry, MainForm, SQLDB, DB, Translate_strings, inifiles;
 
 
 { TDBConfigDlg }
@@ -190,17 +207,30 @@ end;
 
 
 procedure TDBConfigDlg.ODBCTestBtnClick(Sender: TObject);
-var servstr    : string;
+var servstr       : string;
+    sqlite_is,
     mysql_is,
-    mariadb_is : boolean;
+    mariadb_is    : boolean;
+    schnipsel_ini : TiniFile;
 begin
+ sqlite_is:=false;
+ mysql_is:=false;
+ mariadb_is:=false;
+ if(SchnipselMainForm.ODBCConnection1.connected=true) then
+  begin
+   SchnipselMainForm.ODBCConnection1.connected:=false;
+   SchnipselMainForm.ODBCConnection1.EndTransaction;
+   SchnipselMainForm.ODBCConnection1.close;
+  end;
  SchnipselMainForm.ODBCConnection1.Driver:=ODBC_Driver_Select.Items[ODBC_Driver_Select.ItemIndex];
  DBInstallBtn.enabled:=true;
  DBBackupBtn.enabled:=true;
  if(ODBC_DSN_Select.ItemIndex=0) then
   begin
+   SchnipselMainForm.ODBCConnection1.DatabaseName:=ODBC_DataBase_Edit.text;
    SchnipselMainForm.ODBCConnection1.UserName:= ODBC_UserName_Edit.text;
    SchnipselMainForm.ODBCConnection1.Password:= ODBC_Password_Edit.text;
+   SchnipselMainForm.ODBCConnection1.Params.Clear;
    SchnipselMainForm.ODBCConnection1.Params.Add('server='+ODBC_Server_Edit.text);
    SchnipselMainForm.ODBCConnection1.Params.Add('port='+ODBC_Port_Edit.text);
    SchnipselMainForm.ODBCConnection1.Params.Add('Database='+ODBC_DataBase_Edit.text);
@@ -208,25 +238,44 @@ begin
   end
  else
   SchnipselMainForm.ODBCConnection1.DatabaseName :=ODBC_DSN_Select.Items[ODBC_DSN_Select.ItemIndex];
+ SchnipselMainForm.SQLQuery1.DataBase := SchnipselMainForm.ODBCConnection1;
+ SchnipselMainForm.SQLTransaction1.DataBase := SchnipselMainForm.ODBCConnection1;
+ SchnipselMainForm.ODBCConnection1.connected:=true;
  try
   SchnipselMainForm.ODBCConnection1.Open;
-  SchnipselMainForm.SQLQuery1.SQL.Text := 'SHOW variables like "%version%"';
-  SchnipselMainForm.SQLQuery1.Open;
-  mysql_is:=false;
-  mariadb_is:=false;
-  servstr:=noDBInfo;
-  while not SchnipselMainForm.SQLQuery1.EOF do
+  if(pos('SQLite',SchnipselMainForm.ODBCConnection1.Driver) > 0) then
    begin
-    if(pos('version_comment',SchnipselMainForm.SQLQuery1.Fields[0].AsString)>0) then
-     servstr:=SchnipselMainForm.SQLQuery1.Fields[1].AsString+slinebreak;
-    if(pos('mysql',lowercase(SchnipselMainForm.SQLQuery1.Fields[1].AsString))>0) then
-     mysql_is:=true;
-    if(pos('mariadb',lowercase(SchnipselMainForm.SQLQuery1.Fields[1].AsString))>0) then
-     mariadb_is:=true;
-    SchnipselMainForm.SQLQuery1.next;
-   end;
+    SchnipselMainForm.SQLQuery1.SQL.Text := 'select sqlite_version()';
+    sqlite_is:=true;
+    SchnipselMainForm.DBEngine:='SQLite';
+   end
+  else
+   SchnipselMainForm.SQLQuery1.SQL.Text := 'SHOW variables like "%version%"';
+  SchnipselMainForm.SQLQuery1.Open;
+  if(sqlite_is=false) then
+   begin
+    servstr:=noDBInfo;
+    while not SchnipselMainForm.SQLQuery1.EOF do
+     begin
+      if(pos('version_comment',SchnipselMainForm.SQLQuery1.Fields[0].AsString)>0) then
+       servstr:=SchnipselMainForm.SQLQuery1.Fields[1].AsString+slinebreak;
+      if(pos('mysql',lowercase(SchnipselMainForm.SQLQuery1.Fields[1].AsString))>0) then
+       begin
+        mysql_is:=true;
+        SchnipselMainForm.DBEngine:='MySQL';
+       end;
+      if(pos('mariadb',lowercase(SchnipselMainForm.SQLQuery1.Fields[1].AsString))>0) then
+       begin
+        mariadb_is:=true;
+        SchnipselMainForm.DBEngine:='MariaDB';
+       end;
+      SchnipselMainForm.SQLQuery1.next;
+     end;
+   end
+  else
+   servstr:='SQLite Version '+SchnipselMainForm.SQLQuery1.Fields[0].AsString+slinebreak;
   SchnipselMainForm.SQLQuery1.Close;
-  if (mysql_is=true) or (mariadb_is=true) then
+  if (mysql_is=true) or (mariadb_is=true) or (sqlite_is=true) then
    messagedlgpos(DBConnectionOK+slinebreak+servstr,mtInformation,[mbOk],0,round(left+(width/2)),round(top+(height/2)))
   else
    begin
@@ -235,6 +284,7 @@ begin
    end;
   SchnipselMainForm.ODBCConnection1.Transaction := SchnipselMainForm.SQLTransaction1;
   SchnipselMainForm.SQLQuery1.DataBase := SchnipselMainForm.ODBCConnection1;
+  SchnipselMainForm.SchnipselIniStorage.save;
  except
   on E: ESQLDatabaseError do
          begin
@@ -242,6 +292,14 @@ begin
           DBInstallBtn.enabled:=false;
           DBBackupBtn.enabled:=false;
          end;
+ end;
+ try
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  schnipsel_ini.WriteBool('DBEngine','SQLite',sqlite_is);
+  schnipsel_ini.WriteBool('DBEngine','Mysql',mysql_is);
+  schnipsel_ini.WriteBool('DBEngine','MariaDB',mariadb_is);
+ finally
+  schnipsel_ini.free;
  end;
 end;
 

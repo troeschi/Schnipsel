@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":110271478,"name":"texportpdfdlg.pdfgroupbox.caption","sourcebytes":[69,120,112,111,114,116,32,80,68,70],"value":"Export PDF"},
+{"hash":95812106,"name":"texportpdfdlg.exppdftitle.editlabel.caption","sourcebytes":[80,68,70,32,84,105,116,108,101,58],"value":"PDF Title:"},
+{"hash":144604698,"name":"texportpdfdlg.exppdfauthor.editlabel.caption","sourcebytes":[80,68,70,32,65,117,116,104,111,114,58],"value":"PDF Author:"},
+{"hash":206766501,"name":"texportpdfdlg.exppdfocop.caption","sourcebytes":[79,110,101,32,67,111,100,101,32,112,101,114,32,80,97,103,101,44,32,105,102,32,112,111,115,115,105,98,108,101],"value":"One Code per Page, if possible"},
+{"hash":28929141,"name":"texportpdfdlg.exppdfoutline.caption","sourcebytes":[87,105,116,104,32,67,111,110,116,101,110,116,32,77,101,110,117],"value":"With Content Menu"},
+{"hash":249053146,"name":"texportpdfdlg.exppdfsubject.editlabel.caption","sourcebytes":[80,68,70,32,83,117,98,106,101,99,116,58],"value":"PDF Subject:"},
+{"hash":74373834,"name":"texportpdfdlg.exppdfkeywords.editlabel.caption","sourcebytes":[80,68,70,32,75,101,121,119,111,114,100,115,58],"value":"PDF Keywords:"}
+]}

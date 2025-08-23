@@ -9,6 +9,7 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
   ClientHeight = 292
   ClientWidth = 445
   Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
   object NewCodeGroupBox: TGroupBox
     Left = 8
     Height = 216

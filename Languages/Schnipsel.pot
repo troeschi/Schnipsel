@@ -540,6 +540,10 @@ msgctxt "translate_strings.exportstr22"
 msgid "Links"
 msgstr ""
 
+#: translate_strings.exportstr23
+msgid "More than 50 Exports could be trouble..Do it anyway?"
+msgstr ""
+
 #: translate_strings.exportstr3
 msgid "Code is allready in Exportlist!"
 msgstr ""

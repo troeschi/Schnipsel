@@ -1,0 +1,7 @@
+{"version":1,"strings":[
+{"hash":153645765,"name":"texportdlg.groupbox1.caption","sourcebytes":[69,120,112,111,114,116,32,67,111,100,101],"value":"Export Code"},
+{"hash":95044757,"name":"texportdlg.codename.caption","sourcebytes":[67,111,100,101,78,97,109,101],"value":"CodeName"},
+{"hash":267927428,"name":"texportdlg.exportrequired.caption","sourcebytes":[69,120,112,111,114,116,32,119,105,116,104,32,82,101,113,117,105,114,101,100],"value":"Export with Required"},
+{"hash":123704195,"name":"texportdlg.exportcomments.caption","sourcebytes":[69,120,112,111,114,116,32,119,105,116,104,32,67,111,109,109,101,110,116,115],"value":"Export with Comments"},
+{"hash":151099923,"name":"texportdlg.exportlinks.caption","sourcebytes":[69,120,112,111,114,116,32,119,105,116,116,104,32,76,105,110,107,115],"value":"Export witth Links"}
+]}

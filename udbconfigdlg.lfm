@@ -164,7 +164,6 @@ object DBConfigDlg: TDBConfigDlg
     Top = 384
     Width = 103
     Caption = '&Benutzen'
-    Default = True
     Kind = bkOK
     ModalResult = 1
     TabOrder = 6

@@ -202,6 +202,7 @@ object NewCategorieDlg: TNewCategorieDlg
     Top = 528
     Width = 483
     ItemHeight = 0
+    Style = lbOwnerDrawFixed
     TabOrder = 13
     OnDrawItem = MoveToListBoxDrawItem
   end

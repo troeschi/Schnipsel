@@ -7,7 +7,6 @@ object ExportPDFDlg: TExportPDFDlg
   BorderStyle = bsDialog
   ClientHeight = 473
   ClientWidth = 512
-  LCLVersion = '4.0.0.4'
   object PDFGroupBox: TGroupBox
     Left = 16
     Height = 376
@@ -97,7 +96,6 @@ object ExportPDFDlg: TExportPDFDlg
     Height = 30
     Top = 424
     Width = 75
-    Default = True
     DefaultCaption = True
     Kind = bkOK
     ModalResult = 1
