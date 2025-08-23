@@ -461,14 +461,11 @@ end;
 
 
 procedure TSchnipselMainForm.ShowSplash;
-var C_id,i         : integer;
-    servstr,
-    CName          : string;
+var servstr        : string;
     Tstext         : TStatictext;
     LImage         : TImage;
     DBImage        : Timage;
     Install_Button : Tbutton;
-    TTop           : integer;
 begin
  LImage:=TImage.create(nil);
  LImage.setbounds(10,15,215,61);
@@ -931,9 +928,7 @@ end;
 
 procedure TSchnipselMainForm.ExpImgClick(Sender: TObject);
 var stra : array of string;
-    s    : string;
     i,j  : integer;
-    tc   : Tcontrol;
 begin
  if(messageDlgPos(Exportstr1,mtConfirmation,[mbYes,mbNo],0,round(left+(width/2)),round(top+(height/2))) = mrYes) then
   begin
@@ -1542,6 +1537,7 @@ var ExportPDF  : TPdfDoc;
     HeadLine   : string;
     s          : string;
     Lid,Tid,
+    reacid,
     i,j,Lcount,
     MaxLength  : integer;
     FoutFile   : TFileStream;
@@ -1594,9 +1590,10 @@ begin
       sleep(500);
       stra:=ExportList[i].split('_');
       try
-       SQLQuery1.SQL.Text := 'SELECT cn.lang_id as Langid ,cn.type_id as Typeid ,cn.Schnipsel_Name as Cname,c.schnipsel as Ctext from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
+       SQLQuery1.SQL.Text := 'SELECT cn.id as reacid, cn.lang_id as Langid ,cn.type_id as Typeid ,c.schnipsel as Ctext, cn.Schnipsel_Name as Cname from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
        SQLQuery1.Params.ParamByName('Code_id').asInteger:=strtoint(stra[0]);
        SQLQuery1.Open;
+       reacid:=SQLQuery1.FieldByName('reacid').AsInteger;
        Lid:=SQLQuery1.FieldByName('Langid').AsInteger;
        Tid:=SQLQuery1.FieldByName('Typeid').AsInteger;
        HeadLine:=SQLQuery1.FieldByName('Cname').AsString;
@@ -1633,7 +1630,7 @@ begin
         PDFLines.add('|BOLD|'+Exportstr9);
         try
          SQLQuery1.SQL.Text := 'SELECT required_name, required_hint,required_link from schnipsel_required where code_id=:Cid';
-         SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+         SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
          SQLQuery1.Open;
          while not SQLQuery1.EOF do
           begin
@@ -1656,7 +1653,7 @@ begin
         PDFLines.add('|BOLD|'+Exportstr13);
         try
          SQLQuery1.SQL.Text := 'SELECT author, comment from schnipsel_comments where code_id=:Cid';
-         SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+         SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
          SQLQuery1.Open;
          while not SQLQuery1.EOF do
           begin
@@ -1678,7 +1675,7 @@ begin
         PDFLines.add('|BOLD|'+Exportstr16);
         try
          SQLQuery1.SQL.Text := 'SELECT link_text, link_url from schnipsel_links where code_id=:Cid';
-         SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+         SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
          SQLQuery1.Open;
          while not SQLQuery1.EOF do
           begin
@@ -1735,7 +1732,7 @@ begin
           ExportPDF.Canvas.LineTo(580,j);
           ExportPDF.Canvas.Stroke;
          end;
-        MaxLength:=ExportPDF.Canvas.MeasureText(PDFLines[i-1],500);
+        MaxLength:=ExportPDF.Canvas.MeasureText(PDFLines[i-1],550);
         if(length(PDFLines[i-1]) > MaxLength) then
          repeat
           Lid:=0;
@@ -2280,6 +2277,7 @@ end;
 procedure TSchnipselMainForm.DBSearch_ButtonClick(Sender: TObject);
 var searchstr : string;
 begin
+ searchstr:='';
  if InputQuery ('Search', 'Search for:', searchstr) then
   DBSearch_results(searchstr);
 end;
@@ -2288,8 +2286,7 @@ end;
 procedure TSchnipselMainForm.DBSearch_results(searchstr : string);
 var i,TTop,
     C_id        : integer;
-    Cname,
-    Lname,Tname : string;
+    Cname       : string;
     Entry_Image : Timage;
     Tstext      : Tstatictext;
 begin
@@ -2409,8 +2406,7 @@ end;
 procedure TSchnipselMainForm.Favorites_ButtonClick(Sender: TObject);
 var i,TTop,
     C_id        : integer;
-    Cname,
-    Lname,Tname : string;
+    Cname       : string;
     Entry_Image : TImage;
     Tstext      : Tstatictext;
 begin
@@ -2517,7 +2513,7 @@ procedure TSchnipselMainForm.ExportasHTMLBtnClick(Sender: TObject);
 var HTMLFile   : Tstringlist;
     HTMLLines  : TstringList;
     CodeLines : TstringList;
-    Cid,i,
+    reacid,i,
     Lid,Tid,
     ExpCount  : Integer;
     s         : string;
@@ -2563,9 +2559,10 @@ begin
      HTMLLines.clear;
      HTMLLines.add('<Fieldset class="CodeEntry">');
      try
-      SQLQuery1.SQL.Text := 'SELECT cn.lang_id as Langid ,cn.type_id as Typeid ,cn.Schnipsel_Name as Cname,c.schnipsel as Ctext from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
+      SQLQuery1.SQL.Text := 'SELECT cn.id as reacid, cn.lang_id as Langid ,cn.type_id as Typeid ,c.schnipsel as Ctext, cn.Schnipsel_Name as Cname from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
       SQLQuery1.Params.ParamByName('Code_id').asInteger:=strtoint(stra[0]);
       SQLQuery1.Open;
+      reacid:=SQLQuery1.FieldByName('reacid').AsInteger;
       Lid:=SQLQuery1.FieldByName('Langid').AsInteger;
       Tid:=SQLQuery1.FieldByName('Typeid').AsInteger;
       HTMLLines.add('<Legend class="CodeEntry">'+SQLQuery1.FieldByName('Cname').AsString+'</Legend>');
@@ -2597,7 +2594,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT required_name, required_hint,required_link from schnipsel_required where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         HTMLLines.add('<p class="CodeAppend">'+Exportstr20+'</p>');
         while not SQLQuery1.EOF do
@@ -2619,7 +2616,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT author, comment from schnipsel_comments where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         HTMLLines.add('<p class="CodeAppend">'+Exportstr21+'</p>');
         while not SQLQuery1.EOF do
@@ -2640,7 +2637,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT link_text, link_url from schnipsel_links where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         HTMLLines.add('<p class="CodeAppend">'+Exportstr22+'</p>');
         while not SQLQuery1.EOF do
@@ -2676,7 +2673,7 @@ procedure TSchnipselMainForm.ExportasXMLBtnClick(Sender: TObject);
 var XMLFile   : Tstringlist;
     XMLLines  : TstringList;
     CodeLines : TstringList;
-    Cid,i,
+    reacid,i,
     Lid,Tid,
     ExpCount  : Integer;
     stra      : array of string;
@@ -2732,9 +2729,10 @@ begin
      XMLLines.clear;
      XMLLines.add('<CodeEntry>');
      try
-      SQLQuery1.SQL.Text := 'SELECT cn.lang_id as Langid ,cn.type_id as Typeid ,cn.Schnipsel_Name as Cname,c.schnipsel as Ctext from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
+      SQLQuery1.SQL.Text := 'SELECT cn.id as reacid, cn.lang_id as Langid ,cn.type_id as Typeid ,c.schnipsel as Ctext, cn.Schnipsel_Name as Cname from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
       SQLQuery1.Params.ParamByName('Code_id').asInteger:=strtoint(stra[0]);
       SQLQuery1.Open;
+      reacid:=SQLQuery1.FieldByName('reacid').AsInteger;
       Lid:=SQLQuery1.FieldByName('Langid').AsInteger;
       Tid:=SQLQuery1.FieldByName('Typeid').AsInteger;
       XMLLines.add('<CodeName>'+stringsreplace(SQLQuery1.FieldByName('Cname').AsString,['"','''','<','>','&'],['&quot;','&apos;','&lt;','&gt;','&amp;'],[rfReplaceAll])+'</CodeName>');
@@ -2767,7 +2765,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT required_name, required_hint,required_link from schnipsel_required where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         while not SQLQuery1.EOF do
          begin
@@ -2796,7 +2794,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT author, comment from schnipsel_comments where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         while not SQLQuery1.EOF do
          begin
@@ -2823,7 +2821,7 @@ begin
       begin
        try
         SQLQuery1.SQL.Text := 'SELECT link_text, link_url from schnipsel_links where code_id=:Cid';
-        SQLQuery1.Params.ParamByName('Cid').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Params.ParamByName('Cid').asInteger:=reacid;
         SQLQuery1.Open;
         while not SQLQuery1.EOF do
          begin
@@ -3082,8 +3080,7 @@ end;
 
 
 Procedure TSchnipselMainForm.ShowTypeCodeList(Lang_id : integer);
-var Csum,
-    i,spacer       : integer;
+var i,spacer       : integer;
     TEntry,
     CEntry         : Tstatictext;
     Centry_line    : TdividerBevel;
