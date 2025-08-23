@@ -4,7 +4,7 @@
 <p align="center">
 <img width="415" height="400" alt="Screenshot 2025-08-15 212450" src="https://github.com/user-attachments/assets/8004d16c-37a5-490a-a37b-01084cf64dbb" /></center>
 </p>
-<p align="justify">Geschrieben in Object Pascal unter Benutzung von Lazarus und FPC. Databank ist MySQL oder MariaDB, beim nächsten Update kommt SQLlite dazu. Für die 
+<p align="justify">Geschrieben in Object Pascal unter Benutzung von Lazarus und FPC. Databank ist MySQL oder MariaDB, SQLlite kam neu dazu (23.08.2025). Für die 
 Datenbankverbindung werden ODBC-Treiber benötigt.
 Bis jetzt wird nur Windows 10 / 11 64Bit unterstützt, Linux gibt es sobald das unter Windows stabil läuft. Das ist die erste Version, kann genutzt werden, ist aber noch nicht vollständig getestet, Benutzung auf eigenes Risiko.</p>
 <p  align="justify">Code-, Script- oder Text-Schnipsel können nach Sprache und Typ sortiert werden, links, kurze Kommentare und Links zu anderen Einträgen können hinzugefügt werden.
@@ -14,7 +14,7 @@ Ein Editor ist vorhanden, für kleinere Änderungen, ist aber kein wirklicher Er
 <p></p>
 <p>English</p>
 <p align="justify">Schnipsel is a Database driven Apllication to collect Code-snippets or Script-snippets or even just Text-snippets</p>
-<p align="justify">It is written in Object Pascal using Lazarus and FPC. Database is MySQL or MariaDB, next update will include SQLlite. You need ODBC-Drivers for the connection.
+<p align="justify">It is written in Object Pascal using Lazarus and FPC. Database is MySQL or MariaDB, SQLlite is now included (08/23/2025). You need ODBC-Drivers for the connection.
 By now it only works on Windows 10 / 11 64Bit, but Linux will be suported if it runs stable under Windows. It is the first Version, can be used, but is not fully 
 testet right now, so use at own risk.</p>
 <p  align="justify">You can sort snippets of Code, Scripts or Text by Languages and Types, add links, short comments and link to required other entrys.
