@@ -7,6 +7,8 @@ object ExportPDFDlg: TExportPDFDlg
   BorderStyle = bsDialog
   ClientHeight = 473
   ClientWidth = 512
+  LCLVersion = '4.0.0.4'
+  OnCreate = FormCreate
   object PDFGroupBox: TGroupBox
     Left = 16
     Height = 376
@@ -87,8 +89,16 @@ object ExportPDFDlg: TExportPDFDlg
     Top = 424
     Width = 97
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkClose
     ModalResult = 11
+    ParentFont = False
     TabOrder = 1
   end
   object OkBtn: TBitBtn
@@ -97,8 +107,16 @@ object ExportPDFDlg: TExportPDFDlg
     Top = 424
     Width = 75
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkOK
     ModalResult = 1
+    ParentFont = False
     TabOrder = 2
   end
 end

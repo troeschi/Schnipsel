@@ -7,6 +7,7 @@ object ExportDlg: TExportDlg
   BorderStyle = bsDialog
   ClientHeight = 275
   ClientWidth = 348
+  OnCreate = FormCreate
   object GroupBox1: TGroupBox
     Left = 16
     Height = 192
@@ -56,8 +57,16 @@ object ExportDlg: TExportDlg
     Width = 91
     Default = True
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkOK
     ModalResult = 1
+    ParentFont = False
     TabOrder = 1
   end
   object BitBtn2: TBitBtn
@@ -67,8 +76,16 @@ object ExportDlg: TExportDlg
     Width = 104
     Cancel = True
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkCancel
     ModalResult = 2
+    ParentFont = False
     TabOrder = 2
   end
 end

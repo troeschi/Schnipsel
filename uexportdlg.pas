@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Export-dialog for choosing the parts of export
 
@@ -43,6 +43,7 @@ type
     ExportLinks: TCheckBox;
     GroupBox1: TGroupBox;
     CodeName: TStaticText;
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -55,6 +56,16 @@ var
 implementation
 
 {$R *.lfm}
+
+uses MainForm;
+
+{ TExportDlg }
+
+procedure TExportDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ GroupBox1.Font.style:=GroupBox1.Font.style+[fsBold];
+end;
 
 end.
 

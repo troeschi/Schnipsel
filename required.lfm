@@ -10,6 +10,7 @@ object RequiredDlg: TRequiredDlg
   ClientWidth = 941
   Position = poMainFormCenter
   LCLVersion = '4.0.0.4'
+  OnCreate = FormCreate
   object NewGroup: TGroupBox
     Left = 16
     Height = 425
@@ -99,6 +100,14 @@ object RequiredDlg: TRequiredDlg
       Top = 316
       Width = 75
       Caption = 'Save'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 5
       OnClick = Save_BtnClick
     end
@@ -187,11 +196,19 @@ object RequiredDlg: TRequiredDlg
       FocusControl = Code_inBase1
     end
     object Save_Btn2: TButton
-      Left = 350
+      Left = 312
       Height = 25
       Top = 368
-      Width = 75
+      Width = 113
       Caption = 'Update'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 5
       OnClick = Save_Btn2Click
     end
@@ -219,11 +236,19 @@ object RequiredDlg: TRequiredDlg
       FocusControl = ReqEdit_Select
     end
     object Delete_Btn: TButton
-      Left = 256
+      Left = 216
       Height = 25
       Top = 368
       Width = 75
       Caption = 'Delete'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 7
       OnClick = Delete_BtnClick
     end

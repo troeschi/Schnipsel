@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Main-Form (Window) of the application
 
@@ -35,7 +35,7 @@ uses
   CodeComment, CodeLinks, NewEntry, CodeTypes, UExportDlg, UExportPDFDlg,
   Translate_strings, TopWindow, UDBConfigDlg, odbcconn, SQLDB, db, Types,
   LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes, PdfDoc,
-  PdfTypes, PdfFonts, strUtils, iniFiles;
+  PdfTypes, PdfFonts, strUtils, iniFiles, SettingsDlg;
 
 
 
@@ -95,9 +95,6 @@ type
     PopupCopy: TMenuItem;
     PopupCut: TMenuItem;
     PopupPaste: TMenuItem;
-    PopupFold: TMenuItem;
-    PopupFoldall: TMenuItem;
-    PopupUnfoldAll: TMenuItem;
     Pbar: TProgressBar;
     ReplaceDlg: TReplaceDialog;
     ExportSaveDialog: TSaveDialog;
@@ -181,6 +178,7 @@ type
     Links_TabSheet: TTabSheet;
 
     // Settings Menu
+    procedure Settings_ButtonClick(Sender: TObject);
     procedure SMSettingsClick(Sender: TObject);
 
     // MainMenu Popup
@@ -266,10 +264,14 @@ type
     procedure LinkImage(Sender: TObject);
     procedure TextFontLink(Sender: TObject);
     procedure TextFontNormal(Sender: TObject);
+    procedure MenuTextLink(Sender: TObject);
+    procedure MenuTextNormal(Sender: TObject);
     procedure UsedLnkClick(Sender : Tobject);
     procedure AsyncFree(AData: PtrInt);
     procedure DBSearch_results(searchstr : string);
     procedure HelpButtonClick(Sender: TObject);
+    procedure SaveFont(FName: string; Section: string; smFont: TFont);
+    procedure LoadFont(FName: string; Section: string; smFont: TFont);
     procedure ShowSplash;
 
   private
@@ -283,9 +285,12 @@ type
        Selected_Code_ID    : Integer;
        Selected_Version_ID : Integer;
        Expand_Typelist_ID  : string;
+       ExpCSS              : string;
        Edit_Mode           : Boolean;
        Export_Mode         : Boolean;
+       font_changed        : Boolean;
        DBEngine            : string;
+       RBcolor             : string;
   end;
 
 
@@ -313,8 +318,6 @@ var i,
     Split_array       : array of string;
     schnipsel_ini     : TiniFile;
 begin
- // Read Ini, build Menu
- //MySqlConnection
  SchnipselIniStorage.IniFileName:=sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini';
  SchnipselIniStorage.Restore;
  if (not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
@@ -325,7 +328,6 @@ begin
   begin
    try
     ODBCConnection1.Open;
-    //messagedlg(ConnectionOK,mtInformation,[mbOk],0);
    except
     on E: ESQLDatabaseError do
           begin
@@ -386,11 +388,10 @@ begin
    Mentry.Alignment:=taLeftJustify;
    Mentry.Caption:=Split_array[0];
    MEntry.setbounds(12,Menu_Set_Pos,65,17);
-   Mentry.onMouseEnter:=@TextFontLink;
-   Mentry.onMouseLeave:=@TextFontNormal;;
+   Mentry.onMouseEnter:=@MenuTextLink;
+   Mentry.onMouseLeave:=@MenuTextNormal;;
    MEntry.Name:='MEntry_'+Split_array[1];
    Mentry.OnClick:=@MenuEntryClick;
-   Mentry.Font.Style:=Mentry.Font.Style+[fsBold];
    MEntry.Parent:=SideMenu_Panel;
    Mline:=TDividerBevel.Create(nil);
    Mline.setbounds(8,Menu_Set_Pos+16,64,15);
@@ -420,10 +421,23 @@ begin
  Editor_Toolbar.enabled:=false;
  EditorTB_Version.enabled:=false;
  EditorTB_Author.enabled:=false;
+ LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
+ LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
+ LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
+ Code_PageControl.Font.Style:=Font.Style+[fsBold];
+ WorkSpace_Panel.Font:=Font;
+ Code_TabSheet.font:=Font;
+ Requires_TabSheet.font:=Font;
+ Comment_TabSheet.font:=Font;
+ Links_TabSheet.font:=Font;
+ LTPanel.Font:=Font;
+ font_changed:=false;
  try
   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
   SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'));
   GetLocaleFormatSettings(schnipsel_ini.ReadInteger('Language','Code',$409), DefaultFormatSettings);
+  ExpCSS:=schnipsel_ini.ReadString('Export','CSS','Templates\Template.css');
+  RBcolor:=schnipsel_ini.ReadString('Export','Color','blue');
   if(Schnipsel_ini.ReadBool('DBEngine','SQLite',false) = true) then
    DBEngine:='SQLite';
   if(Schnipsel_ini.ReadBool('DBEngine','MySQL',false) = true) then
@@ -439,7 +453,9 @@ end;
 
 procedure TSchnipselMainForm.ShowTopWindow(Sender: TObject);
 begin
+ TopForm.Font:=Font;
  TopForm.TopCodeMemo.clear;
+ TopForm.TopCodeMemo.Font:=CodeMemo.Font;
  TopForm.TopCodeMemo.Lines:=CodeMemo.Lines;
  TopForm.CodeName.caption:=WorkSpace_StatusBar.Panels[1].Text;
  TopForm.Top:=0;
@@ -466,7 +482,10 @@ var servstr        : string;
     LImage         : TImage;
     DBImage        : Timage;
     Install_Button : Tbutton;
+    i              : integer;
 begin
+ for i:=LTPanel.controlCount-1 downto 0 do
+  LTPanel.Controls[i].free;
  LImage:=TImage.create(nil);
  LImage.setbounds(10,15,215,61);
  LImage.picture.loadfromfile('Images'+DirectorySeparator+'Schnipsellogo.png');
@@ -514,7 +533,6 @@ begin
    Install_Button.caption:=InstallDBstr;
    Install_Button.Name:='Install_Button';
    Install_Button.onClick:=@DB_ButtonClick;
-   Install_Button.Font.Style:=Install_Button.Font.Style+[fsBold];
    Install_Button.Parent:=LTPanel;
   end
  else
@@ -591,13 +609,12 @@ begin
     Mentry.Alignment:=taLeftJustify;
     MEntry.setbounds(12,Menu_set_Pos,65,17);
     Mentry.Caption:=Split_array[0];
-    Mentry.onMouseEnter:=@TextFontLink;
-    Mentry.onMouseLeave:=@TextFontNormal;;
+    Mentry.onMouseEnter:=@MenuTextLink;
+    Mentry.onMouseLeave:=@MenuTextNormal;;
     MEntry.Name:='MEntry_'+Split_array[1];
     Mentry.OnClick:=@MenuEntryClick;
     Mline:=TDividerBevel.Create(nil);
     Mline.setbounds(8,Menu_set_Pos+16,64,15);
-    Mentry.Font.Style:=Mentry.Font.Style+[fsBold];
     MEntry.Parent:=SideMenu_Panel;
     Mline.Parent:=SideMenu_Panel;
     inc(Menu_Set_Pos,32);
@@ -648,6 +665,7 @@ begin
    NewTypeDlg.MoveToListBox.Items:=TypesEditList;
    NewTypeDlg.MoveToListBox.ItemIndex:=0;
   end;
+ NewTypeDlg.Font:=Font;
  NewTypeDlg.ShowModal;
  TypesEditList.free;
 end;
@@ -758,6 +776,7 @@ begin
  RequiredDlg.ReqEdit_Select.Items:=Req_list;
  RequiredDlg.ReqEdit_Select.ItemIndex:=0;
  Req_list.free;
+ RequiredDlg.Font:=Font;
  RequiredDlg.ShowModal;
  for i:=Requires_Panel.ControlCount-1 downto 0 do
   Requires_Panel.Controls[i].free;
@@ -874,6 +893,7 @@ begin
  CommentDlg.EditCom_Select.Items:=Com_list;
  CommentDlg.EditCom_Select.ItemIndex:=0;
  Com_list.free;
+ CommentDlg.Font:=Font;
  CommentDlg.ShowModal;
  for i:=Comment_Panel.ControlCount-1 downto 0 do
   Comment_Panel.Controls[i].free;
@@ -1076,6 +1096,50 @@ end;
 
 procedure TSchnipselMainForm.SMSettingsClick(Sender: TObject);
 begin
+end;
+
+
+procedure TSchnipselMainForm.Settings_ButtonClick(Sender: TObject);
+var schnipsel_ini : TiniFile;
+    i             : integer;
+    s             : string;
+begin
+ SettingsDialog.DefaultSample.Font:=Font;
+ SettingsDialog.MenuSample.Font:=SideMenu_Panel.Font;
+ SettingsDialog.CodeSample.Font:=CodeMemo.Font;
+ if(SettingsDialog.showModal=mrOk) then
+  begin
+   if(SettingsDialog.RBblue.checked=true) then
+    RBcolor:='blue';
+   if(SettingsDialog.RBred.checked=true) then
+    RBcolor:='red';
+   if(SettingsDialog.RBgreen.checked=true) then
+    RBcolor:='green';
+   if(SettingsDialog.RBbrown.checked=true) then
+    RBcolor:='brown';
+   s:='Templates'+DirectorySeparator+'Template.css';
+   for i:=0 to SettingsDialog.Scrollbox1.ControlCount-1 do
+    if(SettingsDialog.Scrollbox1.Controls[i] is TRadioButton) then
+     if((SettingsDialog.Scrollbox1.Controls[i] as TRadioButton).checked=true) then
+      s:=SettingsDialog.Scrollbox1.Controls[i].Caption;
+   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+   try
+    schnipsel_ini.WriteString('Export','Color',Rbcolor);
+    schnipsel_ini.WriteString('Export','CSS',s);
+   finally
+    schnipsel_ini.free;
+   end;
+   Font:=SettingsDialog.DefaultSample.font;
+   SideMenu_Panel.Font:=SettingsDialog.MenuSample.font;
+   LTPanel.Font:=SettingsDialog.DefaultSample.font;
+   WorkSpace_Panel.Font:=SettingsDialog.DefaultSample.font;
+   CodeMemo.Font:=SettingsDialog.CodeSample.font;
+   Code_TabSheet.font:=SettingsDialog.DefaultSample.font;
+   Requires_TabSheet.font:=SettingsDialog.DefaultSample.font;
+   Comment_TabSheet.font:=SettingsDialog.DefaultSample.font;
+   Links_TabSheet.font:=SettingsDialog.DefaultSample.font;
+   font_changed:=true;
+  end;
 end;
 
 
@@ -1492,6 +1556,7 @@ begin
  LinkDlg.Link_Select.Items:=Lnk_list;
  LinkDlg.Link_Select.ItemIndex:=0;
  Lnk_list.free;
+ LinkDlg.Font:=Font;
  LinkDlg.ShowModal;
  for i:=Links_Panel.ControlCount-1 downto 0 do
   Links_Panel.Controls[i].free;
@@ -1849,7 +1914,7 @@ begin
       Rname:=Tstatictext.create(nil);
       Rname.setbounds(35,Pos_Top,200,16);
       Rname.Caption:=SQLQuery1.FieldByName('Rname').AsString;
-      Rname.font.style:=[fsunderline];
+      Rname.font.style:=Rname.font.style+[fsBold];
       Rname.Parent:=Requires_Panel;
       if(SQLQuery1.FieldByName('RequiredID').AsInteger > 0) then
        begin
@@ -1914,7 +1979,7 @@ begin
       Cauthor:=Tstatictext.create(nil);
       Cauthor.setbounds(35,Pos_Top,400,16);
       Cauthor.Caption:=SQLQuery1.FieldByName('Cauthor').AsString;
-      Cauthor.font.style:=[fsunderline];
+      Cauthor.font.style:=Cauthor.font.style+[fsBold];
       Cauthor.Parent:=Comment_Panel;
       Ccomment:=Tstatictext.create(nil);
       Ccomment.setbounds(35,Pos_Top+20,440,44);
@@ -1998,6 +2063,7 @@ begin
       TI.Parent:=Links_Panel;
       L_name:=Tstatictext.create(nil);
       L_name.setbounds(35,Pos_Top,440,16);
+      L_name.Font.style:=L_name.Font.style+[fsBold];
       L_name.Caption:=SQLQuery1.FieldByName('L_name').AsString;
       L_name.Parent:=Links_Panel;
       L_url:=Tstatictext.create(nil);
@@ -2028,22 +2094,29 @@ begin
 end;
 
 
+procedure TSchnipselMainForm.MenuTextLink(Sender : TObject);
+begin
+ (sender as Tstatictext).Cursor:=crHandPoint;
+end;
+
+
+procedure TSchnipselMainForm.MenuTextNormal(Sender : TObject);
+begin
+ (sender as Tstatictext).Cursor:=CrArrow;
+end;
+
+
 procedure TSchnipselMainForm.TextFontLink(Sender : TObject);
 begin
- with(sender as Tstatictext) do
-  begin
-   Font.Style:=Font.Style + [fsUnderline];
-   Cursor:=crHandPoint;
-  end;
+ (sender as Tstatictext).Font.Style:=(sender as Tstatictext).Font.Style + [fsUnderline];
+ (sender as Tstatictext).Cursor:=crHandPoint;
 end;
 
 
 procedure TSchnipselMainForm.TextFontNormal(Sender : TObject);
 begin
- with(sender as Tstatictext) do
-  begin
-   Font.Style:=Font.Style - [fsUnderline];
-  end;
+ (sender as Tstatictext).Font.Style:=(sender as Tstatictext).Font.Style - [fsUnderline];
+ (sender as Tstatictext).Cursor:=CrArrow;
 end;
 
 
@@ -2095,6 +2168,7 @@ begin
  NewCodeEntryDlg.NCType_Select.Items:=Categories_Typenames;
  NewCodeEntryDlg.NCType_Select.ItemIndex:=0;
  NewCodeEntryDlg.NCLang_Select.ItemIndex:=0;
+ NewCodeEntryDlg.Font:=Font;
  if (NewCodeEntryDlg.ShowModal = mrOk) then
   begin
    if (Edit_Mode=false) then
@@ -2193,6 +2267,7 @@ begin
    NewCategorieDlg.MoveToListBox.Items:=Categories_Short_Full;
    NewCategorieDlg.MoveToListBox.ItemIndex:=0;
   end;
+ NewCategorieDlg.Font:=Font;
  NewCategorieDlg.ShowModal;
  Categories_Short_Full.free;
  Menu_Entrys.clear;
@@ -2213,10 +2288,12 @@ begin
  RePaint;
 end;
 
+
 procedure TSchnipselMainForm.HelpButtonClick(Sender: TObject);
 begin
  openurl('Schnipsel.chm')
 end;
+
 
 procedure TSchnipselMainForm.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -2249,6 +2326,7 @@ procedure TSchnipselMainForm.DB_ButtonClick(Sender: TObject);
 var DBE : string;
 begin
  DBE:=DBEngine;
+ DBConfigDlg.Font:=Font;
  if ((DBConfigDlg.showModal = mrOK) and ((Menu_Entrys.count=0) or (DBE<>DBEngine))) then
   begin
    Menu_Entrys.clear;
@@ -2279,7 +2357,8 @@ var searchstr : string;
 begin
  searchstr:='';
  if InputQuery ('Search', 'Search for:', searchstr) then
-  DBSearch_results(searchstr);
+  if (trim(searchstr) > '') then
+   DBSearch_results(searchstr);
 end;
 
 
@@ -2294,7 +2373,7 @@ begin
   LTPanel.controls[i].free;
  Tstext:=Tstatictext.create(nil);
  Tstext.setbounds(10,15,300,16);
- Tstext.Font.Style:=Tstext.Font.Style+[fsBold];
+ Tstext.Font.style:=Tstext.Font.style+[fsBold];
  Tstext.Parent:=LTPanel;
  Tstext.caption:=SearchNames;
  TTop:=35;
@@ -2331,7 +2410,7 @@ begin
  inc(TTop,20);
  Tstext:=Tstatictext.create(nil);
  Tstext.setbounds(10,TTop,300,16);
- Tstext.Font.Style:=Tstext.Font.Style+[fsBold];
+ Tstext.Font.style:=Tstext.Font.style+[fsBold];
  Tstext.Parent:=LTPanel;
  Tstext.caption:=SearchCodes;
  inc(TTop,20);
@@ -2414,10 +2493,10 @@ begin
   LTPanel.controls[i].free;
  Tstext:=Tstatictext.create(nil);
  Tstext.setbounds(10,15,300,16);
- Tstext.Font.Style:=Tstext.Font.Style+[fsBold];
+ Tstext.Font.style:=Tstext.Font.style+[fsBold];
  Tstext.Parent:=LTPanel;
  Tstext.caption:=Favorites;
- TTop:=35;
+ TTop:=40;
  try
   SQLQuery1.SQL.Text := 'select f.id as Fid,c.id as Cid, c.Schnipsel_Name as CName from schnipsel_favorites as f left join schnipsel_names as c on f.schnipsel_id=c.id order by f.id DESC';
   SQLQuery1.Open;
@@ -2435,6 +2514,7 @@ begin
     ImageList_white.GetBitmap(13, Entry_Image.Picture.Bitmap);
     Entry_Image.Parent:=LTPanel;
     Tstext:=Tstatictext.create(nil);
+    Tstext.Font:=Font;
     Tstext.setbounds(35,TTop,300,16);
     Tstext.caption:=CName;
     Tstext.name:='Centry_'+inttostr(C_id);
@@ -2467,10 +2547,10 @@ begin
   LTPanel.controls[i].free;
  Tstext:=Tstatictext.create(nil);
  Tstext.setbounds(10,15,300,16);
- Tstext.Font.Style:=Tstext.Font.Style+[fsBold];
+ Tstext.Font.style:=Tstext.Font.style+[fsBold];
  Tstext.Parent:=LTPanel;
  Tstext.caption:=Bookmarks;
- TTop:=35;
+ TTop:=40;
  try
   SQLQuery1.SQL.Text := 'select f.id as fid,c.id as Cid, c.Schnipsel_Name as CName from schnipsel_bookmarks as f left join schnipsel_names as c on f.schnipsel_id=c.id order by f.id DESC limit 6';
   SQLQuery1.Open;
@@ -2488,8 +2568,9 @@ begin
     ImageList_white.GetBitmap(13, Entry_Image.Picture.Bitmap);
     Entry_Image.Parent:=LTPanel;
     Tstext:=Tstatictext.create(nil);
+    Tstext.Font:=Font;
     Tstext.setbounds(35,TTop,300,16);
-    Tstext.caption:=inttostr(C_id)+'_'+CName;
+    Tstext.caption:=CName;
     Tstext.name:='Centry_'+inttostr(C_id);
     Tstext.onMouseEnter:=@TextFontLink;
     Tstext.onMouseLeave:=@TextFontNormal;
@@ -2941,7 +3022,7 @@ begin
       Ver_Btn.Name:='BtnCode_'+inttostr(C_id);
       Ver_Btn.caption:=CEntryStr2;
       Ver_Btn.onClick:=@Ver_BtnClick;
-      Ver_Btn.Font.Style:=Ver_Btn.Font.Style+[fsBold];
+      Ver_Btn.Font.style:=Ver_Btn.Font.style+[fsBold];
       Ver_Btn.Parent:=Code_TabSheet;
       dec(Btn_left,20);
      end;
@@ -3140,7 +3221,7 @@ begin
    TEntry:=Tstatictext.Create(nil);
    TEntry.setbounds(34,spacer+20,360,16);
    TEntry.Alignment:=taLeftJustify;
-   TEntry.Font.Style:=TEntry.Font.Style+[fsBold];
+   TEntry.Font.style:=TEntry.Font.style+[fsBold];
    TEntry.Caption:=stra[0];
    TEntry.name:='TEntry_'+stra[1];
    TEntry.Parent:=LTPanel;
@@ -3159,6 +3240,7 @@ begin
         ImageList_white.GetBitmap(13, Entry_Image.Picture.Bitmap);
         Entry_Image.Parent:=LTPanel;
         CEntry:=Tstatictext.Create(nil);
+        CEntry.Font:=Font;
         CEntry.setbounds(55,spacer+8,360,16);
         CEntry.Alignment:=taLeftJustify;
         CEntry.Caption:=SQLQuery1.FieldByName('CName').AsString;
@@ -3235,6 +3317,44 @@ begin
  Selected_Lang:=i;
  Expand_TypeList_ID:='000';
  ShowTypeCodeList(i);
+end;
+
+
+procedure TSchnipselMainForm.SaveFont(FName: string; Section: string; smFont: TFont);
+var schnipsel_ini : TiniFile;
+begin
+ schnipsel_ini:= TIniFile.Create(FName);
+  try
+    schnipsel_ini.WriteString(Section, 'Name', smFont.Name);
+    schnipsel_ini.Writestring(Section, 'Color', ColorToString(smFont.Color));
+    schnipsel_ini.WriteInteger(Section, 'Size', smFont.Size);
+    schnipsel_ini.WriteBool(Section, 'Bold', (fsBold in smFont.Style));
+    schnipsel_ini.WriteBool(Section, 'UnderLine', (fsUnderLine in smFont.Style));
+    schnipsel_ini.WriteBool(Section, 'Italic', (fsItalic in smFont.Style));
+  finally
+    schnipsel_ini.Free;
+  end;
+end;
+
+
+procedure TSchnipselMainForm.LoadFont(FName: string; Section: string; smFont: TFont);
+var schnipsel_ini : TiniFile;
+begin
+ schnipsel_ini:= TIniFile.Create(FName);
+  try
+    smFont.Name:=schnipsel_ini.ReadString(Section, 'Name', smFont.Name);
+    smFont.Color:=StringToColor(schnipsel_ini.ReadString(Section, 'Color', ColorToString(smFont.Color)));
+    smFont.Size:=schnipsel_ini.ReadInteger(Section, 'Size', smFont.Size);
+    smFont.Style:=([]);
+    if(schnipsel_ini.ReadBool(Section,'Bold',False)) then
+     smFont.Style:=smFont.Style+[fsBold];
+    if(schnipsel_ini.ReadBool(Section,'UnderLine',False)) then
+     smFont.Style:=smFont.Style+[fsUnderLine];
+    if(schnipsel_ini.ReadBool(Section,'Italic',False)) then
+     smFont.Style:=smFont.Style+[fsItalic];
+  finally
+    schnipsel_ini.Free;
+  end;
 end;
 
 
@@ -3350,6 +3470,12 @@ begin
     messagedlgpos(Editorstr11,mtInformation,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
    end;
   SchnipselIniStorage.save;
+  if(font_changed=true) then
+   begin
+    SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
+    SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
+    SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
+   end;
   Menu_Entrys.Free;
   CodesList.Free;
   TypesList.free;

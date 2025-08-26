@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) to add new snippets
 
@@ -46,6 +46,7 @@ type
     NewCodeName: TLabeledEdit;
     NewCodeGroupBox: TGroupBox;
     procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure NCLang_SelectDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure NCType_SelectDrawItem(Control: TWinControl; Index: Integer;
@@ -93,6 +94,15 @@ begin
   messagedlgpos(Dlgstr3,mtInformation,[mbOk],0,round(left+(width/2)),round(top+(height/2)))
  else
   Self.ModalResult := mrOK;
+end;
+
+procedure TNewCodeEntryDlg.FormCreate(Sender: TObject);
+begin
+ font:=SchnipselMainForm.Font;
+ NewCodeGroupBox.Font.style:=NewCodeGroupBox.Font.style+[fsBold];
+ NCLang_Select.Font:=Font;
+ NCType_Select.Font:=Font;
+ NewCodeName.Font:=Font;
 end;
 
 

@@ -9,7 +9,7 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
   ClientHeight = 292
   ClientWidth = 445
   Position = poMainFormCenter
-  LCLVersion = '4.0.0.4'
+  OnCreate = FormCreate
   object NewCodeGroupBox: TGroupBox
     Left = 8
     Height = 216
@@ -53,7 +53,7 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
     object NCLangLabel: TLabel
       Left = 8
       Height = 15
-      Top = 16
+      Top = 8
       Width = 55
       Caption = 'Language:'
       FocusControl = NCLang_Select
@@ -61,7 +61,7 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
     object NCTypeLabel: TLabel
       Left = 8
       Height = 15
-      Top = 72
+      Top = 64
       Width = 27
       Caption = 'Type:'
       FocusControl = NCType_Select
@@ -73,6 +73,13 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
     Top = 248
     Width = 91
     Caption = 'Create'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
     TabOrder = 1
     OnClick = Button1Click
   end
@@ -82,8 +89,15 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
     Top = 248
     Width = 99
     Caption = '&Close'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkClose
     ModalResult = 11
+    ParentFont = False
     TabOrder = 2
   end
 end

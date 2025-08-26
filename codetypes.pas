@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) for add / edit / delete types of coding languages
 
@@ -57,6 +57,7 @@ type
     procedure EditTypeListBoxDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure EditTypeListBoxSelectionChange(Sender: TObject; User: boolean);
+    procedure FormCreate(Sender: TObject);
     procedure MoveToListBoxDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure SaveBtnClick(Sender: TObject);
@@ -104,6 +105,20 @@ var s     : array of string;
 begin
  s:=EditTypeListBox.Items[EditTypeListBox.ItemIndex].split('_');
  EditTypeName.text:=trim(s[1]);
+end;
+
+
+procedure TNewTypeDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ GroupBox1.Font.style:=GroupBox1.Font.style+[fsBold];
+ GroupBox2.Font.style:=GroupBox2.Font.style+[fsBold];
+ GroupBox3.Font.style:=GroupBox3.Font.style+[fsBold];
+ NewTypeName.Font:=Font;
+ EditTypeListBox.Font:=Font;
+ EditTypeName.Font:=Font;
+ DeleteListBox.Font:=Font;
+ MoveToListBox.Font:=Font;
 end;
 
 

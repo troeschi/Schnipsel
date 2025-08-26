@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Main program / project-file of the application
 
@@ -40,7 +40,7 @@ MainForm, uDarkStyleParams,
 Languages, Required,
   CodeComment, CodeLinks, NewEntry,
 CodeTypes, Uexportdlg, Uexportpdfdlg, Translate_strings, TopWindow,
-Udbconfigdlg;
+Udbconfigdlg, SettingsDlg;
 
 {$R *.res}
 
@@ -72,6 +72,7 @@ begin
   Application.CreateForm(TExportPDFDlg, ExportPDFDlg);
   Application.CreateForm(TTopForm, TopForm);
   Application.CreateForm(TDBConfigDlg, DBConfigDlg);
+  Application.CreateForm(TSettingsDialog, SettingsDialog);
   Application.Run;
 end.
 

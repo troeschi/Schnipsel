@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) to add / edit / delete required things of snippets
 
@@ -66,6 +66,7 @@ type
       ARect: TRect; State: TOwnerDrawState);
     procedure Code_inBaseMouseMove(Sender: TObject);
     procedure Delete_BtnClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure ReqEdit_SelectDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure ReqEdit_SelectMouseMove(Sender: TObject);
@@ -286,6 +287,25 @@ begin
      Req_url1.text:='';
     end;
   end;
+end;
+
+
+procedure TRequiredDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ NewGroup.Font.style:=NewGroup.Font.style+[fsBold];
+ EditGroup.Font.style:=EditGroup.Font.style+[fsBold];
+ Rfc_Select.Font:=Font;
+ Req_Name.Font:=Font;
+ Req_Hint.Font:=Font;
+ Req_Url.Font:=Font;
+ Code_inBase.Font:=Font;
+ Req_Name1.Font:=Font;
+ Rfc_Select1.Font:=Font;
+ Req_Hint1.Font:=Font;
+ Req_Url1.Font:=Font;
+ Code_inBase1.Font:=Font;
+ ReqEdit_Select.Font:=Font;
 end;
 
 

@@ -9,6 +9,7 @@ object DBConfigDlg: TDBConfigDlg
   ClientHeight = 438
   ClientWidth = 546
   Position = poMainFormCenter
+  OnCreate = FormCreate
   OnShow = FormShow
   object DatabaseGroupBox: TGroupBox
     Left = 16
@@ -30,7 +31,7 @@ object DBConfigDlg: TDBConfigDlg
     object ODBC_Driver_Label: TLabel
       Left = 16
       Height = 15
-      Top = 24
+      Top = 16
       Width = 71
       Caption = 'ODBC-Driver:'
       FocusControl = ODBC_Driver_Select
@@ -107,7 +108,7 @@ object DBConfigDlg: TDBConfigDlg
     object ODBC_DSN_Label: TLabel
       Left = 16
       Height = 15
-      Top = 88
+      Top = 80
       Width = 63
       Caption = 'ODBC-DSN:'
       FocusControl = ODBC_DSN_Select
@@ -119,8 +120,16 @@ object DBConfigDlg: TDBConfigDlg
     Top = 384
     Width = 107
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkClose
     ModalResult = 11
+    ParentFont = False
     TabOrder = 1
   end
   object ODBCTestBtn: TButton
@@ -129,6 +138,14 @@ object DBConfigDlg: TDBConfigDlg
     Top = 336
     Width = 136
     Caption = 'Test Connection'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
     TabOrder = 2
     OnClick = ODBCTestBtnClick
   end
@@ -138,6 +155,14 @@ object DBConfigDlg: TDBConfigDlg
     Top = 336
     Width = 168
     Caption = 'Install / Restore DataBase '
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
     TabOrder = 3
     OnClick = DBInstallBtnClick
   end
@@ -147,6 +172,14 @@ object DBConfigDlg: TDBConfigDlg
     Top = 336
     Width = 136
     Caption = 'Backup DataBase'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
     TabOrder = 4
     OnClick = DBBackupBtnClick
   end
@@ -164,8 +197,16 @@ object DBConfigDlg: TDBConfigDlg
     Top = 384
     Width = 103
     Caption = '&Benutzen'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkOK
     ModalResult = 1
+    ParentFont = False
     TabOrder = 6
   end
   object ExportSQLDlg: TSaveDialog

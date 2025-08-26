@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Strings used in the application for Translation
 
@@ -32,7 +32,7 @@ uses
   Classes, SysUtils;
 
 Resourcestring DataBaseErrorStr = 'Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!';
-Resourcestring ConnectionOK ='Connection to MySQL or MariaDB database "Schnipsel" = OK!';
+Resourcestring ConnectionOK ='Connection to DataBase "Schnipsel" = OK!';
 Resourcestring InstallDBstr ='Install Database';
 Resourcestring SCHVersion   ='Version:';
 Resourcestring WrittenStr   ='Written by A.Trösch';
@@ -125,8 +125,8 @@ Resourcestring Dlgstr8      ='Delete all Code Entrys in ';
 Resourcestring NODRVEntrys     ='No Entrys';
 Resourcestring NODSNEntrys     ='No Entrys';
 Resourcestring NOUSEDSN        ='No Use of DSN (fill fields below)';
-Resourcestring DBConnectionOK  ='Connection to MySQL database "Schnipsel" = OK!';
-Resourcestring DBConnectionFail='No MySQL or MariaDB Server!';
+Resourcestring DBConnectionOK  ='Connection to DataBase "Schnipsel" = OK!';
+Resourcestring DBConnectionFail='No supported DataBase!';
 Resourcestring RunSqlDump      ='Install the default(Setup) Schnipsel.sql?';
 Resourcestring RunSqlDump2     ='(Click No to Select a SQL-Dump)';
 Resourcestring noDBInfo        ='No Server Info!';

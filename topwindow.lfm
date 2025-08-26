@@ -145,7 +145,6 @@ object TopForm: TTopForm
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
-  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   object TopCodeMemo: TRichMemo
     AnchorSideLeft.Control = Owner
@@ -187,9 +186,16 @@ object TopForm: TTopForm
     BorderSpacing.Right = 18
     BorderSpacing.Bottom = 12
     Caption = 'Close'
-    Default = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkOK
     ModalResult = 1
+    ParentFont = False
     TabOrder = 1
     OnClick = TopCloseBtnClick
   end

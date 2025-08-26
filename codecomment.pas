@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) to add / edit / delete comments of snippets
 
@@ -64,6 +64,7 @@ type
       ARect: TRect; State: TOwnerDrawState);
     procedure EditCom_SelectMouseMove(Sender: TObject);
     procedure EditCom_SelectSelect(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Update_BtnClick(Sender: TObject);
     procedure Save_BtnClick(Sender: TObject);
   private
@@ -234,6 +235,21 @@ begin
  s:=EditCom_Select.Items[EditCom_Select.ItemIndex].split('|');
  CAuthorEdit.text:=trim(copy(s[0],pos('_',s[0])+1,length(s[0])));
  Edit_Comment.text:=trim(s[1]);
+end;
+
+
+procedure TCommentDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ New_GroupBox.Font.style:=New_GroupBox.Font.style+[fsBold];
+ Edit_GroupBox.Font.style:=Edit_GroupBox.Font.style+[fsBold];
+ CFC_Select.Font:=Font;
+ CAuthor.Font:=Font;
+ New_Comment.Font:=Font;
+ CFC_Select1.Font:=Font;
+ CAuthorEdit.Font:=Font;
+ Edit_Comment.Font:=Font;
+ EditCom_Select.Font:=Font;
 end;
 
 

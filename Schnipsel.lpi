@@ -178,6 +178,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Udbconfigdlg"/>
       </Unit>
+      <Unit>
+        <Filename Value="settingsdlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SettingsDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SettingsDlg"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

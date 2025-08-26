@@ -10,6 +10,7 @@ object CommentDlg: TCommentDlg
   ClientWidth = 723
   Position = poMainFormCenter
   LCLVersion = '4.0.0.4'
+  OnCreate = FormCreate
   object New_GroupBox: TGroupBox
     Left = 16
     Height = 328
@@ -67,6 +68,14 @@ object CommentDlg: TCommentDlg
       Top = 222
       Width = 75
       Caption = 'Save'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 3
       OnClick = Save_BtnClick
     end
@@ -142,20 +151,36 @@ object CommentDlg: TCommentDlg
       Caption = 'Select Entry:'
     end
     object Update_Btn: TButton
-      Left = 245
+      Left = 208
       Height = 25
       Top = 272
-      Width = 75
+      Width = 112
       Caption = 'Update'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 4
       OnClick = Update_BtnClick
     end
     object Delete_Btn: TButton
-      Left = 144
+      Left = 112
       Height = 25
       Top = 272
       Width = 75
       Caption = 'Delete'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'Arial'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 5
       OnClick = Delete_BtnClick
     end
@@ -166,8 +191,16 @@ object CommentDlg: TCommentDlg
     Top = 384
     Width = 96
     DefaultCaption = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -11
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     Kind = bkClose
     ModalResult = 11
+    ParentFont = False
     TabOrder = 2
   end
 end

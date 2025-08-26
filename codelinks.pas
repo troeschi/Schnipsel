@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) to add / edit / delete links of snippets
 
@@ -53,6 +53,7 @@ type
     Lfc_Select1: TComboBox;
     Update_Btn: TButton;
     Delete_Btn: TButton;
+    procedure FormCreate(Sender: TObject);
     procedure Lfc_Select1DrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure Lfc_Select1MouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -251,6 +252,21 @@ begin
    else
     Canvas.TextOut(aRect.Left, aRect.Top,Items[Index]);
   end;
+end;
+
+
+procedure TLinkDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ New_GroupBox.Font.style:=New_GroupBox.Font.style+[fsBold];
+ Edit_GroupBox.Font.style:=Edit_GroupBox.Font.style+[fsBold];
+ Lfc_Select.Font:=Font;
+ LinkTXT.Font:=Font;
+ LinkUrl.Font:=Font;
+ Lfc_Select1.Font:=Font;
+ LinkTXT1.Font:=Font;
+ LinkUrl1.Font:=Font;
+ Link_Select.Font:=Font;
 end;
 
 

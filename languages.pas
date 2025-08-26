@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // Form (Window) to add / edit / delete coding languages
 
@@ -46,10 +46,7 @@ type
     DividerBevel1: TDividerBevel;
     DividerBevel2: TDividerBevel;
     DividerBevel3: TDividerBevel;
-    NewImage: TImage;
     CategorieListEdit: TListBox;
-    EditImage: TImage;
-    DeleteImage: TImage;
     NewCatName1: TLabeledEdit;
     NewCatShort1: TLabeledEdit;
     CloseBtn: TBitBtn;
@@ -64,6 +61,7 @@ type
       ARect: TRect; State: TOwnerDrawState);
     procedure CategorieListEditSelectionChange(Sender: TObject);
     procedure DeleteBtnClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure MoveToListBoxDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure SaveBtn2Click(Sender: TObject);
@@ -205,6 +203,29 @@ begin
     end;
    end;
  end;
+end;
+
+
+procedure TNewCategorieDlg.FormCreate(Sender: TObject);
+begin
+ Font:=SchnipselMainForm.Font;
+ NewCategorie.Font.style:=Font.style+[fsBold];
+ EditCategorie.Font.style:=Font.style+[fsBold];
+ DeleteCategorie.Font.style:=Font.style+[fsBold];
+ NewCatName.EditLabel.Font:=Font;
+ NewCatShort.EditLabel.Font:=Font;
+ NewCatName.EditLabel.Font.size:=Font.size;
+ NewCatShort.EditLabel.Font.size:=Font.size;
+ NewCatName1.EditLabel.Font:=Font;
+ NewCatShort1.EditLabel.Font:=Font;
+ NewCatName1.EditLabel.Font.size:=Font.size;
+ NewCatShort1.EditLabel.Font.size:=Font.size;
+ NewCatName.EditLabel.Font.style:=Font.style+[fsBold];
+ NewCatShort.EditLabel.Font.style:=Font.style+[fsBold];
+ MoveToCategorie1.Font.style:=Font.style+[fsBold];
+ NewCatName1.EditLabel.Font.style:=Font.style+[fsBold];
+ NewCatShort1.EditLabel.Font.style:=Font.style+[fsBold];
+ MoveToCategorie1.Font.style:=Font.style+[fsBold];
 end;
 
 

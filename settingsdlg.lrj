@@ -1,0 +1,20 @@
+{"version":1,"strings":[
+{"hash":213582195,"name":"tsettingsdialog.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
+{"hash":5072307,"name":"tsettingsdialog.fontsettings.caption","sourcebytes":[70,111,110,116,115],"value":"Fonts"},
+{"hash":217180426,"name":"tsettingsdialog.generaltxt.caption","sourcebytes":[68,101,102,97,117,108,116,32,70,111,110,116,58],"value":"Default Font:"},
+{"hash":201605818,"name":"tsettingsdialog.menutxt.caption","sourcebytes":[77,101,110,117,32,69,110,116,114,121,32,70,111,110,116,58],"value":"Menu Entry Font:"},
+{"hash":186767357,"name":"tsettingsdialog.defaultsample.caption","sourcebytes":[68,101,102,97,117,108,116,32,70,111,110,116,32,83,97,109,112,108,101,32,84,101,120,116,32,76,111,114,101,109,32,73,112,115,117,109,32,76,111,114,101,109,32,73,112,115,117,109],"value":"Default Font Sample Text Lorem Ipsum Lorem Ipsum"},
+{"hash":254029449,"name":"tsettingsdialog.menusample.caption","sourcebytes":[83,97,109,112,108,101,32,84,101,120,116,13,10,77,101,110,117,32,69,110,116,114,121,13,10,77,101,110,117,32,69,110,116,114,121],"value":"Sample Text\r\nMenu Entry\r\nMenu Entry"},
+{"hash":12558,"name":"tsettingsdialog.defaultfontbtn.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":12558,"name":"tsettingsdialog.menufontbtn.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":82088122,"name":"tsettingsdialog.codetxt.caption","sourcebytes":[67,111,100,101,32,68,105,115,112,108,97,121,32,70,111,110,116,58],"value":"Code Display Font:"},
+{"hash":12558,"name":"tsettingsdialog.codefontbtn.caption","sourcebytes":[46,46,46],"value":"..."},
+{"hash":93028736,"name":"tsettingsdialog.codesample.caption","sourcebytes":[83,97,109,112,108,101,32,84,101,120,116,13,10,32,32,32,32,105,102,32,40,111,100,83,101,108,101,99,116,101,100,32,105,110,32,83,116,97,116,101,41,32,116,104,101,110,13,10,32,32,32,32,67,97,110,118,97,115,46,70,111,110,116,32,58,61,32,70,111,110,116,59,32],"value":"Sample Text\r\n    if (odSelected in State) then\r\n    Canvas.Font := Font; "},
+{"hash":58226809,"name":"tsettingsdialog.statictext1.caption","sourcebytes":[40,78,111,32,99,111,108,111,114,32,99,104,97,110,103,101,41],"value":"(No color change)"},
+{"hash":25364324,"name":"tsettingsdialog.htmlexportsettings.caption","sourcebytes":[72,84,77,76,45,69,120,112,111,114,116],"value":"HTML-Export"},
+{"hash":206317089,"name":"tsettingsdialog.radiobutton1.caption","sourcebytes":[82,97,100,105,111,66,117,116,116,111,110,49],"value":"RadioButton1"},
+{"hash":82652643,"name":"tsettingsdialog.rbblue.caption","sourcebytes":[66,108,117,101,32,67,111,108,111,114,115],"value":"Blue Colors"},
+{"hash":9349779,"name":"tsettingsdialog.rbgreen.caption","sourcebytes":[71,114,101,101,110,32,67,111,108,111,114,115],"value":"Green Colors"},
+{"hash":77708787,"name":"tsettingsdialog.rbred.caption","sourcebytes":[82,101,100,32,67,111,108,111,114,115],"value":"Red Colors"},
+{"hash":1923219,"name":"tsettingsdialog.rbbrown.caption","sourcebytes":[66,114,111,119,110,32,67,111,108,111,114,115],"value":"Brown Colors"}
+]}

@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // PDF export-Form (Window) of the application
 
@@ -46,6 +46,7 @@ type
     ExpPDFAuthor: TLabeledEdit;
     PDFGroupBox: TGroupBox;
     ExpPDFTitle: TLabeledEdit;
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -58,6 +59,21 @@ var
 implementation
 
 {$R *.lfm}
+
+uses MainForm;
+
+{ TExportPDFDlg }
+
+procedure TExportPDFDlg.FormCreate(Sender: TObject);
+begin
+ PDFGroupBox.Font.style:=PDFGroupBox.Font.style+[fsBold];
+ ExpPDFTitle.Font:=SchnipselMainForm.Font;
+ ExpPDFAuthor.Font:=SchnipselMainForm.Font;
+ ExpPDFSubject.Font:=SchnipselMainForm.Font;
+ ExpPDFKeywords.Font:=SchnipselMainForm.Font;
+ ExpPDFOutLine.Font:=SchnipselMainForm.Font;
+ ExpPDFocop.Font:=SchnipselMainForm.Font;
+end;
 
 end.
 

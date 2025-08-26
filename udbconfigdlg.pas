@@ -18,7 +18,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     Source-Code on Github: https://github.com/troeschi/Schnipsel
-    Email-contact: troesch.andreas@gmx.details	                            }
+    Email-contact: troesch.andreas@gmx.de	                            }
 
 // DB-configuration-Form (Window) of the application
 
@@ -58,6 +58,7 @@ type
     SQLPbar: TProgressBar;
     procedure DBInstallBtnClick(Sender: TObject);
     procedure DBBackupBtnClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ODBCTestBtnClick(Sender: TObject);
     procedure ODBC_DSN_SelectSelect(Sender: TObject);
@@ -203,6 +204,21 @@ begin
   ContentList.free;
   SQLPbar.visible:=false;
  end;
+end;
+
+
+procedure TDBConfigDlg.FormCreate(Sender: TObject);
+begin
+ font:=SchnipselMainForm.Font;
+ DataBaseGroupBox.Font.style:=DataBaseGroupBox.Font.style+[fsBold];
+ ODBC_Driver_Select.Font:=SchnipselMainForm.Font;
+ ODBC_DSN_Select.Font:=SchnipselMainForm.Font;
+ ODBC_UserName_Edit.Font:=SchnipselMainForm.Font;
+ ODBC_Password_Edit.Font:=SchnipselMainForm.Font;
+ ODBC_DataBase_Edit.Font:=SchnipselMainForm.Font;
+ ODBC_Charset_Edit.Font:=SchnipselMainForm.Font;
+ ODBC_Server_Edit.Font:=SchnipselMainForm.Font;
+ ODBC_Port_Edit.Font:=SchnipselMainForm.Font;
 end;
 
 
