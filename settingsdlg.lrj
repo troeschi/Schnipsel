@@ -16,5 +16,8 @@
 {"hash":82652643,"name":"tsettingsdialog.rbblue.caption","sourcebytes":[66,108,117,101,32,67,111,108,111,114,115],"value":"Blue Colors"},
 {"hash":9349779,"name":"tsettingsdialog.rbgreen.caption","sourcebytes":[71,114,101,101,110,32,67,111,108,111,114,115],"value":"Green Colors"},
 {"hash":77708787,"name":"tsettingsdialog.rbred.caption","sourcebytes":[82,101,100,32,67,111,108,111,114,115],"value":"Red Colors"},
-{"hash":1923219,"name":"tsettingsdialog.rbbrown.caption","sourcebytes":[66,114,111,119,110,32,67,111,108,111,114,115],"value":"Brown Colors"}
+{"hash":1923219,"name":"tsettingsdialog.rbbrown.caption","sourcebytes":[66,114,111,119,110,32,67,111,108,111,114,115],"value":"Brown Colors"},
+{"hash":121507730,"name":"tsettingsdialog.statictext2.caption","sourcebytes":[84,101,120,116,45,99,111,108,111,114],"value":"Text-color"},
+{"hash":82541250,"name":"tsettingsdialog.useheader.caption","sourcebytes":[72,101,97,100,101,114],"value":"Header"},
+{"hash":81160898,"name":"tsettingsdialog.usefooter.caption","sourcebytes":[70,111,111,116,101,114],"value":"Footer"}
 ]}

@@ -186,6 +186,14 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SettingsDlg"/>
       </Unit>
+      <Unit>
+        <Filename Value="dbsearch.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DBsearchDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DBsearch"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

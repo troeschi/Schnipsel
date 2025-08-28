@@ -1,0 +1,188 @@
+body {
+background-color:[COLOR5];
+color:[TXTCOLOR];
+font-family:Arial, Verdana, sans-serif;
+font-size:12px;  
+}
+
+pre {
+font-family: 'Courier New', Courier, monospace;
+white-space: pre-wrap;
+}
+
+.header {
+ height:80px;
+ vertical-align:top;	
+ font-family:Arial, Verdana, sans-serif;
+ Font-style:Bold;
+ font-size:14px;
+}
+
+.header img {
+ float:left;
+ margin:15px;
+ margin-right:30px;
+}	
+
+.main {
+ float:clear both;	
+}	
+
+.footer {
+}
+ 
+.CodeEntry {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:20px 20px 20px 20px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}
+
+legend.CodeEntry {
+color:[TXTCOLOR];
+border: solid 1px [COLOR3];
+background-color:[COLOR3];
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+padding: 5px;
+font-weight: bold;
+font-size:14px; 
+}
+
+.Language {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.Type {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.CodeLines{
+font-size:14px;  
+}	
+
+.CodeAppend {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px;
+text-align: center;  	
+padding-top: 15px;
+}	
+
+.Required {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}
+
+.Comment {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+.CodeLinks {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+
+legend.Required {
+color: [TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-weight: bold;
+font-size:14px;  
+}
+
+a.Required:link{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+a.Required:hover{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.Required:visited{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+legend.Comment {
+color:[TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+legend.CodeLinks {
+color:[TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+a.CodeLinks:link{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+a.CodeLinks:hover{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.CodeLinks:visited{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+p.Required {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}
+
+p.Comment {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}	
+
+p.CodeLinks {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}

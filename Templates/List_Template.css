@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+
+pre {
+ white-space: pre-wrap;
+ word-wrap: break-word;
+}	
+
+body {
+ margin: 0;
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ background-color:[COLOR5];
+}
+
+.header {
+ padding:15px;
+ height:100px;
+ width: 100%;
+ position: fixed;
+ top:0;
+ left:0;
+ overflow: hidden;
+ background-color:[COLOR4];
+ color:[TXTCOLOR];
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ z-index:2;
+}
+
+.footer {
+ padding:15px;
+ height:30px;
+ width: 100%;
+ position: fixed;
+ bottom:0;
+ left:0;
+ overflow: hidden;
+ background-color:[COLOR4];
+ color:[TXTCOLOR];
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ z-index:2;
+}
+
+.header img {
+ float:left;
+ margin-right:25px;
+}
+
+/* Style the side navigation */
+.sidenav {                              
+  height: 95%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  left: 0;
+  background-color:[COLOR4];
+  overflow-x: hidden;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:12px; 
+  font-style:Bold;
+  color:[TXTCOLOR];
+}
+
+.sidenav ul {
+ margin: 0px;
+ padding: 0px;
+ color:[TXTCOLOR];
+}
+
+.sidenav li {
+ color:[TXTCOLOR];
+}
+
+/* Side navigation links */
+.sidenav a {
+  color:[TXTCOLOR];
+  padding: 5px;
+  padding-left:10px;
+  text-decoration: none;
+  display: block;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:14px; 
+  font-weight:Bold;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color:[COLOR2];
+  color:[TXTCOLOR];
+  font-family:Arial, Verdana, sans-serif;
+  font-size:14px; 
+  font-weight:Bold;
+}
+
+
+/* Style the content */
+.main {
+  Top: 100px;
+  margin-top: 100px;
+  margin-left: 300px;
+  padding-left: 20px;
+  overflow: scroll;
+  height: 90vh;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:12px; 
+}
+
+.CodeEntry {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:20px 20px 20px 20px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}
+
+legend.CodeEntry {
+color:[TXTCOLOR];
+border: solid 1px [COLOR1];
+background-color:[COLOR3];
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+padding: 5px;
+font-weight: bold;
+font-size:14px; 
+}
+
+.Language {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.Type {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px; 
+}
+
+.CodeLines{
+font-size:14px;  
+}	
+
+.CodeAppend {
+color:[TXTCOLOR]; 
+font-weight: bold;
+font-size:14px;
+text-align: center;  	
+padding-top: 15px;
+}	
+
+.Required {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}
+
+.Comment {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+.CodeLinks {
+color:[TXTCOLOR];
+background-color:[COLOR2];
+margin:10px 15px 10px 15px;
+border-style: none;
+border-top-style: dotted;
+font-size:14px;  
+}	
+
+
+legend.Required {
+color: [TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-weight: bold;
+font-size:14px;  
+}
+
+a.Required:link{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+a.Required:hover{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.Required:visited{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+legend.Comment {
+color:[TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+legend.CodeLinks {
+color:[TXTCOLOR];
+padding: 5px;
+border-style: none;
+font-size:14px;  
+font-weight: bold;	
+}	
+
+a.CodeLinks:link{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+a.CodeLinks:hover{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+font-weight: bold;
+}
+
+a.CodeLinks:visited{
+color:[COLOR1];	
+text-decoration:underline;
+border-style: none;
+}
+
+p.Required {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}
+
+p.Comment {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}	
+
+p.CodeLinks {
+color:[TXTCOLOR];
+font-size:14px;  
+border-style: none;
+padding: 0px;
+}

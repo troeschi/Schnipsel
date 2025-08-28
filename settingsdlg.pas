@@ -13,6 +13,11 @@ type
   { TSettingsDialog }
 
   TSettingsDialog = class(TForm)
+    PanelImg: TImage;
+    ImgPanel: TPanel;
+    UseHeader: TCheckBox;
+    UseFooter: TCheckBox;
+    ColorDialog1: TColorDialog;
     Image1: TImage;
     RadioButton1: TRadioButton;
     RBbrown: TRadioButton;
@@ -22,24 +27,25 @@ type
     ScrollBox1: TScrollBox;
     Shape1: TShape;
     Shape10: TShape;
-    Shape11: TShape;
-    Shape12: TShape;
-    Shape13: TShape;
-    Shape14: TShape;
     Shape15: TShape;
-    Shape16: TShape;
-    Shape17: TShape;
+    Shape14: TShape;
+    Shape13: TShape;
+    Shape12: TShape;
+    Shape11: TShape;
     Shape18: TShape;
     Shape19: TShape;
-    Shape2: TShape;
+    Shape16: TShape;
     Shape20: TShape;
+    Shape2: TShape;
+    Shape17: TShape;
+    TXTcolor: TShape;
     Shape3: TShape;
     Shape4: TShape;
     Shape5: TShape;
-    Shape6: TShape;
+    Shape9: TShape;
     Shape7: TShape;
     Shape8: TShape;
-    Shape9: TShape;
+    Shape6: TShape;
     StaticText1: TStaticText;
     DefaultFontBtn: TBitBtn;
     DividerBevel3: TDividerBevel;
@@ -59,11 +65,15 @@ type
     GeneralTXT: TStaticText;
     DefaultSample: TStaticText;
     MenuSample: TStaticText;
+    StaticText2: TStaticText;
     procedure CodeFontBtnClick(Sender: TObject);
     procedure DefaultFontBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuFontBtnClick(Sender: TObject);
+    procedure PanelImgClick(Sender: TObject);
+    procedure TXTcolorClick(Sender: TObject);
+    procedure ThumbClick(Sender : TObject);
   private
 
   public
@@ -100,6 +110,13 @@ begin
 end;
 
 
+procedure TSettingsDialog.ThumbClick(Sender : TObject);
+begin
+ PanelImg.Picture:=(Sender as Timage).Picture;
+ ImgPanel.visible:=true;
+end;
+
+
 procedure TSettingsDialog.FormShow(Sender: TObject);
 var CSStemplates : TstringList;
     i            : integer;
@@ -107,12 +124,16 @@ var CSStemplates : TstringList;
     CSSRbtn      : TradioButton;
     TTop         : integer;
 begin
+ ImgPanel.visible:=false;
+ TxtColor.Brush.Color:=stringtocolor(SchnipselMainForm.ExpTc);
  case SchnipselMainForm.RBcolor of
   'red'   : RBred.checked:=true;
   'blue'  : RBblue.checked:=true;
   'green' : RBgreen.checked:=true;
   'brown' : RBbrown.checked:=true;
  end;
+ UseHeader.Checked:=SchnipselMainForm.ExpUseHeader;
+ UseFooter.Checked:=SchnipselMainForm.ExpUseFooter;
  for i:=Scrollbox1.ControlCount-1 downto 0 do
   Scrollbox1.Controls[i].free;
  try
@@ -132,6 +153,7 @@ begin
     CSSImg.stretch:=true;
     CSSImg.Proportional:=true;
     CSSImg.Picture.LoadFromFile('Templates'+DirectorySeparator+'Images'+DirectorySeparator+ExtractFileNameOnly(CSSTemplates[i])+'.png');
+    CSSImg.OnClick:=@thumbClick;
     CSSImg.Parent:=Scrollbox1;
     inc(TTop,170);
    end;
@@ -159,6 +181,18 @@ begin
   begin
    MenuSample.font:=FontDialog1.font;
   end;
+end;
+
+procedure TSettingsDialog.PanelImgClick(Sender: TObject);
+begin
+ ImgPanel.visible:=false;
+end;
+
+procedure TSettingsDialog.TXTcolorClick(Sender: TObject);
+begin
+ ColorDialog1.Color:=TXTcolor.Brush.Color;
+ if(ColorDialog1.execute) then
+  TXTcolor.Brush.Color:=ColorDialog1.Color;
 end;
 
 

@@ -260,6 +260,7 @@ object SchnipselMainForm: TSchnipselMainForm
   PopupMenu = PopupMainMenu
   Position = poDesktopCenter
   SessionProperties = 'ODBCConnection1.DatabaseName;ODBCConnection1.Driver;ODBCConnection1.Params;ODBCConnection1.Password;ODBCConnection1.UserName'
+  LCLVersion = '4.0.0.4'
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
@@ -1456,7 +1457,7 @@ object SchnipselMainForm: TSchnipselMainForm
       end
       object EditorTB_Spacer: TToolButton
         Left = 26
-        Height = 22
+        Height = 8
         Top = 2
         Caption = 'EditorTB_Spacer'
         Style = tbsSeparator
@@ -1496,14 +1497,14 @@ object SchnipselMainForm: TSchnipselMainForm
       end
       object EditorTB_Spacer2: TToolButton
         Left = 103
-        Height = 22
+        Height = 8
         Top = 2
         Caption = 'EditorTB_Spacer2'
         Style = tbsSeparator
       end
       object EditorTB_Spacer3: TToolButton
         Left = 111
-        Height = 22
+        Height = 5
         Top = 2
         Style = tbsDivider
       end
@@ -1539,13 +1540,13 @@ object SchnipselMainForm: TSchnipselMainForm
       end
       object EditorTB_Spacer4: TToolButton
         Left = 185
-        Height = 22
+        Height = 5
         Top = 2
         Style = tbsDivider
       end
       object EditorTB_Spacer5: TToolButton
         Left = 190
-        Height = 22
+        Height = 5
         Top = 2
         Style = tbsDivider
       end
@@ -1559,7 +1560,7 @@ object SchnipselMainForm: TSchnipselMainForm
       end
       object EditorTB_Spacer6: TToolButton
         Left = 295
-        Height = 22
+        Height = 5
         Top = 2
         Style = tbsDivider
       end

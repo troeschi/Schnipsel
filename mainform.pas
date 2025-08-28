@@ -35,11 +35,12 @@ uses
   CodeComment, CodeLinks, NewEntry, CodeTypes, UExportDlg, UExportPDFDlg,
   Translate_strings, TopWindow, UDBConfigDlg, odbcconn, SQLDB, db, Types,
   LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes, PdfDoc,
-  PdfTypes, PdfFonts, strUtils, iniFiles, SettingsDlg;
+  PdfTypes, PdfFonts, strUtils, iniFiles, SettingsDlg, DBSearch;
 
 
 
 type
+
 
   { TSchnipselMainForm }
 
@@ -286,6 +287,9 @@ type
        Selected_Version_ID : Integer;
        Expand_Typelist_ID  : string;
        ExpCSS              : string;
+       ExpTc               : string;
+       ExpUseHeader,
+       ExpUseFooter        : Boolean;
        Edit_Mode           : Boolean;
        Export_Mode         : Boolean;
        font_changed        : Boolean;
@@ -436,8 +440,11 @@ begin
   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
   SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'));
   GetLocaleFormatSettings(schnipsel_ini.ReadInteger('Language','Code',$409), DefaultFormatSettings);
-  ExpCSS:=schnipsel_ini.ReadString('Export','CSS','Templates\Template.css');
+  ExpCSS:=schnipsel_ini.ReadString('Export','CSS','Templates'+DirectorySeparator+'Template.css');
   RBcolor:=schnipsel_ini.ReadString('Export','Color','blue');
+  ExpTc:=schnipsel_ini.ReadString('Export','TxtColor',colortostring(clWhite));
+  ExpUseHeader:=schnipsel_ini.readBool('Export','Header',false);
+  ExpUseFooter:=schnipsel_ini.readBool('Export','Footer',false);
   if(Schnipsel_ini.ReadBool('DBEngine','SQLite',false) = true) then
    DBEngine:='SQLite';
   if(Schnipsel_ini.ReadBool('DBEngine','MySQL',false) = true) then
@@ -1109,6 +1116,8 @@ begin
  SettingsDialog.CodeSample.Font:=CodeMemo.Font;
  if(SettingsDialog.showModal=mrOk) then
   begin
+   ExpTc:=colortostring(SettingsDialog.TXTcolor.Brush.Color);
+   RBcolor:='blue';
    if(SettingsDialog.RBblue.checked=true) then
     RBcolor:='blue';
    if(SettingsDialog.RBred.checked=true) then
@@ -1126,9 +1135,15 @@ begin
    try
     schnipsel_ini.WriteString('Export','Color',Rbcolor);
     schnipsel_ini.WriteString('Export','CSS',s);
+    schnipsel_ini.WriteString('Export','TxtColor',ExpTc);
+    schnipsel_ini.writeBool('Export','Header',SettingsDialog.UseHeader.Checked);
+    schnipsel_ini.writeBool('Export','Footer',SettingsDialog.UseFooter.Checked);
    finally
     schnipsel_ini.free;
    end;
+   ExpCSS:=s;
+   ExpUseHeader:=SettingsDialog.UseHeader.Checked;
+   ExpUseFooter:=SettingsDialog.UseFooter.Checked;
    Font:=SettingsDialog.DefaultSample.font;
    SideMenu_Panel.Font:=SettingsDialog.MenuSample.font;
    LTPanel.Font:=SettingsDialog.DefaultSample.font;
@@ -2355,10 +2370,10 @@ end;
 procedure TSchnipselMainForm.DBSearch_ButtonClick(Sender: TObject);
 var searchstr : string;
 begin
- searchstr:='';
- if InputQuery ('Search', 'Search for:', searchstr) then
-  if (trim(searchstr) > '') then
-   DBSearch_results(searchstr);
+ DBsearchDlg.SearchEdit.text:='';
+ if (DBsearchDlg.ShowModal = mrOK) then
+  if (trim(DBsearchDlg.SearchEdit.text) > '') then
+   DBSearch_results(DBsearchDlg.SearchEdit.text);
 end;
 
 
@@ -2590,6 +2605,20 @@ begin
 end;
 
 
+function SColorToHtmlColor(Color: TColor): string;
+var
+  N: Longint;
+begin
+  if Color=clNone then
+    begin Result:= ''; exit end;
+  N:= ColorToRGB(Color);
+  Result:= '#'+
+    IntToHex(Red(N), 2)+
+    IntToHex(Green(N), 2)+
+    IntToHex(Blue(N), 2);
+end;
+
+
 procedure TSchnipselMainForm.ExportasHTMLBtnClick(Sender: TObject);
 var HTMLFile   : Tstringlist;
     HTMLLines  : TstringList;
@@ -2599,7 +2628,39 @@ var HTMLFile   : Tstringlist;
     ExpCount  : Integer;
     s         : string;
     stra      : array of string;
+    c1,c2,
+    c3,c4,c5  : string;
 begin
+ case RBcolor of
+  'blue'  : begin
+             c1:=SColorToHtmlColor(SettingsDialog.Shape1.Pen.Color);
+             c2:=SColorToHtmlColor(SettingsDialog.Shape2.Pen.Color);
+             c3:=SColorToHtmlColor(SettingsDialog.Shape3.Pen.Color);
+             c4:=SColorToHtmlColor(SettingsDialog.Shape4.Pen.Color);
+             c5:=SColorToHtmlColor(SettingsDialog.Shape5.Pen.Color);
+            end;
+  'green' : begin
+             c1:=SColorToHtmlColor(SettingsDialog.Shape6.Pen.Color);
+             c2:=SColorToHtmlColor(SettingsDialog.Shape7.Pen.Color);
+             c3:=SColorToHtmlColor(SettingsDialog.Shape8.Pen.Color);
+             c4:=SColorToHtmlColor(SettingsDialog.Shape9.Pen.Color);
+             c5:=SColorToHtmlColor(SettingsDialog.Shape10.Pen.Color);
+            end;
+  'red'   : begin
+             c1:=SColorToHtmlColor(SettingsDialog.Shape11.Pen.Color);
+             c2:=SColorToHtmlColor(SettingsDialog.Shape12.Pen.Color);
+             c3:=SColorToHtmlColor(SettingsDialog.Shape13.Pen.Color);
+             c4:=SColorToHtmlColor(SettingsDialog.Shape14.Pen.Color);
+             c5:=SColorToHtmlColor(SettingsDialog.Shape15.Pen.Color);
+            end;
+  'brown' : begin
+             c1:=SColorToHtmlColor(SettingsDialog.Shape16.Pen.Color);
+             c2:=SColorToHtmlColor(SettingsDialog.Shape17.Pen.Color);
+             c3:=SColorToHtmlColor(SettingsDialog.Shape18.Pen.Color);
+             c4:=SColorToHtmlColor(SettingsDialog.Shape19.Pen.Color);
+             c5:=SColorToHtmlColor(SettingsDialog.Shape20.Pen.Color);
+            end;
+ end;
  if(ExportList.count=0) then
   exit;
  ExportSaveDialog.Filter:='HTML-File|.html';
@@ -2607,7 +2668,7 @@ begin
  if(ExportSaveDialog.execute) then
   begin
    CodeLines:=Tstringlist.create;
-   CodeLines.loadfromfile('Templates'+DirectorySeparator+'Template.css');
+   CodeLines.loadfromfile(ExpCSS); //'Templates'+DirectorySeparator+'Template.css');
    Pbar.Position:=1;
    Pbar.Min:=1;
    Pbar.Max:=ExportList.Count;
@@ -2619,15 +2680,44 @@ begin
    HTMLLines:=Tstringlist.create;
    s:=copy(ExportSaveDialog.FileName,0,length(ExportSaveDialog.FileName)-3);
    HTMLLines.add('<!DOCTYPE html>');
-   HTMLLines.add('<html>');
+   HTMLLines.add('<html lang="'+setDefaultLang('')+'">');
    HTMLLines.add('<head>');
+   HTMLLines.add('<Title>'+ExportSaveDialog.FileName+'</Title>');
    HTMLLines.add('<style>');
    for i:=0 to CodeLines.Count-1 do
-    HTMLLines.add(CodeLines[i]);
+    HTMLLines.add(stringsreplace(CodeLines[i],['[TXTCOLOR]','[COLOR1]','[COLOR2]','[COLOR3]','[COLOR4]','[COLOR5]'],[SColorToHtmlColor(stringtocolor(ExpTc)),c1,c2,c3,c4,c5],[rfReplaceAll]));
    HTMLLines.add('</style>');
-   CodeLines.free;
    HTMLLines.add('</head>');
    HTMLLines.add('<Body>');
+   CodeLines.free;
+   if(ExpUseHeader=true) then
+    begin
+     CodeLines:=Tstringlist.create;
+     CodeLines.loadfromfile('Templates'+DirectorySeparator+'Header.html');
+     for i:=0 to CodeLines.Count-1 do
+      HTMLLines.add(CodeLines[i]);
+     CodeLines.free;
+    end;
+   if(pos('list',lowercase(ExpCSS)) > 0) then
+    begin
+     HTMLLines.add('<div class="sidenav"><ul class="sidenavi">');
+     for ExpCount:=0 to ExportList.Count-1 do
+      begin
+       stra:=ExportList[ExpCount].split('_');
+       try
+        SQLQuery1.SQL.Text := 'SELECT cn.Schnipsel_Name as Cname from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
+        SQLQuery1.Params.ParamByName('Code_id').asInteger:=strtoint(stra[0]);
+        SQLQuery1.Open;
+        HTMLLines.add('<li class="sidenavi"><a href="#c'+inttostr(ExpCount)+'">'+SQLQuery1.FieldByName('Cname').AsString+'</a></li>');
+        SQLQuery1.Close;
+       except
+        on E: ESQLDatabaseError do
+              messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
+       end;
+      end;
+     HTMLLines.add('</ul></div>');
+    end;
+   HTMLLines.add('<div class="main">');
    for i:=0 to HTMLLines.count-1 do
     HTMLFile.add(HTMLLines[i]);
    HTMLLines.clear;
@@ -2638,7 +2728,6 @@ begin
      sleep(500);
      stra:=ExportList[ExpCount].split('_');
      HTMLLines.clear;
-     HTMLLines.add('<Fieldset class="CodeEntry">');
      try
       SQLQuery1.SQL.Text := 'SELECT cn.id as reacid, cn.lang_id as Langid ,cn.type_id as Typeid ,c.schnipsel as Ctext, cn.Schnipsel_Name as Cname from schnipsel_names as cn left join schnipsel_codes as c on c.schnipsel_id=cn.id where c.id=:Code_id';
       SQLQuery1.Params.ParamByName('Code_id').asInteger:=strtoint(stra[0]);
@@ -2646,6 +2735,10 @@ begin
       reacid:=SQLQuery1.FieldByName('reacid').AsInteger;
       Lid:=SQLQuery1.FieldByName('Langid').AsInteger;
       Tid:=SQLQuery1.FieldByName('Typeid').AsInteger;
+      if(pos('list',lowercase(ExpCSS)) > 0) then
+       HTMLLines.add('<Fieldset id="c'+inttostr(ExpCount)+'" class="CodeEntry">')
+      else
+       HTMLLines.add('<Fieldset id="c'+inttostr(ExpCount)+'" class="CodeEntry">');
       HTMLLines.add('<Legend class="CodeEntry">'+SQLQuery1.FieldByName('Cname').AsString+'</Legend>');
       CodeLines:=Tstringlist.create;
       CodeLines.LoadFromStream(sqlquery1.CreateBlobStream(SQLQuery1.Fields[3],bmread));
@@ -2661,10 +2754,11 @@ begin
       SQLQuery1.Open;
       HTMLLines.add('<p class="Language">'+Exportstr7+SQLQuery1.FieldByName('Lname').AsString+' ('+SQLQuery1.FieldByName('Lshort').AsString+')</p>');
       HTMLLines.add('<p class="Type">'+Exportstr8+SQLQuery1.FieldByName('Tname').AsString+'</p>');
-      HTMLLines.add('<div class="CodeLines">');
+      HTMLLines.add('<div class="CodeLines"><pre><code>');
       for i:=0 to CodeLines.count-1 do
-       HTMLLines.add(CodeLines[i].replace(' ','&nbsp;')+'</br>');
-      HTMLLines.add('</div>');
+       HTMLLines.add(stringsreplace(CodeLines[i],['<','>'],['&lt;','&gt;'],[rfReplaceAll]));
+       HTMLLines.add(CodeLines[i]);
+      HTMLLines.add('</code></pre></div>');
       SQLQuery1.Close;
      except
       on E: ESQLDatabaseError do
@@ -2682,7 +2776,7 @@ begin
          begin
           HTMLLines.add('<fieldset class="Required">');
           HTMLLines.add('<legend class="Required">'+SQLQuery1.FieldByName('required_name').AsString+'</legend>');
-          HTMLLines.add('<p class="Required">'+SQLQuery1.FieldByName('required_hint').AsString+'</p>');
+          HTMLLines.add('<p class="Required">'+stringsreplace(SQLQuery1.FieldByName('required_hint').AsString,['<','>'],['&lt;','&gt'],[rfReplaceAll])+'</p>');
           HTMLLines.add('<p class="Required"><a href="'+SQLQuery1.FieldByName('required_link').AsString+'" class="Required">'+SQLQuery1.FieldByName('required_link').AsString+'</a></p>');
           HTMLLines.add('</fieldset>');
           SQLQuery1.next;
@@ -2704,7 +2798,7 @@ begin
          begin
           HTMLLines.add('<Fieldset class="Comment">');
           HTMLLines.add('<legend class="Comment">'+SQLQuery1.FieldByName('author').AsString+'</legend>');
-          HTMLLines.add('<p class="Comment">'+SQLQuery1.FieldByName('comment').AsString+'</p>');
+          HTMLLines.add('<p class="Comment">'+stringsreplace(SQLQuery1.FieldByName('comment').AsString,['<','>'],['&lt;','&gt'],[rfReplaceAll])+'</p>');
           HTMLLines.add('</fieldset>');
           SQLQuery1.next;
          end;
@@ -2738,6 +2832,15 @@ begin
      HTMLLines.add('</Fieldset>');
      for i:=0 to HTMLLines.count-1 do
       HTMLFile.add(HTMLLines[i]);
+    end;
+   HTMLFile.add('</div>');
+   if(ExpUseFooter=true) then
+    begin
+     CodeLines:=Tstringlist.create;
+     CodeLines.loadfromfile('Templates'+DirectorySeparator+'Footer.html');
+     for i:=0 to CodeLines.Count-1 do
+      HTMLFile.add(CodeLines[i]);
+     CodeLines.free;
     end;
    HTMLFile.add('</Body>');
    HTMLFile.add('</html>');
