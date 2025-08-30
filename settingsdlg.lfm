@@ -9,6 +9,7 @@ object SettingsDialog: TSettingsDialog
   ClientHeight = 572
   ClientWidth = 499
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   object Settings_PageControl: TPageControl
     AnchorSideLeft.Control = Owner

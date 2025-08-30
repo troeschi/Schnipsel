@@ -10,6 +10,7 @@ object NewCodeEntryDlg: TNewCodeEntryDlg
   ClientWidth = 445
   Position = poMainFormCenter
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object NewCodeGroupBox: TGroupBox
     Left = 8
     Height = 216

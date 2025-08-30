@@ -56,6 +56,7 @@ type
     ExportSQLDlg: TSaveDialog;
     OpenSqlDlg: TOpenDialog;
     SQLPbar: TProgressBar;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure DBInstallBtnClick(Sender: TObject);
     procedure DBBackupBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -77,10 +78,21 @@ implementation
 
 {$R *.lfm}
 
-uses registry, MainForm, SQLDB, DB, Translate_strings, inifiles;
+uses registry, MainForm, SQLDB, DB, Translate_strings, inifiles, LCLTranslator, LCLIntf;
 
 
 { TDBConfigDlg }
+
+
+procedure TDBConfigDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
 
 
 procedure TDBConfigDlg.DBBackupBtnClick(Sender: TObject);

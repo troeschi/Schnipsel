@@ -66,6 +66,7 @@ type
     DefaultSample: TStaticText;
     MenuSample: TStaticText;
     StaticText2: TStaticText;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure CodeFontBtnClick(Sender: TObject);
     procedure DefaultFontBtnClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -87,9 +88,20 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, FileUtil, LazFileUtils;
+uses MainForm, FileUtil, LazFileUtils, LCLTranslator, LCLIntf;
 
 { TSettingsDialog }
+
+procedure TSettingsDialog.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TSettingsDialog.DefaultFontBtnClick(Sender: TObject);
 begin
@@ -183,10 +195,12 @@ begin
   end;
 end;
 
+
 procedure TSettingsDialog.PanelImgClick(Sender: TObject);
 begin
  ImgPanel.visible:=false;
 end;
+
 
 procedure TSettingsDialog.TXTcolorClick(Sender: TObject);
 begin

@@ -9,6 +9,7 @@ object NewTypeDlg: TNewTypeDlg
   ClientWidth = 906
   Position = poMainFormCenter
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object GroupBox1: TGroupBox
     Left = 16
     Height = 128

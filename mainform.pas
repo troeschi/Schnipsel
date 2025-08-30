@@ -2306,7 +2306,10 @@ end;
 
 procedure TSchnipselMainForm.HelpButtonClick(Sender: TObject);
 begin
- openurl('Schnipsel.chm')
+ if(setdefaultlang('')='de') then
+  openurl('Schnipsel.chm')
+ else
+  openurl('Schnipsel_'+setdefaultlang('')+'.chm');
 end;
 
 
@@ -2314,8 +2317,12 @@ procedure TSchnipselMainForm.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
  if(key=112) then
-  openurl('Schnipsel.chm')
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
 end;
+
 
 procedure TSchnipselMainForm.EnglishClick(Sender: TObject);
 var schnipsel_ini : TiniFile;

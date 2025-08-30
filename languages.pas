@@ -55,6 +55,7 @@ type
     NewCategorie: TStaticText;
     EditCategorie: TStaticText;
     DeleteCategorie: TStaticText;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure CategorieListDeleteDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure CategorieListEditDrawItem(Control: TWinControl; Index: Integer;
@@ -81,9 +82,19 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, sqldb, LcLType, Translate_strings;
+uses MainForm, sqldb, LcLType, Translate_strings, LCLTranslator, LCLIntf;
 
 { TNewCategorieDlg }
+
+procedure TNewCategorieDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
 
 
 procedure TNewCategorieDlg.DeleteBtnClick(Sender: TObject);

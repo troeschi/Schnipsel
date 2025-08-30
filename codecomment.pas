@@ -53,6 +53,7 @@ type
     CfC_Label: TLabel;
     CAuthor: TLabeledEdit;
     Edit_Comment: TLabeledEdit;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure CfC_Select1DrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure CfC_Select1MouseMove(Sender: TObject);
@@ -80,9 +81,20 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, Translate_strings, LcLType, sqldb;
+uses MainForm, Translate_strings, LcLType, sqldb, LCLTranslator, LCLIntf;
 
 { TCommentDlg }
+
+procedure TCommentDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TCommentDlg.CfC_SelectDrawItem(Control: TWinControl; Index: Integer;
   ARect: TRect; State: TOwnerDrawState);

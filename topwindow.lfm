@@ -146,6 +146,7 @@ object TopForm: TTopForm
     0000
   }
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object TopCodeMemo: TRichMemo
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = CodeName

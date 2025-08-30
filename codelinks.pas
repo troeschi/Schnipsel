@@ -53,6 +53,7 @@ type
     Lfc_Select1: TComboBox;
     Update_Btn: TButton;
     Delete_Btn: TButton;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure Lfc_Select1DrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
@@ -83,9 +84,20 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, Translate_strings, LcLType, sqldb;
+uses MainForm, Translate_strings, LcLType, sqldb, LCLTranslator, LCLIntf;
 
 { TLinkDlg }
+
+procedure TLinkDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TLinkDlg.Save_BtnClick(Sender: TObject);
 var To_id,i,

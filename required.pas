@@ -59,6 +59,7 @@ type
     Req_hint: TLabeledEdit;
     Req_url: TLabeledEdit;
     RfC_Select1: TComboBox;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure Code_inBase1DrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure Code_inBase1MouseMove(Sender: TObject);
@@ -92,9 +93,20 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, Translate_strings, LcLType, sqldb;
+uses MainForm, Translate_strings, LcLType, sqldb, LCLTranslator, LCLIntf;
 
 { TRequiredDlg }
+
+procedure TRequiredDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TRequiredDlg.RfC_SelectDrawItem(Control: TWinControl; Index: Integer;
   ARect: TRect; State: TOwnerDrawState);

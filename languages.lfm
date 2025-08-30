@@ -9,6 +9,7 @@ object NewCategorieDlg: TNewCategorieDlg
   ClientWidth = 517
   Position = poMainFormCenter
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   object NewCategorie: TStaticText
     Left = 16
     Height = 17

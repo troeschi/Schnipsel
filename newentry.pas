@@ -45,6 +45,7 @@ type
     NCTypeLabel: TLabel;
     NewCodeName: TLabeledEdit;
     NewCodeGroupBox: TGroupBox;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure NCLang_SelectDrawItem(Control: TWinControl; Index: Integer;
@@ -64,9 +65,20 @@ implementation
 
 {$R *.lfm}
 
-Uses MainForm, Translate_strings, LcLType;
+Uses MainForm, Translate_strings, LcLType, LCLTranslator, LCLIntf;
 
 { TNewCodeEntryDlg }
+
+procedure TNewCodeEntryDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TNewCodeEntryDlg.NCLang_SelectDrawItem(Control: TWinControl;
   Index: Integer; ARect: TRect; State: TOwnerDrawState);

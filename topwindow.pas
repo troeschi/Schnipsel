@@ -43,6 +43,7 @@ type
     TopCloseBtn: TBitBtn;
     TopCodeMemo: TRichMemo;
     CodeName: TStaticText;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure TopCloseBtnClick(Sender: TObject);
     procedure TopCodeMemoMouseWheel(Sender: TObject; Shift: TShiftState;
@@ -62,9 +63,21 @@ implementation
 
 {$R *.lfm}
 
-uses windows;
+uses windows, LCLTranslator, LCLIntf;
 
 { TTopForm }
+
+
+procedure TTopForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TTopForm.TopCloseBtnClick(Sender: TObject);
 begin

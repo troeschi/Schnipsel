@@ -51,6 +51,7 @@ type
     EditTypeListBox: TListBox;
     DeleteListBox: TListBox;
     MoveToListBox: TListBox;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure DeleteBtnClick(Sender: TObject);
     procedure DeleteListBoxDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
@@ -75,9 +76,20 @@ implementation
 
 {$R *.lfm}
 
-uses MainForm, Translate_strings, LcLType, sqldb;
+uses MainForm, Translate_strings, LcLType, sqldb, LCLTranslator, LCLIntf;
 
 { TNewTypeDlg }
+
+procedure TNewTypeDlg.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if(key=112) then
+  if(setdefaultlang('')='de') then
+   openurl('Schnipsel.chm')
+  else
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+end;
+
 
 procedure TNewTypeDlg.EditTypeListBoxDrawItem(Control: TWinControl;
   Index: Integer; ARect: TRect; State: TOwnerDrawState);
