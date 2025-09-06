@@ -1,4 +1,5 @@
 # Schnipsel
+<p>Now compile under Linux supported (tried under Linux Mint, dont know if it works under other than X11) !</p>  
 <p>English text below</p>
 <p align="justify">Schnipsel ist eine Databank-Anwendung für Code-Schnipsel, Script-Schnipsel oder reine Text-Schnipsel</p>
 <p align="center">
@@ -6,7 +7,8 @@
 </p>
 <p align="justify">Geschrieben in Object Pascal unter Benutzung von Lazarus und FPC. Databank ist MySQL oder MariaDB, SQLlite kam neu dazu (23.08.2025). Für die 
 Datenbankverbindung werden ODBC-Treiber benötigt.
-Bis jetzt wird nur Windows 10 / 11 64Bit unterstützt, Linux gibt es sobald das unter Windows stabil läuft. Das ist die erste Version, kann genutzt werden, ist aber noch nicht vollständig getestet, Benutzung auf eigenes Risiko.</p>
+Windows 10 / 11 64Bit, Linux unter X11 X-Server getestet und läuft. Wie unter anderen (QT) aussieht kann ich nicht sagen. 
+</p>
 <p  align="justify">Code-, Script- oder Text-Schnipsel können nach Sprache und Typ sortiert werden, links, kurze Kommentare und Links zu anderen Einträgen können hinzugefügt werden.
 Ein Editor ist vorhanden, für kleinere Änderungen, ist aber kein wirklicher Ersatz für einen Code- oder Texteditor.</p>
 <p>Schnipsel können in einem Top-Fenster angezeigt werdsen, das über allen anderen Anwendungen und Fenstern verbleibt solange es nicht geschlossen wird.</p>
@@ -15,8 +17,7 @@ Ein Editor ist vorhanden, für kleinere Änderungen, ist aber kein wirklicher Er
 <p>English</p>
 <p align="justify">Schnipsel is a Database driven Apllication to collect Code-snippets or Script-snippets or even just Text-snippets</p>
 <p align="justify">It is written in Object Pascal using Lazarus and FPC. Database is MySQL or MariaDB, SQLlite is now included (08/23/2025). You need ODBC-Drivers for the connection.
-By now it only works on Windows 10 / 11 64Bit, but Linux will be suported if it runs stable under Windows. It is the first Version, can be used, but is not fully 
-testet right now, so use at own risk.</p>
+Works on Windows 10 / 11 64Bit, Linux is working under X11, X-Server. I dont know if it will work with QT or others.</p>
 <p  align="justify">You can sort snippets of Code, Scripts or Text by Languages and Types, add links, short comments and link to required other entrys.
 There is a Editor for little changes on the snippets, but it isn´t a fully Code- or Text-Editor.</p>
 <p>You can display snippets in a Top-Window wich will stay on Top off all open System Windows until you close it.</p>
