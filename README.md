@@ -7,7 +7,7 @@
 </p>
 <p align="justify">Geschrieben in Object Pascal unter Benutzung von Lazarus und FPC. Databank ist MySQL oder MariaDB, SQLlite kam neu dazu (23.08.2025). Für die 
 Datenbankverbindung werden ODBC-Treiber benötigt.
-Windows 10 / 11 64Bit, Linux unter X11 X-Server getestet und läuft. Wie unter anderen (QT) aussieht kann ich nicht sagen. 
+Windows 10 / 11 64Bit, Linux unter X11 X-Server getestet und läuft. Wie es unter anderen (QT) aussieht kann ich nicht sagen. 
 </p>
 <p  align="justify">Code-, Script- oder Text-Schnipsel können nach Sprache und Typ sortiert werden, links, kurze Kommentare und Links zu anderen Einträgen können hinzugefügt werden.
 Ein Editor ist vorhanden, für kleinere Änderungen, ist aber kein wirklicher Ersatz für einen Code- oder Texteditor.</p>
