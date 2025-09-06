@@ -29,14 +29,18 @@ unit MainForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus, Windows,
+  {$IFNDEF UNIX}
+  Windows,
+  {$ELSE}
+  cthreads,clocale,keysym,messages,
+  {$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus,
   ButtonPanel, ComCtrls, Buttons, StdCtrls, DividerBevel, SynEdit, SynPopupMenu,
   LclType, SynHighlighterAny, LCLTranslator, ECScheme, Languages, Required,
   CodeComment, CodeLinks, NewEntry, CodeTypes, UExportDlg, UExportPDFDlg,
   Translate_strings, TopWindow, UDBConfigDlg, odbcconn, SQLDB, db, Types,
   LCLIntf, IniPropStorage, UniqueInstance, RichMemo, SynEditTypes, PdfDoc,
   PdfTypes, PdfFonts, strUtils, iniFiles, SettingsDlg, DBSearch;
-
 
 
 type
@@ -250,7 +254,7 @@ type
 
     // MainForm
     procedure FormCreate(Sender: TObject);
-    procedure FormPaint(Sender: TObject);
+    procedure FormPaintMenu(Sender: TObject);
     procedure FormClose(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -295,11 +299,12 @@ type
        font_changed        : Boolean;
        DBEngine            : string;
        RBcolor             : string;
+       Translate_lang      : string;
   end;
 
 
 const
-  VersionsNr           : string  = '1.0';
+  VersionsNr           : string  = '1.1.0';
 
 
 var
@@ -322,9 +327,13 @@ var i,
     Split_array       : array of string;
     schnipsel_ini     : TiniFile;
 begin
+ {$IFNDEF UNIX}
  SchnipselIniStorage.IniFileName:=sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini';
+ {$ELSE}
+ SchnipselIniStorage.IniFileName:=sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini';
+ {$ENDIF}
  SchnipselIniStorage.Restore;
- if (not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ if (not fileexists(SchnipselIniStorage.IniFileName)) then
   begin
    Menu_Entrys:=TStringList.Create;
   end
@@ -394,6 +403,8 @@ begin
    MEntry.setbounds(12,Menu_Set_Pos,65,17);
    Mentry.onMouseEnter:=@MenuTextLink;
    Mentry.onMouseLeave:=@MenuTextNormal;;
+   MENtry.showhint:=true;
+   MEntry.hint:='MEntry_'+Split_array[1];
    MEntry.Name:='MEntry_'+Split_array[1];
    Mentry.OnClick:=@MenuEntryClick;
    MEntry.Parent:=SideMenu_Panel;
@@ -425,9 +436,19 @@ begin
  Editor_Toolbar.enabled:=false;
  EditorTB_Version.enabled:=false;
  EditorTB_Author.enabled:=false;
+ {$IFNDEF UNIX}
  LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
  LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
  LoadFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
+ {$ELSE}
+ CodeMemo.ScrollBars:=ssAutoVertical;
+ Requires_ScrollBox.color:=cl3Dlight;
+ Comment_ScrollBox.color:=cl3Dlight;
+ Links_ScrollBox.color:=cl3Dlight;
+ LoadFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
+ LoadFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
+ LoadFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
+ {$ENDIF}
  Code_PageControl.Font.Style:=Font.Style+[fsBold];
  WorkSpace_Panel.Font:=Font;
  Code_TabSheet.font:=Font;
@@ -437,9 +458,18 @@ begin
  LTPanel.Font:=Font;
  font_changed:=false;
  try
+  {$IFNDEF UNIX}
   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
-  SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'));
+  {$ELSE}
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  {$ENDIF}
+  SetDefaultLang(schnipsel_ini.ReadString('Language','Lang','en'),'Languages');
+  {$IFNDEF UNIX}
   GetLocaleFormatSettings(schnipsel_ini.ReadInteger('Language','Code',$409), DefaultFormatSettings);
+  Translate_lang:='';
+  {$ELSE}
+  Translate_lang:=schnipsel_ini.ReadString('Language','Lang','en');
+  {$ENDIF}
   ExpCSS:=schnipsel_ini.ReadString('Export','CSS','Templates'+DirectorySeparator+'Template.css');
   RBcolor:=schnipsel_ini.ReadString('Export','Color','blue');
   ExpTc:=schnipsel_ini.ReadString('Export','TxtColor',colortostring(clWhite));
@@ -454,6 +484,7 @@ begin
  finally
   schnipsel_ini.free;
  end;
+ FormPaintMenu(nil);
  showsplash;
 end;
 
@@ -528,7 +559,11 @@ begin
  Tstext.name:='Used3';
  Tstext.alignment:=tacenter;
  Tstext.Parent:=LTPanel;
+ {$IFNDEF UNIX}
  if(not fileexists(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ {$ELSE}
+ if(not fileexists(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini') or (ODBCConnection1.Driver='')) then
+ {$ENDIF}
   begin
    DBImage:=TImage.create(nil);
    DBImage.setbounds(round((LTPanel.width/2)-40),250,40,40);
@@ -579,7 +614,7 @@ begin
 end;
 
 
-procedure TSchnipselMainForm.FormPaint(Sender: TObject);
+procedure TSchnipselMainForm.FormPaintMenu(Sender: TObject);
 var i,
     Menu_Set_Pos,
     MEntrys_on_Panel : integer;
@@ -618,11 +653,13 @@ begin
     Mentry.Caption:=Split_array[0];
     Mentry.onMouseEnter:=@MenuTextLink;
     Mentry.onMouseLeave:=@MenuTextNormal;;
+    MENtry.showhint:=true;
+    MEntry.hint:='MEntry_'+Split_array[1];
     MEntry.Name:='MEntry_'+Split_array[1];
     Mentry.OnClick:=@MenuEntryClick;
+    MEntry.Parent:=SideMenu_Panel;
     Mline:=TDividerBevel.Create(nil);
     Mline.setbounds(8,Menu_set_Pos+16,64,15);
-    MEntry.Parent:=SideMenu_Panel;
     Mline.Parent:=SideMenu_Panel;
     inc(Menu_Set_Pos,32);
     if (i > Menu_Entrys.count-1) then
@@ -1131,7 +1168,11 @@ begin
     if(SettingsDialog.Scrollbox1.Controls[i] is TRadioButton) then
      if((SettingsDialog.Scrollbox1.Controls[i] as TRadioButton).checked=true) then
       s:=SettingsDialog.Scrollbox1.Controls[i].Caption;
+   {$IFNDEF UNIX}
    schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+   {$ELSE}
+   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+   {$ENDIF}
    try
     schnipsel_ini.WriteString('Export','Color',Rbcolor);
     schnipsel_ini.WriteString('Export','CSS',s);
@@ -1163,12 +1204,14 @@ procedure TSchnipselMainForm.CodeMemoMouseWheel(Sender: TObject;
   var Handled : Boolean);
 var key : word;
 begin
+ {$IFNDEF UNIX}
  if (WheelDelta > 0) then
   key:=VK_Prior
  else
   Key:=VK_Next;
  Handled:=True;
  PostMessage(CodeMemo.Handle, WM_KEYDOWN, Key, 0);
+ {$ENDIF}
 end;
 
 
@@ -1641,7 +1684,11 @@ begin
   if(ExportPDFDlg.showModal = mrok) then
    begin
     try
+     {$IFNDEF UNIX}
      schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+     {$ELSE}
+     schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+     {$ENDIF}
      schnipsel_ini.WriteString('PDF','Author',ExportPDFDlg.ExpPDFAuthor.text);
      schnipsel_ini.WriteString('PDF','Keywords',ExportPDFDlg.ExpPDFKeywords.text);
      schnipsel_ini.WriteString('PDF','Title',ExportPDFDlg.ExpPDFTitle.text);
@@ -1857,6 +1904,7 @@ begin
    ExportPDF.free;
    FoutFile.free;
    Pbar.Position:=0;
+   Pbar.Style:=pbstNormal;
    openurl(ExportSaveDialog.FileName)
   end;
 end;
@@ -2300,16 +2348,27 @@ begin
          messagedlgpos(E.Message,mtWarning,[mbOk],0,round(left+(width/2)),round(top+(height/2)));
  end;
  First_Menu_Item:=0;
+ FormPaintMenu(nil);
  RePaint;
 end;
 
 
 procedure TSchnipselMainForm.HelpButtonClick(Sender: TObject);
 begin
+ {$IFDEF UNIX}
+ if(fileexists('HELP'+DirectorySeparator+Translate_lang+DirectorySeparator+'index.html')) then
+  openurl('file://'+expandFilename('HELP'+DirectorySeparator+Translate_lang+DirectorySeparator+'index.html'))
+ else
+  openurl('file://'+expandFilename('HELP'+DirectorySeparator+'en'+DirectorySeparator+'index.html'));
+ {$ELSE}
  if(setdefaultlang('')='de') then
   openurl('Schnipsel.chm')
  else
-  openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+  if(fileexists('Schnipsel_'+setdefaultlang('')+'.chm')) then
+   openurl('Schnipsel_'+setdefaultlang('')+'.chm')
+  else
+   openurl('Schnipsel_en.chm');
+ {$ENDIF}
 end;
 
 
@@ -2317,20 +2376,39 @@ procedure TSchnipselMainForm.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
  if(key=112) then
-  if(setdefaultlang('')='de') then
-   openurl('Schnipsel.chm')
-  else
-   openurl('Schnipsel_'+setdefaultlang('')+'.chm');
+  begin
+   {$IFDEF UNIX}
+   if(fileexists('HELP'+DirectorySeparator+Translate_lang+DirectorySeparator+'index.html')) then
+    openurl('file://'+expandFilename('HELP'+DirectorySeparator+Translate_lang+DirectorySeparator+'index.html'))
+   else
+    openurl('file://'+expandFilename('HELP'+DirectorySeparator+'en'+DirectorySeparator+'index.html'));
+   {$ELSE}
+   if(setdefaultlang('')='de') then
+    openurl('Schnipsel.chm')
+   else
+    if(fileexists('Schnipsel_'+setdefaultlang('')+'.chm')) then
+     openurl('Schnipsel_'+setdefaultlang('')+'.chm')
+    else
+     openurl('Schnipsel_en.chm');
+   {$ENDIF}
+  end;
 end;
 
 
 procedure TSchnipselMainForm.EnglishClick(Sender: TObject);
 var schnipsel_ini : TiniFile;
 begin
- SetDefaultLang('en');
+ SetDefaultLang('en','Languages');
+ {$IFNDEF UNIX}
  GetLocaleFormatSettings($409, DefaultFormatSettings);
+ {$ENDIF}
  try
+  {$IFNDEF UNIX}
   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  {$ELSE}
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  Translate_lang:='en';
+  {$ENDIF}
   schnipsel_ini.WriteString('Language','Lang','en');
   schnipsel_ini.WriteInteger('Language','Code',$409);
  finally
@@ -2473,10 +2551,17 @@ end;
 procedure TSchnipselMainForm.GermanClick(Sender: TObject);
 var schnipsel_ini : TiniFile;
 begin
- SetDefaultLang('de');
+ SetDefaultLang('de','Languages');
+ {$IFNDEF UNIX}
  GetLocaleFormatSettings($407, DefaultFormatSettings);
+ {$ENDIF}
  try
+  {$IFNDEF UNIX}
   schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  {$ELSE}
+  schnipsel_ini:=TiniFile.create(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini');
+  Translate_lang:='de';
+  {$ENDIF}
   schnipsel_ini.WriteString('Language','Lang','de');
   schnipsel_ini.WriteInteger('Language','Code',$407);
  finally
@@ -2855,6 +2940,7 @@ begin
    HTMLFile.free;
    HTMLLines.free;
    Pbar.Position:=0;
+   Pbar.style:=pbstNormal;
    openurl(ExportSaveDialog.filename);
   end;
 end;
@@ -3045,6 +3131,7 @@ begin
    XMLFile.free;
    XMLLines.free;
    Pbar.Position:=0;
+   PBar.Style:=PbstNormal;
    openurl(ExportSaveDialog.filename);
   end;
 end;
@@ -3582,9 +3669,15 @@ begin
   SchnipselIniStorage.save;
   if(font_changed=true) then
    begin
+    {$IFNDEF UNIX}
     SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
     SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
     SaveFont(sysutils.GetEnvironmentVariable('localappdata')+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
+    {$ELSE}
+    SaveFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','ContentFont',Font);
+    SaveFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','MenuFont',SideMenu_Panel.Font);
+    SaveFont(sysutils.GetEnvironmentVariable('HOME')+DirectorySeparator+'.config'+DirectorySeparator+'Schnipsel'+DirectorySeparator+'Schnipsel.ini','CodeFont',CodeMemo.Font);
+    {$ENDIF}
    end;
   Menu_Entrys.Free;
   CodesList.Free;

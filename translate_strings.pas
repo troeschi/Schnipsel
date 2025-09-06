@@ -125,6 +125,7 @@ Resourcestring Dlgstr8      ='Delete all Code Entrys in ';
 Resourcestring NODRVEntrys     ='No Entrys';
 Resourcestring NODSNEntrys     ='No Entrys';
 Resourcestring NOUSEDSN        ='No Use of DSN (fill fields below)';
+Resourcestring DBunixDSN       ='Under Linux OSes only with DSN! (select above)';
 Resourcestring DBConnectionOK  ='Connection to DataBase "Schnipsel" = OK!';
 Resourcestring DBConnectionFail='No supported DataBase!';
 Resourcestring RunSqlDump      ='Install the default(Setup) Schnipsel.sql?';

@@ -132,6 +132,22 @@ msgstr "Server:"
 msgid "Username:"
 msgstr "Username:"
 
+#: tdbsearchdlg.caption
+#, fuzzy
+msgctxt "tdbsearchdlg.caption"
+msgid "Search"
+msgstr "Search"
+
+#: tdbsearchdlg.groupbox1.caption
+#, fuzzy
+msgctxt "tdbsearchdlg.groupbox1.caption"
+msgid "Search"
+msgstr "Search"
+
+#: tdbsearchdlg.searchedit.editlabel.caption
+msgid "Search for:"
+msgstr ""
+
 #: texportdlg.codename.caption
 msgctxt "texportdlg.codename.caption"
 msgid "CodeName"
@@ -252,12 +268,12 @@ msgid "Delete"
 msgstr "Delete"
 
 #: tnewcategoriedlg.deletecategorie.caption
-msgid "Delete Language"
-msgstr "Delete Language"
+msgid "Delete Language:"
+msgstr "Delete Language:"
 
 #: tnewcategoriedlg.editcategorie.caption
-msgid "Edit Language"
-msgstr "Edit Language"
+msgid "Edit Language:"
+msgstr "Edit Language:"
 
 #: tnewcategoriedlg.movetocategorie1.caption
 msgid "Move Code Entrys to: (select the same as above to delete Entrys)"
@@ -402,12 +418,26 @@ msgstr "Delete Favorite"
 
 #: translate_strings.connectionok
 msgctxt "translate_strings.connectionok"
-msgid "Connection to MySQL or MariaDB database \"Schnipsel\" = OK!"
-msgstr "Connection to MySQL or MariaDB database \"Schnipsel\" = OK!"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
+msgstr "Connection to DataBase \"Schnipsel\" = OK!"
 
 #: translate_strings.databaseerrorstr
 msgid "Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!"
 msgstr "Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!"
+
+#: translate_strings.dbconnectionfail
+msgctxt "translate_strings.dbconnectionfail"
+msgid "No supported DataBase!"
+msgstr "No supported DataBase!"
+
+#: translate_strings.dbconnectionok
+msgctxt "translate_strings.dbconnectionok"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
+msgstr "Connection to DataBase \"Schnipsel\" = OK!"
+
+#: translate_strings.dbunixdsn
+msgid "Under Linux OSes only with DSN! (select above)"
+msgstr ""
 
 #: translate_strings.dlgstr1
 msgid "No Entry Selected"
@@ -435,7 +465,7 @@ msgstr " and delete "
 
 #: translate_strings.dlgstr7
 msgid " ?"
-msgstr "?"
+msgstr " ?"
 
 #: translate_strings.dlgstr8
 msgid "Delete all Code Entrys in "
@@ -584,6 +614,7 @@ msgid "Required for Code:"
 msgstr "Required for Code:"
 
 #: translate_strings.exportstrhtml
+msgctxt "translate_strings.exportstrhtml"
 msgid "HTML-Export"
 msgstr "HTML-Export"
 
@@ -606,6 +637,30 @@ msgstr "Install Database"
 #: translate_strings.licensestr
 msgid "GNU Lesser General Public License v3"
 msgstr "GNU Lesser General Public License v3"
+
+#: translate_strings.nodbinfo
+#, fuzzy
+msgctxt "translate_strings.nodbinfo"
+msgid "No Server Info!"
+msgstr "No Server Info!"
+
+#: translate_strings.nodrventrys
+#, fuzzy
+msgctxt "translate_strings.nodrventrys"
+msgid "No Entrys"
+msgstr "No Entrys"
+
+#: translate_strings.nodsnentrys
+#, fuzzy
+msgctxt "translate_strings.nodsnentrys"
+msgid "No Entrys"
+msgstr "No Entrys"
+
+#: translate_strings.nousedsn
+#, fuzzy
+msgctxt "translate_strings.nousedsn"
+msgid "No Use of DSN (fill fields below)"
+msgstr "No Use of DSN (fill fields below)"
 
 #: translate_strings.panel0entrys
 msgctxt "translate_strings.panel0entrys"
@@ -639,6 +694,18 @@ msgstr "> Not in Schnipsel <"
 #: translate_strings.requiredstr2
 msgid "> Select <"
 msgstr "> Select <"
+
+#: translate_strings.runsqldump
+#, fuzzy
+msgctxt "translate_strings.runsqldump"
+msgid "Install the default(Setup) Schnipsel.sql?"
+msgstr "Install the default(Setup) Schnipsel.sql?"
+
+#: translate_strings.runsqldump2
+#, fuzzy
+msgctxt "translate_strings.runsqldump2"
+msgid "(Click No to Select a SQL-Dump)"
+msgstr "(Click No to Select a SQL-Dump)"
 
 #: translate_strings.schversion
 msgid "Version:"
@@ -1056,14 +1123,6 @@ msgstr "Cut to Clipboard"
 msgid " Edit"
 msgstr " Edit"
 
-#: tschnipselmainform.popupfold.caption
-msgid "Folding"
-msgstr "Folding"
-
-#: tschnipselmainform.popupfoldall.caption
-msgid "Fold All"
-msgstr "Fold All"
-
 #: tschnipselmainform.popuppaste.caption
 msgid "Paste from Clipboard"
 msgstr "Paste from Clipboard"
@@ -1088,10 +1147,6 @@ msgstr "Search / Replace"
 #: tschnipselmainform.popupselectall.caption
 msgid "Select All / Unselect"
 msgstr "Select All / Unselect"
-
-#: tschnipselmainform.popupunfoldall.caption
-msgid "Unfold All"
-msgstr "Unfold All"
 
 #: tschnipselmainform.replacedlg.title
 msgctxt "tschnipselmainform.replacedlg.title"
@@ -1119,6 +1174,7 @@ msgid "Info"
 msgstr "Info"
 
 #: tschnipselmainform.smsettings.caption
+msgctxt "tschnipselmainform.smsettings.caption"
 msgid "Settings"
 msgstr "Settings"
 
@@ -1129,6 +1185,109 @@ msgstr "Translations"
 #: tschnipselmainform.types.caption
 msgid "Types"
 msgstr "Types"
+
+#: tsettingsdialog.caption
+#, fuzzy
+msgctxt "tsettingsdialog.caption"
+msgid "Settings"
+msgstr "Settings"
+
+#: tsettingsdialog.codefontbtn.caption
+msgctxt "tsettingsdialog.codefontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.codesample.caption
+msgid ""
+"Sample Text\n"
+"    if (odSelected in State) then\n"
+"    Canvas.Font := Font; "
+msgstr ""
+"Sample Text\n"
+"    if (odSelected in State) then\n"
+"    Canvas.Font := Font; "
+
+#: tsettingsdialog.codetxt.caption
+msgid "Code Display Font:"
+msgstr "Code Display Font:"
+
+#: tsettingsdialog.defaultfontbtn.caption
+msgctxt "tsettingsdialog.defaultfontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.defaultsample.caption
+msgid "Default Font Sample Text Lorem Ipsum Lorem Ipsum"
+msgstr "Default Font Sample Text Lorem Ipsum Lorem Ipsum"
+
+#: tsettingsdialog.fontsettings.caption
+msgid "Fonts"
+msgstr "Fonts"
+
+#: tsettingsdialog.generaltxt.caption
+msgid "Default Font:"
+msgstr "Default Font:"
+
+#: tsettingsdialog.htmlexportsettings.caption
+#, fuzzy
+msgctxt "tsettingsdialog.htmlexportsettings.caption"
+msgid "HTML-Export"
+msgstr "HTML-Export"
+
+#: tsettingsdialog.menufontbtn.caption
+msgctxt "tsettingsdialog.menufontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.menusample.caption
+msgid ""
+"Sample Text\n"
+"Menu Entry\n"
+"Menu Entry"
+msgstr ""
+"Sample Text\n"
+"Menu Entry\n"
+"Menu Entry"
+
+#: tsettingsdialog.menutxt.caption
+msgid "Menu Entry Font:"
+msgstr "Menu Entry Font:"
+
+#: tsettingsdialog.radiobutton1.caption
+msgid "RadioButton1"
+msgstr ""
+
+#: tsettingsdialog.rbblue.caption
+msgid "Blue Colors"
+msgstr "Blue Colors"
+
+#: tsettingsdialog.rbbrown.caption
+msgid "Brown Colors"
+msgstr "Brown Colors"
+
+#: tsettingsdialog.rbgreen.caption
+msgid "Green Colors"
+msgstr "Green Colors"
+
+#: tsettingsdialog.rbred.caption
+msgid "Red Colors"
+msgstr "Red Colors"
+
+#: tsettingsdialog.statictext1.caption
+msgid "(No color change)"
+msgstr "(No color change)"
+
+#: tsettingsdialog.statictext2.caption
+msgid "Text-color"
+msgstr ""
+
+#: tsettingsdialog.usefooter.caption
+msgid "Footer"
+msgstr ""
+
+#: tsettingsdialog.useheader.caption
+msgid "Header"
+msgstr ""
 
 #: ttopform.caption
 msgid "Schnipsel TOP"
@@ -1155,35 +1314,41 @@ msgstr "Select All"
 
 #: udbconfigdlg.dbconnectionfail
 msgid "No MySQL or MariaDB Server!"
-msgstr "No MySQL or MariaDB Server!"
+msgstr ""
 
 #: udbconfigdlg.dbconnectionok
-msgctxt "udbconfigdlg.dbconnectionok"
 msgid "Connection to MySQL database \"Schnipsel\" = OK!"
-msgstr "Connection to MySQL database \"Schnipsel\" = OK!"
+msgstr ""
 
 #: udbconfigdlg.nodbinfo
+msgctxt "udbconfigdlg.nodbinfo"
 msgid "No Server Info!"
-msgstr "No Server Info!"
+msgstr ""
 
 #: udbconfigdlg.nodrventrys
+#, fuzzy
 msgctxt "udbconfigdlg.nodrventrys"
 msgid "No Entrys"
 msgstr "No Entrys"
 
 #: udbconfigdlg.nodsnentrys
+#, fuzzy
 msgctxt "udbconfigdlg.nodsnentrys"
 msgid "No Entrys"
 msgstr "No Entrys"
 
 #: udbconfigdlg.nousedsn
+msgctxt "udbconfigdlg.nousedsn"
 msgid "No Use of DSN (fill fields below)"
-msgstr "No Use of DSN (fill fields below)"
+msgstr ""
 
 #: udbconfigdlg.runsqldump
+msgctxt "udbconfigdlg.runsqldump"
 msgid "Install the default(Setup) Schnipsel.sql?"
-msgstr "Install the default(Setup) Schnipsel.sql?"
+msgstr ""
 
 #: udbconfigdlg.runsqldump2
+msgctxt "udbconfigdlg.runsqldump2"
 msgid "(Click No to Select a SQL-Dump)"
-msgstr "(Click No to Select a SQL-Dump)"
+msgstr ""
+

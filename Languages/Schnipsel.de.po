@@ -89,7 +89,7 @@ msgstr "Datenbank sichern"
 
 #: tdbconfigdlg.dbinstallbtn.caption
 msgid "Install / Restore DataBase "
-msgstr "Installieren / Wiederherstellen"
+msgstr "Wiederherstellen"
 
 #: tdbconfigdlg.dbusebtn.caption
 msgctxt "tdbconfigdlg.dbusebtn.caption"
@@ -131,6 +131,22 @@ msgstr "Server:"
 #: tdbconfigdlg.odbc_username_edit.editlabel.caption
 msgid "Username:"
 msgstr "Benutzername:"
+
+#: tdbsearchdlg.caption
+#, fuzzy
+msgctxt "tdbsearchdlg.caption"
+msgid "Search"
+msgstr "Suche"
+
+#: tdbsearchdlg.groupbox1.caption
+#, fuzzy
+msgctxt "tdbsearchdlg.groupbox1.caption"
+msgid "Search"
+msgstr "Suche"
+
+#: tdbsearchdlg.searchedit.editlabel.caption
+msgid "Search for:"
+msgstr ""
 
 #: texportdlg.codename.caption
 msgctxt "texportdlg.codename.caption"
@@ -252,16 +268,16 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: tnewcategoriedlg.deletecategorie.caption
-msgid "Delete Language"
-msgstr "Sprache Löschen"
+msgid "Delete Language:"
+msgstr "Sprache Löschen:"
 
 #: tnewcategoriedlg.editcategorie.caption
-msgid "Edit Language"
-msgstr "Sprache bearbeiten"
+msgid "Edit Language:"
+msgstr "Sprache bearbeiten:"
 
 #: tnewcategoriedlg.movetocategorie1.caption
 msgid "Move Code Entrys to: (select the same as above to delete Entrys)"
-msgstr "Einträge verschieben nach: (Dieselbe Wahl wie oben löscht die Einträge)"
+msgstr "Einträge verschieben nach: (Wahl wie oben löscht die Einträge)"
 
 #: tnewcategoriedlg.newcategorie.caption
 msgid "New Language"
@@ -269,7 +285,7 @@ msgstr "Neue Sprache"
 
 #: tnewcategoriedlg.newcatname.editlabel.caption
 msgid "Language Name:"
-msgstr "Name der Sprache"
+msgstr "Name der Sprache:"
 
 #: tnewcategoriedlg.newcatname1.editlabel.caption
 msgid "New Name:"
@@ -277,11 +293,11 @@ msgstr "Neuer Name:"
 
 #: tnewcategoriedlg.newcatshort.editlabel.caption
 msgid "Language Menu Display:"
-msgstr "Sprachanzeige im Menu:"
+msgstr "Anzeige im Menu:"
 
 #: tnewcategoriedlg.newcatshort1.editlabel.caption
 msgid "New Menu Display:"
-msgstr "Neue Anzeige im Menu:"
+msgstr "Anzeige im Menu:"
 
 #: tnewcategoriedlg.savebtn.caption
 msgctxt "tnewcategoriedlg.savebtn.caption"
@@ -361,7 +377,7 @@ msgstr "Speichern"
 
 #: tnewtypedlg.statictext1.caption
 msgid "Move Code Entrys to: (Select the same as above to delete Entrys)"
-msgstr "Einträge verschieben nach: (Dieselbe Wahl wie oben löscht die Einträge)"
+msgstr "Einträge verschieben nach: (Wahl wie oben löscht die Einträge)"
 
 #: tnewtypedlg.updatebtn.caption
 msgctxt "tnewtypedlg.updatebtn.caption"
@@ -402,12 +418,26 @@ msgstr "Makierung  löschen"
 
 #: translate_strings.connectionok
 msgctxt "translate_strings.connectionok"
-msgid "Connection to MySQL or MariaDB database \"Schnipsel\" = OK!"
-msgstr "Verbindung zu MySQL oder MariaDB Datenbank \"Schnipsel\" =OK!"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
+msgstr "Verbindung zu Datenbank \"Schnipsel\" =OK!"
 
 #: translate_strings.databaseerrorstr
 msgid "Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!"
 msgstr "Kann Verbindung zu Datenbank nicht herstellen. Ändern oder löschen Sie die Datei Schnipsel.ini für eine neue Konfiguration!"
+
+#: translate_strings.dbconnectionfail
+msgctxt "translate_strings.dbconnectionfail"
+msgid "No supported DataBase!"
+msgstr "Keine unterstützte Datenbank!"
+
+#: translate_strings.dbconnectionok
+msgctxt "translate_strings.dbconnectionok"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
+msgstr "Verbindung zu Datenbank \"Schnipsel\" =OK!"
+
+#: translate_strings.dbunixdsn
+msgid "Under Linux OSes only with DSN! (select above)"
+msgstr ""
 
 #: translate_strings.dlgstr1
 msgid "No Entry Selected"
@@ -546,7 +576,6 @@ msgid "Comments"
 msgstr "Kommentare"
 
 #: translate_strings.exportstr22
-#, fuzzy
 msgctxt "translate_strings.exportstr22"
 msgid "Links"
 msgstr "Links"
@@ -585,6 +614,7 @@ msgid "Required for Code:"
 msgstr "Benötigt für Code:"
 
 #: translate_strings.exportstrhtml
+msgctxt "translate_strings.exportstrhtml"
 msgid "HTML-Export"
 msgstr "HTML-Export"
 
@@ -607,6 +637,30 @@ msgstr "Installiere Datenbank"
 #: translate_strings.licensestr
 msgid "GNU Lesser General Public License v3"
 msgstr "GNU Lesser General Public License v3"
+
+#: translate_strings.nodbinfo
+#, fuzzy
+msgctxt "translate_strings.nodbinfo"
+msgid "No Server Info!"
+msgstr "Kein Server Info!"
+
+#: translate_strings.nodrventrys
+#, fuzzy
+msgctxt "translate_strings.nodrventrys"
+msgid "No Entrys"
+msgstr "Keine Einträge"
+
+#: translate_strings.nodsnentrys
+#, fuzzy
+msgctxt "translate_strings.nodsnentrys"
+msgid "No Entrys"
+msgstr "Keine Einträge"
+
+#: translate_strings.nousedsn
+#, fuzzy
+msgctxt "translate_strings.nousedsn"
+msgid "No Use of DSN (fill fields below)"
+msgstr "DSN nicht benutzen. (untere Felder ausfüllen)"
 
 #: translate_strings.panel0entrys
 msgctxt "translate_strings.panel0entrys"
@@ -640,6 +694,18 @@ msgstr "> Nicht in Schnipsel <"
 #: translate_strings.requiredstr2
 msgid "> Select <"
 msgstr "> Wählen <"
+
+#: translate_strings.runsqldump
+#, fuzzy
+msgctxt "translate_strings.runsqldump"
+msgid "Install the default(Setup) Schnipsel.sql?"
+msgstr "(Setup) Schnipsel.sql installieren?"
+
+#: translate_strings.runsqldump2
+#, fuzzy
+msgctxt "translate_strings.runsqldump2"
+msgid "(Click No to Select a SQL-Dump)"
+msgstr "(Klicken Sie auf nein, wenn Sie einen Dump wählen wollen )"
 
 #: translate_strings.schversion
 msgid "Version:"
@@ -1057,14 +1123,6 @@ msgstr "Auschneiden"
 msgid " Edit"
 msgstr "Editieren"
 
-#: tschnipselmainform.popupfold.caption
-msgid "Folding"
-msgstr "Einklappen"
-
-#: tschnipselmainform.popupfoldall.caption
-msgid "Fold All"
-msgstr "Alle einklappen"
-
 #: tschnipselmainform.popuppaste.caption
 msgid "Paste from Clipboard"
 msgstr "Einfügen"
@@ -1089,10 +1147,6 @@ msgstr "Suchen / Ersetzen"
 #: tschnipselmainform.popupselectall.caption
 msgid "Select All / Unselect"
 msgstr "Alles / Nichts auswählen"
-
-#: tschnipselmainform.popupunfoldall.caption
-msgid "Unfold All"
-msgstr "Alle ausklappen"
 
 #: tschnipselmainform.replacedlg.title
 msgctxt "tschnipselmainform.replacedlg.title"
@@ -1120,6 +1174,7 @@ msgid "Info"
 msgstr "Info"
 
 #: tschnipselmainform.smsettings.caption
+msgctxt "tschnipselmainform.smsettings.caption"
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -1130,6 +1185,109 @@ msgstr "Übersetzungen"
 #: tschnipselmainform.types.caption
 msgid "Types"
 msgstr "Typen"
+
+#: tsettingsdialog.caption
+#, fuzzy
+msgctxt "tsettingsdialog.caption"
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: tsettingsdialog.codefontbtn.caption
+msgctxt "tsettingsdialog.codefontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.codesample.caption
+msgid ""
+"Sample Text\n"
+"    if (odSelected in State) then\n"
+"    Canvas.Font := Font; "
+msgstr ""
+"Beispiel Text\n"
+"    if (odSelected in State) then\n"
+"    Canvas.Font := Font; "
+
+#: tsettingsdialog.codetxt.caption
+msgid "Code Display Font:"
+msgstr "Code Anzeige Font:"
+
+#: tsettingsdialog.defaultfontbtn.caption
+msgctxt "tsettingsdialog.defaultfontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.defaultsample.caption
+msgid "Default Font Sample Text Lorem Ipsum Lorem Ipsum"
+msgstr "Standard Font Beispiel Text Lorem Ipsum Lorem Ipsum"
+
+#: tsettingsdialog.fontsettings.caption
+msgid "Fonts"
+msgstr "Fonts"
+
+#: tsettingsdialog.generaltxt.caption
+msgid "Default Font:"
+msgstr "Standard.Font:"
+
+#: tsettingsdialog.htmlexportsettings.caption
+#, fuzzy
+msgctxt "tsettingsdialog.htmlexportsettings.caption"
+msgid "HTML-Export"
+msgstr "HTML-Export"
+
+#: tsettingsdialog.menufontbtn.caption
+msgctxt "tsettingsdialog.menufontbtn.caption"
+msgid "..."
+msgstr "..."
+
+#: tsettingsdialog.menusample.caption
+msgid ""
+"Sample Text\n"
+"Menu Entry\n"
+"Menu Entry"
+msgstr ""
+"Beispiel Text\n"
+"Menu Entry\n"
+"Menu Entry"
+
+#: tsettingsdialog.menutxt.caption
+msgid "Menu Entry Font:"
+msgstr "Menu Font:"
+
+#: tsettingsdialog.radiobutton1.caption
+msgid "RadioButton1"
+msgstr ""
+
+#: tsettingsdialog.rbblue.caption
+msgid "Blue Colors"
+msgstr "Blaue Farben"
+
+#: tsettingsdialog.rbbrown.caption
+msgid "Brown Colors"
+msgstr "Braune Farben"
+
+#: tsettingsdialog.rbgreen.caption
+msgid "Green Colors"
+msgstr "Grüne Farben"
+
+#: tsettingsdialog.rbred.caption
+msgid "Red Colors"
+msgstr "Rote Farben"
+
+#: tsettingsdialog.statictext1.caption
+msgid "(No color change)"
+msgstr "(Keine Farben)"
+
+#: tsettingsdialog.statictext2.caption
+msgid "Text-color"
+msgstr ""
+
+#: tsettingsdialog.usefooter.caption
+msgid "Footer"
+msgstr ""
+
+#: tsettingsdialog.useheader.caption
+msgid "Header"
+msgstr ""
 
 #: ttopform.caption
 msgid "Schnipsel TOP"
@@ -1156,35 +1314,41 @@ msgstr "Alles auswählen"
 
 #: udbconfigdlg.dbconnectionfail
 msgid "No MySQL or MariaDB Server!"
-msgstr "Kein MySQL oder MariaDB Server!"
+msgstr ""
 
 #: udbconfigdlg.dbconnectionok
-msgctxt "udbconfigdlg.dbconnectionok"
 msgid "Connection to MySQL database \"Schnipsel\" = OK!"
-msgstr "Verbindung zu MySQL Datenbank \"Schnipsel\" =OK!"
+msgstr ""
 
 #: udbconfigdlg.nodbinfo
+msgctxt "udbconfigdlg.nodbinfo"
 msgid "No Server Info!"
-msgstr "Kein Server Info!"
+msgstr ""
 
 #: udbconfigdlg.nodrventrys
+#, fuzzy
 msgctxt "udbconfigdlg.nodrventrys"
 msgid "No Entrys"
 msgstr "Keine Einträge"
 
 #: udbconfigdlg.nodsnentrys
+#, fuzzy
 msgctxt "udbconfigdlg.nodsnentrys"
 msgid "No Entrys"
 msgstr "Keine Einträge"
 
 #: udbconfigdlg.nousedsn
+msgctxt "udbconfigdlg.nousedsn"
 msgid "No Use of DSN (fill fields below)"
-msgstr "DSN nicht benutzen. (untere Felder ausfüllen)"
+msgstr ""
 
 #: udbconfigdlg.runsqldump
+msgctxt "udbconfigdlg.runsqldump"
 msgid "Install the default(Setup) Schnipsel.sql?"
-msgstr "(Setup) Schnipsel.sql installieren?"
+msgstr ""
 
 #: udbconfigdlg.runsqldump2
+msgctxt "udbconfigdlg.runsqldump2"
 msgid "(Click No to Select a SQL-Dump)"
-msgstr "(Klicken Sie auf nein, wenn Sie einen Dump wählen wollen )"
+msgstr ""
+

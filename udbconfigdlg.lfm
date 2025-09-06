@@ -9,6 +9,7 @@ object DBConfigDlg: TDBConfigDlg
   ClientHeight = 438
   ClientWidth = 546
   Position = poMainFormCenter
+  LCLVersion = '4.0.0.4'
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
@@ -18,99 +19,99 @@ object DBConfigDlg: TDBConfigDlg
     Top = 24
     Width = 513
     Caption = 'Database'
-    ClientHeight = 276
-    ClientWidth = 509
+    ClientHeight = 279
+    ClientWidth = 511
     TabOrder = 0
     object ODBC_Driver_Select: TComboBox
       Left = 16
-      Height = 23
+      Height = 28
       Top = 40
       Width = 472
-      ItemHeight = 15
+      ItemHeight = 0
       TabOrder = 0
     end
     object ODBC_Driver_Label: TLabel
       Left = 16
-      Height = 15
+      Height = 16
       Top = 16
-      Width = 71
+      Width = 77
       Caption = 'ODBC-Driver:'
       FocusControl = ODBC_Driver_Select
     end
     object ODBC_UserName_Edit: TLabeledEdit
       Left = 16
-      Height = 23
+      Height = 28
       Top = 168
       Width = 136
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 136
       EditLabel.Caption = 'Username:'
       TabOrder = 1
     end
     object ODBC_Password_Edit: TLabeledEdit
       Left = 16
-      Height = 23
+      Height = 28
       Top = 224
       Width = 136
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 136
       EditLabel.Caption = 'Password:'
       TabOrder = 2
     end
     object ODBC_Server_Edit: TLabeledEdit
       Left = 168
-      Height = 23
+      Height = 28
       Top = 168
       Width = 136
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 136
       EditLabel.Caption = 'Server:'
       TabOrder = 3
     end
     object ODBC_Port_Edit: TLabeledEdit
       Left = 168
-      Height = 23
+      Height = 28
       Top = 224
       Width = 136
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 136
       EditLabel.Caption = 'Port:'
       TabOrder = 4
     end
     object ODBC_DataBase_Edit: TLabeledEdit
       Left = 320
-      Height = 23
+      Height = 28
       Top = 168
       Width = 168
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 168
       EditLabel.Caption = 'DataBase:'
       TabOrder = 5
     end
     object ODBC_Charset_Edit: TLabeledEdit
       Left = 320
-      Height = 23
+      Height = 28
       Top = 224
       Width = 168
-      EditLabel.Height = 15
+      EditLabel.Height = 16
       EditLabel.Width = 168
       EditLabel.Caption = 'Charset:'
       TabOrder = 6
     end
     object ODBC_DSN_Select: TComboBox
       Left = 16
-      Height = 23
+      Height = 28
       Top = 104
       Width = 472
-      ItemHeight = 15
+      ItemHeight = 0
       TabOrder = 7
       OnSelect = ODBC_DSN_SelectSelect
     end
     object ODBC_DSN_Label: TLabel
       Left = 16
-      Height = 15
+      Height = 16
       Top = 80
-      Width = 63
+      Width = 68
       Caption = 'ODBC-DSN:'
       FocusControl = ODBC_DSN_Select
     end

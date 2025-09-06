@@ -1,0 +1,15 @@
+{"version":1,"strings":[
+{"hash":23093342,"name":"tdbconfigdlg.caption","sourcebytes":[68,97,116,97,66,97,115,101,32,67,111,110,102,105,103,117,114,97,116,105,111,110],"value":"DataBase Configuration"},
+{"hash":145198133,"name":"tdbconfigdlg.databasegroupbox.caption","sourcebytes":[68,97,116,97,98,97,115,101],"value":"Database"},
+{"hash":248031818,"name":"tdbconfigdlg.odbc_driver_label.caption","sourcebytes":[79,68,66,67,45,68,114,105,118,101,114,58],"value":"ODBC-Driver:"},
+{"hash":211042074,"name":"tdbconfigdlg.odbc_username_edit.editlabel.caption","sourcebytes":[85,115,101,114,110,97,109,101,58],"value":"Username:"},
+{"hash":179191546,"name":"tdbconfigdlg.odbc_password_edit.editlabel.caption","sourcebytes":[80,97,115,115,119,111,114,100,58],"value":"Password:"},
+{"hash":164219914,"name":"tdbconfigdlg.odbc_server_edit.editlabel.caption","sourcebytes":[83,101,114,118,101,114,58],"value":"Server:"},
+{"hash":5728634,"name":"tdbconfigdlg.odbc_port_edit.editlabel.caption","sourcebytes":[80,111,114,116,58],"value":"Port:"},
+{"hash":173589258,"name":"tdbconfigdlg.odbc_database_edit.editlabel.caption","sourcebytes":[68,97,116,97,66,97,115,101,58],"value":"DataBase:"},
+{"hash":243898602,"name":"tdbconfigdlg.odbc_charset_edit.editlabel.caption","sourcebytes":[67,104,97,114,115,101,116,58],"value":"Charset:"},
+{"hash":107070874,"name":"tdbconfigdlg.odbc_dsn_label.caption","sourcebytes":[79,68,66,67,45,68,83,78,58],"value":"ODBC-DSN:"},
+{"hash":249450702,"name":"tdbconfigdlg.odbctestbtn.caption","sourcebytes":[84,101,115,116,32,67,111,110,110,101,99,116,105,111,110],"value":"Test Connection"},
+{"hash":120551360,"name":"tdbconfigdlg.dbinstallbtn.caption","sourcebytes":[73,110,115,116,97,108,108,32,47,32,82,101,115,116,111,114,101,32,68,97,116,97,66,97,115,101,32],"value":"Install / Restore DataBase "},
+{"hash":42591301,"name":"tdbconfigdlg.dbbackupbtn.caption","sourcebytes":[66,97,99,107,117,112,32,68,97,116,97,66,97,115,101],"value":"Backup DataBase"}
+]}

@@ -28,33 +28,52 @@ program Schnipsel;
 
 uses
   {$IFDEF UNIX}
-  cthreads,
+  cthreads,graphics,dialogs,
   {$ENDIF}
   {$IFDEF HASAMIGA}
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, pack_powerpdf, lazcontrols, lhelpcontrolpkg,
-MainForm, uDarkStyleParams,
-  uDarkStyleSchemes, uMetaDarkStyle, Windows, Win32Proc, Registry,
-Languages, Required,
+  MainForm, uDarkStyleParams,
+  uDarkStyleSchemes, uMetaDarkStyle,
+  {$IFNDEF UNIX}
+  Windows, Win32Proc, Registry,
+  {$ENDIF}
+  Languages, Required,
   CodeComment, CodeLinks, NewEntry,
-CodeTypes, Uexportdlg, Uexportpdfdlg, Translate_strings, TopWindow,
-Udbconfigdlg, SettingsDlg;
+  CodeTypes, Uexportdlg, Uexportpdfdlg, Translate_strings, TopWindow,
+  Udbconfigdlg, SettingsDlg, DBsearch;
 
 {$R *.res}
 
+{$IFDEF UNIX}
+function IsDarkTheme: boolean;
+const
+  cMax = $A0;
+var
+  N: TColor;
+begin
+  N:= ColorToRGB(clWindow);
+  Result:= (Red(N)<cMax) and (Green(N)<cMax) and (Blue(N)<cMax);
+end;
+{$ENDIF}
 
 begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
 
   { - DARK MODE START - }
-  // By default this is set to pamForceLight
   PreferredAppMode := pamForceDark;
-  //  uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
-  // This doesn't work if the above is set to pamForceLight
+  {$IFNDEF UNIX}
   uMetaDarkStyle.ApplyMetaDarkStyle(DefaultDark);
+  {$ELSE}
+  if(not isDarkTheme) then
+   begin
+    showmessage('This App only works in Dark Mode!');
+    exit;
+   end;
+  {$ENDIF}
   { -  DARK MODE END  - }
 
   {$PUSH}{$WARN 5044 OFF}
@@ -73,6 +92,7 @@ begin
   Application.CreateForm(TTopForm, TopForm);
   Application.CreateForm(TDBConfigDlg, DBConfigDlg);
   Application.CreateForm(TSettingsDialog, SettingsDialog);
+  Application.CreateForm(TDBsearchDlg, DBsearchDlg);
   Application.Run;
 end.
 

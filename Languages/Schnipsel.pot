@@ -122,6 +122,20 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
+#: tdbsearchdlg.caption
+msgctxt "tdbsearchdlg.caption"
+msgid "Search"
+msgstr ""
+
+#: tdbsearchdlg.groupbox1.caption
+msgctxt "tdbsearchdlg.groupbox1.caption"
+msgid "Search"
+msgstr ""
+
+#: tdbsearchdlg.searchedit.editlabel.caption
+msgid "Search for:"
+msgstr ""
+
 #: texportdlg.codename.caption
 msgctxt "texportdlg.codename.caption"
 msgid "CodeName"
@@ -242,11 +256,11 @@ msgid "Delete"
 msgstr ""
 
 #: tnewcategoriedlg.deletecategorie.caption
-msgid "Delete Language"
+msgid "Delete Language:"
 msgstr ""
 
 #: tnewcategoriedlg.editcategorie.caption
-msgid "Edit Language"
+msgid "Edit Language:"
 msgstr ""
 
 #: tnewcategoriedlg.movetocategorie1.caption
@@ -392,11 +406,25 @@ msgstr ""
 
 #: translate_strings.connectionok
 msgctxt "translate_strings.connectionok"
-msgid "Connection to MySQL or MariaDB database \"Schnipsel\" = OK!"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
 msgstr ""
 
 #: translate_strings.databaseerrorstr
 msgid "Cant Connect to Database. Edit or delete Schnipsel.ini for new Configuration!"
+msgstr ""
+
+#: translate_strings.dbconnectionfail
+msgctxt "translate_strings.dbconnectionfail"
+msgid "No supported DataBase!"
+msgstr ""
+
+#: translate_strings.dbconnectionok
+msgctxt "translate_strings.dbconnectionok"
+msgid "Connection to DataBase \"Schnipsel\" = OK!"
+msgstr ""
+
+#: translate_strings.dbunixdsn
+msgid "Under Linux OSes only with DSN! (select above)"
 msgstr ""
 
 #: translate_strings.dlgstr1
@@ -574,6 +602,7 @@ msgid "Required for Code:"
 msgstr ""
 
 #: translate_strings.exportstrhtml
+msgctxt "translate_strings.exportstrhtml"
 msgid "HTML-Export"
 msgstr ""
 
@@ -595,6 +624,26 @@ msgstr ""
 
 #: translate_strings.licensestr
 msgid "GNU Lesser General Public License v3"
+msgstr ""
+
+#: translate_strings.nodbinfo
+msgctxt "translate_strings.nodbinfo"
+msgid "No Server Info!"
+msgstr ""
+
+#: translate_strings.nodrventrys
+msgctxt "translate_strings.nodrventrys"
+msgid "No Entrys"
+msgstr ""
+
+#: translate_strings.nodsnentrys
+msgctxt "translate_strings.nodsnentrys"
+msgid "No Entrys"
+msgstr ""
+
+#: translate_strings.nousedsn
+msgctxt "translate_strings.nousedsn"
+msgid "No Use of DSN (fill fields below)"
 msgstr ""
 
 #: translate_strings.panel0entrys
@@ -628,6 +677,16 @@ msgstr ""
 
 #: translate_strings.requiredstr2
 msgid "> Select <"
+msgstr ""
+
+#: translate_strings.runsqldump
+msgctxt "translate_strings.runsqldump"
+msgid "Install the default(Setup) Schnipsel.sql?"
+msgstr ""
+
+#: translate_strings.runsqldump2
+msgctxt "translate_strings.runsqldump2"
+msgid "(Click No to Select a SQL-Dump)"
 msgstr ""
 
 #: translate_strings.schversion
@@ -1046,14 +1105,6 @@ msgstr ""
 msgid " Edit"
 msgstr ""
 
-#: tschnipselmainform.popupfold.caption
-msgid "Folding"
-msgstr ""
-
-#: tschnipselmainform.popupfoldall.caption
-msgid "Fold All"
-msgstr ""
-
 #: tschnipselmainform.popuppaste.caption
 msgid "Paste from Clipboard"
 msgstr ""
@@ -1077,10 +1128,6 @@ msgstr ""
 
 #: tschnipselmainform.popupselectall.caption
 msgid "Select All / Unselect"
-msgstr ""
-
-#: tschnipselmainform.popupunfoldall.caption
-msgid "Unfold All"
 msgstr ""
 
 #: tschnipselmainform.replacedlg.title
@@ -1109,6 +1156,7 @@ msgid "Info"
 msgstr ""
 
 #: tschnipselmainform.smsettings.caption
+msgctxt "tschnipselmainform.smsettings.caption"
 msgid "Settings"
 msgstr ""
 
@@ -1118,6 +1166,101 @@ msgstr ""
 
 #: tschnipselmainform.types.caption
 msgid "Types"
+msgstr ""
+
+#: tsettingsdialog.caption
+msgctxt "tsettingsdialog.caption"
+msgid "Settings"
+msgstr ""
+
+#: tsettingsdialog.codefontbtn.caption
+msgctxt "tsettingsdialog.codefontbtn.caption"
+msgid "..."
+msgstr ""
+
+#: tsettingsdialog.codesample.caption
+msgid ""
+"Sample Text\n"
+"    if (odSelected in State) then\n"
+"    Canvas.Font := Font; "
+msgstr ""
+
+#: tsettingsdialog.codetxt.caption
+msgid "Code Display Font:"
+msgstr ""
+
+#: tsettingsdialog.defaultfontbtn.caption
+msgctxt "tsettingsdialog.defaultfontbtn.caption"
+msgid "..."
+msgstr ""
+
+#: tsettingsdialog.defaultsample.caption
+msgid "Default Font Sample Text Lorem Ipsum Lorem Ipsum"
+msgstr ""
+
+#: tsettingsdialog.fontsettings.caption
+msgid "Fonts"
+msgstr ""
+
+#: tsettingsdialog.generaltxt.caption
+msgid "Default Font:"
+msgstr ""
+
+#: tsettingsdialog.htmlexportsettings.caption
+msgctxt "tsettingsdialog.htmlexportsettings.caption"
+msgid "HTML-Export"
+msgstr ""
+
+#: tsettingsdialog.menufontbtn.caption
+msgctxt "tsettingsdialog.menufontbtn.caption"
+msgid "..."
+msgstr ""
+
+#: tsettingsdialog.menusample.caption
+msgid ""
+"Sample Text\n"
+"Menu Entry\n"
+"Menu Entry"
+msgstr ""
+
+#: tsettingsdialog.menutxt.caption
+msgid "Menu Entry Font:"
+msgstr ""
+
+#: tsettingsdialog.radiobutton1.caption
+msgid "RadioButton1"
+msgstr ""
+
+#: tsettingsdialog.rbblue.caption
+msgid "Blue Colors"
+msgstr ""
+
+#: tsettingsdialog.rbbrown.caption
+msgid "Brown Colors"
+msgstr ""
+
+#: tsettingsdialog.rbgreen.caption
+msgid "Green Colors"
+msgstr ""
+
+#: tsettingsdialog.rbred.caption
+msgid "Red Colors"
+msgstr ""
+
+#: tsettingsdialog.statictext1.caption
+msgid "(No color change)"
+msgstr ""
+
+#: tsettingsdialog.statictext2.caption
+msgid "Text-color"
+msgstr ""
+
+#: tsettingsdialog.usefooter.caption
+msgid "Footer"
+msgstr ""
+
+#: tsettingsdialog.useheader.caption
+msgid "Header"
 msgstr ""
 
 #: ttopform.caption
@@ -1148,11 +1291,11 @@ msgid "No MySQL or MariaDB Server!"
 msgstr ""
 
 #: udbconfigdlg.dbconnectionok
-msgctxt "udbconfigdlg.dbconnectionok"
 msgid "Connection to MySQL database \"Schnipsel\" = OK!"
 msgstr ""
 
 #: udbconfigdlg.nodbinfo
+msgctxt "udbconfigdlg.nodbinfo"
 msgid "No Server Info!"
 msgstr ""
 
@@ -1167,14 +1310,17 @@ msgid "No Entrys"
 msgstr ""
 
 #: udbconfigdlg.nousedsn
+msgctxt "udbconfigdlg.nousedsn"
 msgid "No Use of DSN (fill fields below)"
 msgstr ""
 
 #: udbconfigdlg.runsqldump
+msgctxt "udbconfigdlg.runsqldump"
 msgid "Install the default(Setup) Schnipsel.sql?"
 msgstr ""
 
 #: udbconfigdlg.runsqldump2
+msgctxt "udbconfigdlg.runsqldump2"
 msgid "(Click No to Select a SQL-Dump)"
 msgstr ""
 

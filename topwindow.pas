@@ -29,6 +29,9 @@ unit TopWindow;
 interface
 
 uses
+ {$IFDEF UNIX}
+  keysym,messages,
+ {$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, StdCtrls,
   Menus, RichMemo, Types;
 
@@ -63,7 +66,11 @@ implementation
 
 {$R *.lfm}
 
-uses windows, LCLTranslator, LCLIntf;
+uses
+  {$IFNDEF UNIX}
+  windows,
+  {$ENDIF}
+  LCLTranslator, LCLIntf;
 
 { TTopForm }
 
@@ -89,12 +96,14 @@ procedure TTopForm.TopCodeMemoMouseWheel(Sender: TObject; Shift: TShiftState;
   WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 var key : word;
 begin
+ {$IFNDEF UNIX}
  if (WheelDelta > 0) then
-  key:=VK_Prior
+  key:={$IFNDEF UNIX}VK_Prior{$ELSE}XK_PRIOR{$ENDIF}
  else
-  Key:=VK_Next;
+  Key:={$IFNDEF UNIX}VK_Next{$ELSE}XK_NEXT{$ENDIF};
  Handled:=True;
  PostMessage(TopCodeMemo.Handle, WM_KEYDOWN, Key, 0);
+ {$ENDIF}
 end;
 
 
@@ -118,6 +127,9 @@ begin
  TopCodeMemo.Transparent:=true;
  Top:=0;
  Left:=screen.Desktopwidth-width;
+ {$IFDEF UNIX}
+ TopCodeMemo.ScrollBars:=ssAutoVertical;
+ {$ENDIF}
 end;
 
 end.

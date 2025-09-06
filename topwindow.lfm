@@ -145,6 +145,7 @@ object TopForm: TTopForm
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  LCLVersion = '4.3.0.0'
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   object TopCodeMemo: TRichMemo

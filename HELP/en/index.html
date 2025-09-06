@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<Title>/home/andreas/Dokumente/Export.html</Title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+pre {
+ white-space: pre-wrap;
+ word-wrap: break-word;
+}	
+
+body {
+ margin: 0;
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ background-color:#001F2B;
+}
+
+.header {
+ padding:15px;
+ height:100px;
+ width: 100%;
+ position: fixed;
+ top:0;
+ left:0;
+ overflow: hidden;
+ background-color:#00415A;
+ color:#FFFFFF;
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ z-index:2;
+}
+
+.footer {
+ padding:5px;
+ height:30px;
+ width: 100%;
+ position: fixed;
+ bottom:0;
+ left:0;
+ overflow: hidden;
+ background-color:#00415A;
+ color:#FFFFFF;
+ font-family:Arial, Verdana, sans-serif;
+ font-size:12px; 
+ z-index:2;
+ text-align:right;
+}
+
+.footer a {
+ color:#ffffff;
+}
+
+.header img {
+ float:left;
+ margin-right:25px;
+}
+
+/* Style the side navigation */
+.sidenav {                              
+  height: 95%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  left: 0;
+  background-color:#00415A;
+  overflow-x: hidden;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:12px; 
+  font-style:Bold;
+  color:#FFFFFF;
+}
+
+.sidenav ul {
+ margin: 0px;
+ padding: 0px;
+ padding-left: 5px;
+ color: #FFFFFF;
+}
+
+.sidenav li {
+ color: #FFFFFF;
+}
+
+/* Side navigation links */
+.sidenav a {
+  color:#FFFFFF;
+  padding: 5px;
+  padding-left:10px;
+  text-decoration: none;
+  display: block;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:14px; 
+  font-weight:Bold;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color:#009BD6;
+  color:#FFFFFF;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:14px; 
+  font-weight:Bold;
+}
+
+
+/* Style the content */
+.main {
+  Top: 100px;
+  margin-top: 100px;
+  margin-left: 300px;
+  padding-left: 20px;
+  overflow: scroll;
+  height: 90vh;
+  font-family:Arial, Verdana, sans-serif;
+  font-size:16px; 
+}
+
+
+.main a {
+color:#001F2B;
+text-decoration: none;
+padding-left: 14px;
+background: url(../images/link.png) left no-repeat;
+font-weight:normal; 
+}
+
+
+.main a:hover {
+font-weight:bold;
+color: #ffffff;
+text-decoration: underline;
+}
+
+
+.CodeEntry {
+color:#FFFFFF;
+background-color:#009BD6;
+margin:20px 20px 20px 20px;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+}
+
+legend.CodeEntry {
+color:#FFFFFF;
+border: solid 1px #00B8FF;
+background-color:#00719C;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+padding: 5px;
+font-weight: bold;
+font-size:14px; 
+}
+
+</style>
+</head>
+<Body>
+<div class="header">
+<img alt="" src="../images/SchnipselLogo.png" />
+</div>
+<div class="sidenav"><ul class="sidenavi">
+<li class="sidenavi">
+<a href="#h2">Installation</a>
+<a href="#h3">System requirements</a>
+<a href="#h4">Database</a>
+<a href="#h5">Add / edit Code-Language</a>
+<a href="#h6">Add / edit Code-Type</a>
+<a href="#h7">Add Code-Entrys</a>
+<a href="#h8">Add Code-Versions</a>
+<a href="#h9">Add / edit Code-Entrys</a>
+<a href="#h10">Delete Code-Entrys</a>
+<a href="#h11">Delete Code-Versions</a>
+<a href="#h12">Export of Code-Entrys</a>
+<a href="#h13">Export to HTML</a>
+</ul></div>
+<div class="main">
+<Fieldset id="h2" class="CodeEntry">
+<Legend class="CodeEntry">Installation</Legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/align_text_distribute.png" align=left />Installation</p>
+<p clas="CodeEntry">
+For Installtion a selfextracting archiv is used.<BR>
+Klick on install.exe.<BR>A Installtion-Dialog will apear.<BR>
+Choose your language and if the program should be installed for all users or only you.<BR>
+The difference will be entrys in the startmenu.<BR>
+Following files and directorys will be created:</P>
+<P><STRONG>For all users:</STRONG> In 
+"WindowsDrive":/ProgramData/Microsoft/Windows/Start Menu/Programs/</P>
+<UL>
+<LI>-- Schnipsel.lnk</LI>
+</UL>
+<P><STRONG>Only for me:</STRONG> In 
+C:/Users/USERNAME/AppData/Roaming/Microsoft/Windows/Start 
+Menu/Programs</P>
+<UL>
+<LI>-- Schnipsel.lnk</LI>
+</UL>
+<P>In "WindowsDrive":/Users/USERNAME/AppData/Local/</P>
+<UL>
+<LI><STRONG>/Schnipsel</STRONG><BR>-- Schnipsel.ini</LI>
+</UL>
+<P>In "WindowsDrive":/Programme/ :</P>
+<UL>
+<LI><STRONG>/Schnipsel</STRONG><br>
+-- Schnipsel.exe<BR>
+-- Schnipsel.chm</LI>
+</UL>
+<P>In "WindowsDrive":/Programme/Schnipsel :</P>
+<UL>
+<LI><STRONG>/DB</STRONG><BR>
+-- schnipsel.db<BR>
+-- schnipsel.db.sql<BR><BR>
+<LI><STRONG>/Images</STRONG><br>
+-- dataBase_on.png<BR>
+-- dataBase_off.png<BR>
+-- rss_cover.png<BR>
+-- SchnipselLogo.png<BR></li>
+<LI><STRONG>/Languages</STRONG><BR>
+-- Schnipsel.de.mo<BR>
+-- Schnipsel.de.po<BR>
+-- Schnipsel.en.mo<BR>
+-- Schnipsel.en.po<BR>
+-- Schnipsel.pot<BR></li>
+<li><STRONG>/HELP (For Linux, help files)<BR></STRONG>
+-- /de<BR>
+&nbsp;&nbsp;&nbsp;--*.html<BR>
+-- /en<BR>
+&nbsp;&nbsp;&nbsp;--*.html<BR>
+<BR></li>
+<LI><STRONG>/Templates</STRONG><BR>
+-- Template.css<BR>
+-- List_Template.css<BR>
+-- Header.html<BR>
+-- Footer.html<BR>
+-- schnipsel.db<BR>
+-- Schnipsel.sql<BR>
+-- Template.sql<BR>
+-- Template.xml<BR>
+-- <STRONG>/Images</STRONG><BR>
+&nbsp;&nbsp;&nbsp; -- List_Template.png<BR>
+&nbsp;&nbsp;&nbsp; -- Template.png<BR><BR><BR></LI>
+</UL>
+</p>
+</Fieldset>
+<Fieldset id="h3" class="CodeEntry">
+<Legend class="CodeEntry">System requirements</Legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/screen.png" align=left />System requirements</p>
+<p clas="CodeEntry">
+<UL>
+<LI>Windows 10 64 Bit or Windows 11 64 Bit</li> 
+<LI>MySQL or MariaDB Database-server (no server needed by SQLite)</li>
+<LI>ODBC Database Driver (<A href="#h4">see Database</A>)</li> 
+<LI>Dark Mode enabled</LI>
+</UL>
+<P></P>
+<P>For compiling you need:</P>
+<UL>
+<LI>Lazarus 4.0 and FreePascal Compiler (FPC) 3.2.2</li> 
+<LI>MetaDarkStyledsgn Package</li> 
+<LI>ATSynEdit Package</li> 
+<LI>RichMemo Package</li> 
+<LI>PowerPDF Package</li> 
+<LI>UniqueInstance Package</li>
+</UL>
+</p>
+</Fieldset>
+<Fieldset id="h4" class="CodeEntry">
+<Legend class="CodeEntry">Database</Legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/database.png" align=left />Database</p>
+<p clas="CodeEntry">
+<IMG border=0 hspace=5 alt="" vspace=5 src="../images/database.png" align=left>
+After first launch you need to install / setup the datatbase.<BR>
+Direct on startpage or click the symbol shown to the left in the top menu.</P>
+<P>For the database connection you need a <STRONG>64Bit ODBC-Driver</STRONG> equal to the server.</P>
+<P><STRONG>MySQL:</STRONG></P>
+<P><A href="https://dev.mysql.com/downloads/connector/odbc/" target="_blank">ODBC-Driver Website</A></P>
+<P><STRONG>MariaDB:</STRONG></P>
+<P><A href="https://mariadb.com/downloads/connectors/connectors-data-access/odbc-connector" target="_blank">ODBC-Driver Website</A></P>
+<P><STRONG>SQLite:<BR></STRONG>or SQLite you dont need a server running, but you need a ODBC-Driver.</P>
+<P><A href="http://www.ch-werner.de/sqliteodbc/" target="_blank">ODBC-Driver Website</A></P>
+<P>You can enter the database login by ODBC-DSN or enter them in the database dialog.<BR>
+If you do not use ODBC-DSN, enter the login data in the equal fields.<BR>
+On Linux you <STRONG>must</STRONG> use DSN.</P>
+<P>After click on test connection, click on use. the given data will be saved and used every time the program starts.<BR>
+You can change the settings every time you like.<BR>
+On positiv connection click on install / restore. You will be asked to use Schnipsel.sql. click on yes.<BR>
+The Tables in the database will be created.<BR>
+Please note that everytime you use that function, tables will be erased / overwritten</P>
+<P><STRONG>Backup:<BR></STRONG> You can build a backup sql-file of the database, click on backup and follow the dialogs.</P>
+<P><STRONG>Restore:<BR></STRONG> Here you be able to reset the database or restore the database by a backup file.<BR>
+When pushing that button you will be asked to use Schnipsel.sql. Click on no if you like to choose a SQL-file.</P>
+</fieldset>
+<Fieldset id="h5" class="CodeEntry">
+<Legend class="CodeEntry">Add / edit Code-Language / Menuentry</Legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/directory_plus_plus.png" align=left />
+Add / edit Code-Language / Menuentry</p>
+<p clas="CodeEntry">
+<IMG border=0 hspace=10 alt="" vspace=10 src="../images/align_text_distribute.png" align=left /></P>
+<P>To add a new Code-Language, click on the left displayed symbol in the top menu. (last icon),<BR>
+and there choose edit categories and languages. <BR></P>
+<P>You get a new dialog.<BR>Enter a new Language, and a short term that will be displayed in the menu.Example: 'Pascal' 
+and 'Pas'.<BR>Click on save.</P>
+<P>To edit a coding-language, click the same things as above.<BR><BR>
+In opening dialog.<BR>Select the entry you like to change under edit. the fileds below the list will be filled with 
+the current values. Edit as you like.<BR>Click on update.</P>
+<P>To delete a coding language, click the same things as above.</P>
+<P>In opening dialog.<BR>Select the entry you like to delete under delete.<BR>
+In the list below you can select a coding-language where the code-entrys of the deleted coding-language will be moved.
+Choose the same entry as <BR>above to delete also all code-entrys.<BR>Click on delete</P>
+</fieldset>
+<Fieldset id="h6" class="CodeEntry">
+<Legend class="CodeEntry">Add / edit Code-Type</legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/directory_plus_plus.png" align=left />
+Add / edit Code-Type</P>
+<p clas="CodeEntry">
+<IMG border=0 hspace=10 alt="" vspace=10 src="../images/align_text_distribute.png" align=left /></P>
+<P>To add a new Code-Type, click on the symbol shown to the left in the top-menu,<BR>
+and then on Languages-&gt;Types.<BR></P>
+<P>You get a new Dialog.<BR>Select a Language in the list.Enter a new Type. Example: 'Function' or 'Procedure'.<BR>
+Click on save.</P>
+<P>To edit a Code-Type, click the same as above, and then Language - Types. <BR><BR>
+In the open Dialog,<BR>Select the type you like to edit in the section Edit. 
+The Type will be shown in the edit field, give it a new name and click on update.</P>
+<P>To delete a Code-Type, click the same as above.</P>
+<P>In the open Dialog,<BR>Select the entry you like to delete. In the list below you can 
+select the type where all code-entrys of the deleted type will be moved to.<BR>
+If you select the same as the deleted type, all code-entrys within this type will be also deleted.<BR>
+Click on delete.</P>
+</Fieldset>
+<Fieldset id="h7" class="CodeEntry">
+<Legend class="CodeEntry">Add Code-Entrys</legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/menu_icons.png" align=middle></P>
+<P>You can create multiple versions of a code-entry. <BR>
+If you like to add a new version have a look at <a href="#h8">New Code Version.</a></P>
+<P></P>
+<P><IMG border=0 hspace=5 alt="" src="images/window_plus.png" align=left>
+Click on the left symbol in the top menu.</P>
+<P><BR>In the open Dialog select a language and type, and enter the name for the code-entry.<BR>
+Click on save.<BR></P>
+<P>The Edit-Mode will be active and the editor is shown. Enter version, author and insert the code.<BR></P>
+<P>Click on save (disk-symbol).</P>
+</fieldset>
+<Fieldset id="h8" class="CodeEntry">
+<Legend class="CodeEntry">Add new&nbsp;Code-Version</legend>
+<p clas="CodeEntry"><IMG border=0 hspace=5 alt="" src="../images/Screenshot1.png" align=middle></P>
+<P><IMG style="HEIGHT: 20px; WIDTH: 21px" border=0 hspace=10 alt="" src="../images/edit.png" align=left></P>
+<P>Activate Edit-Mode by clicking on the left symbol in the top-menu.</P>
+<P>Go to the code you like to add a new version.<BR>Above the code there are shown some symbols.<BR></p>
+<P></P>
+<P><IMG border=0 hspace=5 alt="" src="../images/script.png" align=left>Click on the left symbol.</P>
+<P>The editor will be shown. <BR>Enter version, author and add the code.<BR>Click on save (the disk-symbol).</P>
+<P><IMG border=0 hspace=5 alt="" src="../images/Screenshot2.png" align=left></P>
+<P></P>
+<P>Above the code there will be a new button shown.<BR>
+By click on these V-buttons you can change between the code-versions.</P>
+</fieldset>
+<Fieldset id="h9" class="CodeEntry">
+<Legend class="CodeEntry">Edit Code-Entrys and Code-Versions</legend>
+<p clas="CodeEntry">
+<IMG border=0 hspace=5 alt="" src="../images/Screenshot1.png" align=middle></P>
+<P></P>
+<P><IMG border=0 hspace=5 alt=""src="../images/edit.png" align=left>
+Activate the edit-mode with click on the left symbol in the top-menu</P>
+<P>Go to the code you like to edit.<BR>Above the code there will be some symbols.</P>
+<P><IMG border=0 hspace=5 alt="" src="../images/Screenshot2.png" align=left><BR><BR>
+Select the version you like to edit with the V-Buttons.</P>
+<P><IMG border=0 hspace=5 alt="" src="../images/edit_fill.png" align=left></P>
+<P>Click on the left symbol above the code. The code will be displayed in the editor.<BR>
+Edit the code as you like and click on save (the disk-symbol).<BR>
+</p>
+</fieldset>
+<Fieldset id="h10" class="CodeEntry">
+<Legend class="CodeEntry">Delete Code-entrys</legend>
+<p clas="CodeEntry">
+<IMG border=0 hspace=5 alt="" src="../images/Screenshot1.png" align=middle></P>
+<P><IMG border=0 hspace=5 alt="" src="../images/edit [#1479].png" align=left>
+Activate the edit-modus by clicking on the left symbol in the top-menu.</P>
+<P>Go to the code-entry you like to delete.</P>
+<P><IMG border=0 hspace=5 alt="" src="../images/delete.png" align=left>
+Click on the left symbol above the code to delete the code-entry and all the versions of it.<BR><BR><BR></FONT><A 
+href="#h11">Only delete one Version of a entry</a></P>
+</fieldset>
+<Fieldset id="h11" class="CodeEntry">
+<Legend class="CodeEntry">Delete a Code-Version</legend>
+<p clas="CodeEntry">
+<IMG border=0 hspace=5 alt="" src="../images/Screenshot1.png" align=middle></P>
+<P>
+<IMG border=0 hspace=5 alt="" src="../images/edit [#1479].png" align=left></P>
+<P>Activate the edit-modus with clicking on the left symbol in the top-menu.<BR>
+Go to the Code-entry you like to delete a version of.</P>
+<P><IMG border=0 hspace=5 alt="" src="../images/delcodever.png" align=left>
+Click on the left symbol above the code 
+to delete it.<BR><BR>
+<BR><A href="h10">Delete a code and all versions of it</A></p>
+</fieldset>
+<Fieldset id="h12" class="CodeEntry">
+<Legend class="CodeEntry">Export Codeentrys</legend>
+<p clas="CodeEntry">
+<IMG border=0 hspace=5 alt="" src="../images/menu_icons.png" align=middle></P>
+<p><IMG border=0 hspace=5 alt="" src="../images/send_round.png" align=left></P>
+<P>Activate the export-mode by clicking on the left symbol.<BR></P>
+<P><IMG border=0 hspace=5 alt="" src="../images/rss_cover.png" align=left>
+Go to the code-entry you like to export.<BR>
+Above the code there will be the left symbol displayed, click on it. In the open dialog you can select<BR>
+wich parts of the code-entry will be exported. The code to export will be displayed in the export-list as a bigger graphic.<BR>
+You can export as many code-entrys as you like.<BR><BR>
+Move the mouse over a graphic in the exportlist will show the name of the code.<BR>
+To delete a code from the exportlist you only have to click on it.<BR><BR>
+Click on a button below the exportlist, deppending on the format you like to export in.<BR>
+You can choose a path and filename for the export.</P>
+<P>If you export into html, the selected options of the settings-dialog will be used.</p>
+</fieldset>
+<Fieldset id="h13" class="CodeEntry">
+<Legend class="CodeEntry">Export to HTML</legend>
+<p clas="CodeEntry">
+<P>Export to HTML let you choose colors and templates in the settings-dialog.<BR>
+The templates are located in the subdirectory Templates and you can edit and create them.<BR>
+There are some things to know about:</P>
+<UL>
+  <LI><STRONG>Files:</STRONG><BR>
+  In Templates you create CSS-files. The HTML-part of the exported file is allways the same and can´t be edited,<BR>
+  see below.<BR>
+  You can name the CSS-file as you like, you only got to add "List_" to the name if you like to use clickable list in<BR>
+  the export-file. Sample-graphics of the templates can be displayed. Create them with the same name as the CSS-file under    
+  Templates/Images <BR>in the png format. Please use a size near 600x300 Pixels.<BR>A Dummy-graphic is displayed if there 
+  is no similar file<BR><BR><BR>
+  <LI><STRONG>Colors</STRONG>:<BR>
+  For colors, if you dont use your own in the CSS-file, you can use the preselected colors in the settings-dialog with 
+  variable-names.<BR>[COLOR1], [COLOR2], [COLOR3], [COLOR4], [COLOR5] for the preselected color-theme,<BR>
+  [TXTCOLOR] for the preselected Textcolor.<BR><BR>
+  <LI><STRONG>HTML:<BR></STRONG>
+  The HTML-part of the export is allways the same and can only be styled with the CSS-part. This doesn`t affect on 
+  Header.html <BR>and Footer.html.
+  <BR><BR><BR>&lt;!DOCTYPE html&gt;<BR>&lt;html 
+  lang="<STRONG><EM>&nbsp;Sprache</EM></STRONG> 
+  "&gt;<BR>&lt;head&gt;<BR>&lt;Title&gt; <STRONG><EM>PATH AND NAME OF THE EXPORT FILE</EM></STRONG> 
+  &lt;/Title&gt;<BR>&lt;style&gt;<BR></FONT><FONT face=Arial><STRONG><EM>Here CSS Declarations will be inserted 
+  <BR></EM></STRONG>&lt;/style&gt;<BR>&lt;/head&gt;<BR>&lt;Body&gt;<BR><STRONG><EM>Include of Header.Html if selected in 
+  the Settings Dialog.</EM></STRONG><BR><STRONG><EM>If "List_" is found in the Name of the CSS-file, the following code will
+  be inserted:<BR></EM></STRONG><SPAN 
+  id=line278><SPAN><FONT face="Times New Roman">&lt;<SPAN 
+  class=start-tag>div</SPAN> <SPAN class=attribute-name>class</SPAN>="</FONT> 
+  <FONT face="Times New Roman">sidenav</FONT><FONT 
+  face="Times New Roman">"&gt;<BR></FONT></SPAN><SPAN></SPAN><SPAN><FONT 
+  face="Times New Roman">&lt;<SPAN class=start-tag>ul</SPAN> <SPAN 
+  class=attribute-name>class</SPAN>="</FONT><FONT 
+  face="Times New Roman">sidenavi</FONT><FONT 
+  face="Times New Roman">"&gt;<BR></FONT></SPAN><SPAN><FONT 
+  face="Times New Roman"></FONT></SPAN></SPAN><SPAN 
+  id=line279><SPAN></SPAN><SPAN><FONT face="Times New Roman">&lt;<SPAN 
+  class=start-tag>li</SPAN> <SPAN class=attribute-name>class</SPAN>="</FONT>
+  <FONT face="Times New Roman">sidenavi</FONT><FONT 
+  face="Times New Roman">"&gt;<BR></FONT></SPAN><SPAN></SPAN><SPAN><FONT 
+  face="Times New Roman">&lt;<SPAN class=start-tag>a</SPAN> <SPAN 
+  class=attribute-name>href</SPAN>="</FONT><FONT 
+  face="Times New Roman">#</FONT><FONT face="Times New Roman">"&gt; 
+  <STRONG><EM><FONT face=Arial>Name of Code-snippet 
+  </FONT></EM></STRONG></FONT></SPAN><FONT 
+  face="Times New Roman"><SPAN>&lt;/<SPAN 
+  class=end-tag>a</SPAN>&gt;<BR></SPAN><SPAN></SPAN><SPAN>&lt;/<SPAN 
+  class=end-tag>li</SPAN>&gt;<BR></SPAN><SPAN></SPAN></FONT></SPAN><SPAN 
+  id=line280><SPAN></SPAN><FONT face="Times New Roman"><SPAN>&lt;/<SPAN 
+  class=end-tag>ul</SPAN>&gt;<BR></SPAN><SPAN></SPAN><SPAN>&lt;/<SPAN 
+  class=end-tag>div</SPAN>&gt;<BR><STRONG><EM><FONT face=Arial>end of List
+  </font></EM></STRONG></SPAN></FONT><SPAN></SPAN></SPAN><BR>&lt;div 
+  class="main"&gt;<BR>&lt;Fieldset id="c0" class="CodeEntry"&gt;<BR>&lt;Legend 
+  class="CodeEntry"&gt; <STRONG><EM>Name of Code-snippet</EM></STRONG> 
+  &lt;/Legend&gt;<BR>&lt;p class="Language"&gt; <STRONG><EM>Coding language of 
+  Code-snippet</EM></STRONG>&nbsp;&lt;/p&gt;<BR>&lt;p class="Type"&gt; 
+  <STRONG><EM>Type of Code-snippet</EM></STRONG> &lt;/p&gt;<BR>&lt;div 
+  class="CodeLines"&gt;<BR>&lt;pre&gt;<BR>&lt;code&gt;<BR><STRONG><EM>The 
+  Code-snippet</EM></STRONG><BR>&lt;/code&gt;<BR>&lt;/pre&gt;<BR>&lt;/div&gt;<BR>&lt;p 
+  class="CodeAppend"&gt; <STRONG><EM>Required 
+  </EM></STRONG>&lt;/p&gt;<BR>&lt;fieldset class="Required"&gt;<BR>&lt;legend 
+  class="Required"&gt; <STRONG><EM>Name of required</EM></STRONG> 
+  &lt;/legend&gt;<BR>&lt;p class="Required"&gt; <STRONG><EM>Description of required</EM>
+  </STRONG> &lt;/p&gt;<BR>&lt;p class="Required"&gt;&lt;a 
+  href="URL" class="Required"&gt; <STRONG><EM>Url of required</EM></STRONG> 
+  &lt;/a&gt;&lt;/p&gt;<BR>&lt;/fieldset&gt;<BR>&lt;p class="CodeAppend"&gt; 
+  <STRONG><EM>Comment</EM></STRONG>&lt;/p&gt;<BR>&lt;Fieldset 
+  class="Comment"&gt;<BR>&lt;legend class="Comment"&gt; <STRONG><EM>Author of comment</EM>
+  </STRONG> &lt;/legend&gt;<BR>&lt;p class="Comment"&gt;<STRONG><EM> 
+  Comment</EM></STRONG> &lt;/p&gt;<BR>&lt;/fieldset&gt;<BR>&lt;p 
+  class="CodeAppend"&gt; <STRONG><EM>Links</EM></STRONG> 
+  &lt;/p&gt;<BR>&lt;fieldset class="CodeLinks"&gt;<BR>&lt;legend 
+  class="CodeLinks"&gt; <STRONG><EM>Link description</EM></STRONG> 
+  &lt;/legend&gt;<BR>&lt;p class="CodeLinks"&gt;&lt;a href="URL" 
+  class="CodeLinks"&gt; <STRONG><EM>URL 
+  </EM></STRONG>&lt;/a&gt;&lt;/p&gt;<BR>&lt;/fieldset&gt;<BR>&lt;/Fieldset&gt;<BR>&lt;/div&gt;<BR><STRONG><EM>
+  Include of Footer.Html if selected in settings Dialog.</EM></STRONG><BR>&lt;/Body&gt;<BR>&lt;/html&gt;<BR><BR>
+  </FONT>
+  <LI><STRONG>Graphics:</STRONG><BR>
+  Use full path if you include graphics. there will no additional file copy.
+  <BR><BR></FONT></LI></UL>
+</p>
+</fieldset>
+<br><br><br><br>
+</div>
+<div class="footer">
+Schnipsel Online: <a href="https://github.com/troeschi/Schnipsel">GitHub</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+Contact: <a href="mailto:troesch.andreas@gmx.de">Email: troesch.andreas@gmx.de</a>&nbsp;&nbsp;&nbsp;
+</div>
+</Body>
+</html>
