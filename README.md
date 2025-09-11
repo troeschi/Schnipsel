@@ -11,7 +11,7 @@ Windows 10 / 11 64Bit, Linux unter X11 X-Server getestet und läuft. Wie es unte
 </p>
 <p  align="justify">Code-, Script- oder Text-Schnipsel können nach Sprache und Typ sortiert werden, links, kurze Kommentare und Links zu anderen Einträgen können hinzugefügt werden.
 Ein Editor ist vorhanden, für kleinere Änderungen, ist aber kein wirklicher Ersatz für einen Code- oder Texteditor.</p>
-<p>Schnipsel können in einem Top-Fenster angezeigt werdsen, das über allen anderen Anwendungen und Fenstern verbleibt solange es nicht geschlossen wird.</p>
+<p>Schnipsel können in einem Top-Fenster angezeigt werden, das über allen anderen Anwendungen und Fenstern verbleibt solange es nicht geschlossen wird.</p>
 <p  align="justify">Schnipsel könne nach XML,Html und PDF exportiert werden. Diese Funktion ist noch nicht vollständig, es fehlen Templates und der Export ist nicht limitiert.., wird noch gemacht (Solange nicht versucht wird hunderte von Schnipseln zu exportieren geht es..:-)). Es gibt eine deutsche und englische Übersetzung</p>
 <p></p>
 <p>English</p>
