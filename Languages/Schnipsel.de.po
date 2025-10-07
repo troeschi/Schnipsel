@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
 #: tcommentdlg.caption
 msgid "Comment"
@@ -146,7 +146,7 @@ msgstr "Suche"
 
 #: tdbsearchdlg.searchedit.editlabel.caption
 msgid "Search for:"
-msgstr ""
+msgstr "Suche nach:"
 
 #: texportdlg.codename.caption
 msgctxt "texportdlg.codename.caption"
@@ -437,7 +437,7 @@ msgstr "Verbindung zu Datenbank \"Schnipsel\" =OK!"
 
 #: translate_strings.dbunixdsn
 msgid "Under Linux OSes only with DSN! (select above)"
-msgstr ""
+msgstr "In Linux OSes nur mit DSN! (oben wählen)"
 
 #: translate_strings.dlgstr1
 msgid "No Entry Selected"
@@ -1226,7 +1226,7 @@ msgstr "Fonts"
 
 #: tsettingsdialog.generaltxt.caption
 msgid "Default Font:"
-msgstr "Standard.Font:"
+msgstr "Standard Font:"
 
 #: tsettingsdialog.htmlexportsettings.caption
 #, fuzzy
@@ -1314,16 +1314,16 @@ msgstr "Alles auswählen"
 
 #: udbconfigdlg.dbconnectionfail
 msgid "No MySQL or MariaDB Server!"
-msgstr ""
+msgstr "Kein MySQL oder MariaDB Server!"
 
 #: udbconfigdlg.dbconnectionok
 msgid "Connection to MySQL database \"Schnipsel\" = OK!"
-msgstr ""
+msgstr "Verbundung zu MySQL Datenbank 'Schnipsel' =OK!"
 
 #: udbconfigdlg.nodbinfo
 msgctxt "udbconfigdlg.nodbinfo"
 msgid "No Server Info!"
-msgstr ""
+msgstr "Keine Server Information! "
 
 #: udbconfigdlg.nodrventrys
 #, fuzzy
@@ -1340,15 +1340,14 @@ msgstr "Keine Einträge"
 #: udbconfigdlg.nousedsn
 msgctxt "udbconfigdlg.nousedsn"
 msgid "No Use of DSN (fill fields below)"
-msgstr ""
+msgstr "Kein DSN verwenden (Felder unten ausfüllen"
 
 #: udbconfigdlg.runsqldump
 msgctxt "udbconfigdlg.runsqldump"
 msgid "Install the default(Setup) Schnipsel.sql?"
-msgstr ""
+msgstr "Installiere Standard (Setup) Schnipsel.sql?"
 
 #: udbconfigdlg.runsqldump2
 msgctxt "udbconfigdlg.runsqldump2"
 msgid "(Click No to Select a SQL-Dump)"
-msgstr ""
-
+msgstr "(Nein anklicken um eine SQL-Dump Datei zu wählen)"
